@@ -1,4 +1,4 @@
-<h1 id='websocket'>WebSocket接口文档</h1><h2 id='1-websocket'>1、WebSocket行情数据(公有流)</h2><h3 id='1-1-k'>1.1、K线数据</h3>
+<h1 id='websocket'>WebSocket接口文档</h1><h2 id='websocket-2'>WebSocket行情数据(公有流)</h2><h3 id='k'>K线数据</h3>
 <p>请求正文</p>
 
 <table><thead>
@@ -143,7 +143,7 @@
         <span class="s">"volume"</span><span class="o">:</span><span class="s">"0"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='1-2'>1.2、行情数据</h3>
+</code></pre></div><h3 id='d9d514d202'>行情数据</h3>
 <p>请求正文</p>
 
 <table><thead>
@@ -323,7 +323,7 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1-3'>1.3、深度行情数据</h3>
+</span></code></pre></div><h3 id='1f6272cd6f'>深度行情数据</h3>
 <p>请求正文</p>
 
 <table><thead>
@@ -440,7 +440,7 @@
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1-4'>1.4、全量成交回报数据</h3>
+</span></code></pre></div><h3 id='d39dd439c0'>全量成交回报数据</h3>
 <p>请求正文</p>
 
 <table><thead>
@@ -595,7 +595,7 @@
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='2-websocket'>2、WebSocket订单交易数据(私有流)</h2><h3 id='2-1'>2.1、订单数据</h3>
+</span></code></pre></div><h2 id='websocket-3'>WebSocket订单交易数据(私有流)</h2><h3 id='22426c6d96'>订单数据</h3>
 <p>请求正文</p>
 
 <table><thead>
@@ -775,7 +775,7 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='2-2'>2.2、交易数据</h3>
+</span></code></pre></div><h3 id='c8e5ca7201'>交易数据</h3>
 <p>请求正文</p>
 
 <table><thead>

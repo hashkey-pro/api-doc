@@ -1,8 +1,8 @@
-<h1 id='1541c0ddc8'>简介：</h1>
+<h1 id='5ea2e0cde2'>简介</h1>
 <p>欢迎使用HashKey API！此文档是HashKey API的唯一官方文档，HashKey API提供的能力会在此持续更新，请大家及时关注。</p>
 <h2 id='152d3db758'>联系我们</h2>
 <p>使用过程中如有问题或者建议，您可选择以下任一方式联系我们。</p>
-<h1 id='25ba3b2f0b'>接入说明：</h1><h2 id='c1ae0a8486'>接入准备</h2>
+<h1 id='2d07d50c97'>接入说明</h1><h2 id='c1ae0a8486'>接入准备</h2>
 <p>如需使用API ，请先登录网页端，完成API key的申请和权限配置，再据此文档详情进行开发和交易。
 每个账户最多可创建10组Api Key，每个Api Key可对应设置读取、交易、提现三种权限。
 权限说明如下：
@@ -89,7 +89,7 @@
             <span class="n">mac</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">secretKey</span><span class="o">);</span>
             <span class="k">return</span> <span class="n">mac</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">plainData</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
          <span class="o">}</span>
-</code></pre></div><h2 id='b1d007015a'>接口概览：</h2><h3 id='5076603a3e'>接口类型</h3>
+</code></pre></div><h2 id='3951e02bdc'>接口概览</h2><h3 id='5076603a3e'>接口类型</h3>
 <p>HashKey Pro为用户提供两种接口，您可根据自己的使用场景来选择适合的方式。
 <strong>Rest API</strong>
 REST，即Representational State Transfer的缩写，是目前较为流行的基于HTTP的一种通信机制，每一个URL代表一种资源。
@@ -106,7 +106,7 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <p>Restful URL: https://int.hashkey3.com</p>
 
 <p>WebSocket: wss://int.hashkey3.com</p>
-<h1 id='cbe8c976ee'>常见问题：</h1><h1 id='rest-api'>Rest API</h1><h2 id='2d07d50c97'>接入说明</h2><h3 id='c1fd2fc5ac'>限频规则</h3>
+<h1 id='0adb1147b3'>常见问题</h1><h1 id='rest-api'>Rest API</h1><h2 id='2d07d50c97-2'>接入说明</h2><h3 id='c1fd2fc5ac'>限频规则</h3>
 <p>除已单独标注限频值的接口外 - 每个API Key 在1秒之内限制10次 </p>
 
 <p>比如：
@@ -143,7 +143,7 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 </tbody></table>
 <h2 id='rest-api-2'>REST API</h2>
 <p><a href="https://github.com/hashkey-pro/open-api/blob/master/rest-api.md">rest-api</a></p>
-<h1 id='websocket-api'>Websocket API</h1><h2 id='2d07d50c97-2'>接入说明</h2><h3 id='8225783f38'>接入地址</h3>
+<h1 id='websocket-api'>Websocket API</h1><h2 id='2d07d50c97-3'>接入说明</h2><h3 id='8225783f38'>接入地址</h3>
 <ul>
 <li> /api/websocket-api/v1/stream
 ### 接入限制</li>

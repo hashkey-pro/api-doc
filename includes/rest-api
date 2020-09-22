@@ -1,4 +1,4 @@
-<h1 id='restapi'>RestAPI接口文档</h1><h2 id='1'>1、通用</h2><h3 id='1-1'>1.1、查询服务器时间</h3>
+<h1 id='restapi'>RestAPI接口文档</h1><h2 id='1a0fdce8f8'>通用</h2><h3 id='8aa898cda7'>查询服务器时间</h3>
 <p>Http request:  GET info/time
 请求正文：无<br>
 响应正文：    </p>
@@ -30,7 +30,7 @@
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></div><h3 id='1-2-api'>1.2、查询API发行号</h3>
+</code></pre></div><h3 id='api'>查询API发行号</h3>
 <p>Http request:  GET info/version
 请求正文：无
 响应正文：</p>
@@ -62,7 +62,7 @@
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></div><h2 id='2'>2、交易</h2><h3 id='2-1'>2.1、创建限价单</h3>
+</code></pre></div><h2 id='dfe799947f'>交易</h2><h3 id='8eb267a6ca'>创建限价单</h3>
 <p>Http request:  POST limit/order/create
 请求正文：</p>
 
@@ -205,7 +205,7 @@
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></div><h3 id='2-2'>2.2、创建市价单</h3>
+</code></pre></div><h3 id='3b402408df'>创建市价单</h3>
 <p>Http request:  POST market/order/create
 请求正文：</p>
 
@@ -339,7 +339,7 @@
         <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='2-3'>2.3、创建限价止损单</h3>
+</code></pre></div><h3 id='27ebd94777'>创建限价止损单</h3>
 <p>Http request:  POST stopL/order/create
 请求正文：</p>
 
@@ -489,7 +489,7 @@
         <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='2-4'>2.4、创建市价止损单</h3>
+</code></pre></div><h3 id='93ac65ace3'>创建市价止损单</h3>
 <p>Http request:  POST stopM/order/create
 请求正文：</p>
 
@@ -631,7 +631,7 @@
         <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='2-5'>2.5、创建冰山订单</h3>
+</code></pre></div><h3 id='81752812db'>创建冰山订单</h3>
 <p>Http request:  POST ice/order/create
 请求正文：</p>
 
@@ -781,7 +781,7 @@
         <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='2-6'>2.6、创建隐藏订单</h3>
+</code></pre></div><h3 id='cc80916de5'>创建隐藏订单</h3>
 <p>Http request:  POST hidden/order/create
 请求正文：</p>
 
@@ -923,7 +923,7 @@
         <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='2-7'>2.7、撤销订单</h3>
+</code></pre></div><h3 id='4e53c0fccd'>撤销订单</h3>
 <p>Http request:  POST /order/cancel
 请求正文：</p>
 
@@ -1037,7 +1037,7 @@
         <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='2-8'>2.8、查询订单</h3>
+</code></pre></div><h3 id='90376e83a0'>查询订单</h3>
 <p>Http request:  GET /order/find
 请求正文：</p>
 
@@ -1208,7 +1208,7 @@
         <span class="o">}</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='2-9'>2.9、查询成交</h3>
+</code></pre></div><h3 id='c240f9632f'>查询成交</h3>
 <p>Http request:  GET /trade/find
 请求正文：</p>
 
@@ -1349,7 +1349,7 @@
         <span class="o">}</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='2-10'>2.10、做市商报价</h3>
+</code></pre></div><h3 id='c087d409bc'>做市商报价</h3>
 <p>Http request:  POST /quote/create
 请求正文：</p>
 
@@ -1481,7 +1481,7 @@
             <span class="s">"insertTimestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
         <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='2-11'>2.11、做市商撤销报价</h3>
+</code></pre></div><h3 id='748b170dd5'>做市商撤销报价</h3>
 <p>Http request:  POST /quote/cancel
 请求正文：</p>
 
@@ -1516,7 +1516,7 @@
     <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
     <span class="s">"data"</span><span class="o">:{}</span>
 <span class="o">}</span>
-</code></pre></div><h2 id='3'>3、资产</h2><h3 id='3-1'>3.1、查询资产</h3>
+</code></pre></div><h2 id='713fd96fb2'>资产</h2><h3 id='e7457154f4'>查询资产</h3>
 <p>Http request:  GET /balance/find</p>
 
 <p>请求正文：
@@ -1570,7 +1570,7 @@
         <span class="s">"frozen"</span><span class="o">:</span><span class="s">"2000"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='3-2'>3.2、提现</h3>
+</code></pre></div><h3 id='a471daf080'>提现</h3>
 <p>Http request:  POST /balance/withdraw
 请求正文：</p>
 
@@ -1637,7 +1637,7 @@
         <span class="s">"withdrawOrderId"</span><span class="o">:</span><span class="s">"test0001"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='3-3'>3.3、交易账户向存款账户划转</h3>
+</code></pre></div><h3 id='1a87fb781d'>交易账户向存款账户划转</h3>
 <p>Http request:  POST /balance/asset/transfer
 请求正文：</p>
 
@@ -1687,7 +1687,7 @@
     <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
     <span class="s">"data"</span><span class="o">:{}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='3-4'>3.4、交易账户间划转</h3>
+</code></pre></div><h3 id='76fcbad559'>交易账户间划转</h3>
 <p>Http request:  POST /balance/trade/transfer
 请求正文：</p>
 
