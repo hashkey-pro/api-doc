@@ -819,4 +819,179 @@
         <span class="s">"frozen"</span><span class="o">:</span><span class="s">"2000"</span>
     <span class="o">}</span>
 <span class="o">}</span>
+</code></pre></div><h3 id='a471daf080'>提现</h3>
+<p>Http request:  POST /balance/withdraw
+请求正文：</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>注释</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chainAssetId</td>
+<td>String</td>
+<td>true</td>
+<td>链上币种id</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>String</td>
+<td>true</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>true</td>
+<td>地址</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>响应正文：</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>注释</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>withdrawOrderId</td>
+<td>String</td>
+<td>提现单号</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
+<span class="o">{</span>
+     <span class="s">"chainAssetId"</span><span class="o">:</span><span class="s">"ETH"</span><span class="o">,</span>
+     <span class="s">"amount"</span><span class="o">:</span><span class="s">"1"</span><span class="o">,</span>
+     <span class="s">"address"</span><span class="o">:</span><span class="s">"testAddress"</span>
+<span class="o">}</span>
+<span class="n">响应样例</span><span class="err">：</span>
+<span class="o">{</span>
+    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
+    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"data"</span><span class="o">:{</span>
+        <span class="s">"withdrawOrderId"</span><span class="o">:</span><span class="s">"test0001"</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h3 id='1a87fb781d'>交易账户向存款账户划转</h3>
+<p>Http request:  POST /balance/asset/transfer
+请求正文：</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>注释</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assetId</td>
+<td>String</td>
+<td>true</td>
+<td>币种id</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>String</td>
+<td>true</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>fromAccountId</td>
+<td>String</td>
+<td>true</td>
+<td>源账户地址</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>响应正文：
+无</p>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
+<span class="o">{</span>
+    <span class="s">"assetId"</span><span class="o">:</span><span class="s">"ETH"</span><span class="o">,</span>
+     <span class="s">"amount"</span><span class="o">:</span><span class="s">"1"</span><span class="o">,</span>
+    <span class="s">"fromAccountId"</span><span class="o">:</span><span class="s">"B000000000001"</span>
+<span class="o">}</span>
+<span class="n">响应样例</span><span class="err">：</span>
+<span class="o">{</span>
+    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
+    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"data"</span><span class="o">:{}</span>
+<span class="o">}</span>
+</code></pre></div><h3 id='76fcbad559'>交易账户间划转</h3>
+<p>Http request:  POST /balance/trade/transfer
+请求正文：</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>注释</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assetId</td>
+<td>String</td>
+<td>true</td>
+<td>币种id</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>String</td>
+<td>true</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>fromAccountId</td>
+<td>String</td>
+<td>true</td>
+<td>源账户地址</td>
+<td></td>
+</tr>
+<tr>
+<td>toAccountId</td>
+<td>String</td>
+<td>true</td>
+<td>目标账户地址</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>响应正文：
+无</p>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
+<span class="o">{</span>
+    <span class="s">"assetId"</span><span class="o">:</span><span class="s">"ETH"</span><span class="o">,</span>
+     <span class="s">"amount"</span><span class="o">:</span><span class="s">"1"</span><span class="o">,</span>
+    <span class="s">"fromAccountId"</span><span class="o">:</span><span class="s">"B000000000001"</span><span class="err">，</span>
+    <span class="s">"toAccountId"</span><span class="o">:</span><span class="s">"B000000000002"</span>
+<span class="o">}</span>
+<span class="n">响应样例</span><span class="err">：</span>
+<span class="o">{</span>
+    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
+    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"data"</span><span class="o">:{}</span>
+<span class="o">}</span>
 </code></pre></div>
