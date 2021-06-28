@@ -595,4 +595,348 @@
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='websocket-3'>WebSocket订单交易数据(私有流)</h2><h3 id='22426c6d96'>订单数据</h3>
+<p>请求正文</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>true</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>true</td>
+<td>主题</td>
+<td>order_rtn</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>false</td>
+<td>币对</td>
+<td>ETH/USDT, BTC/ETH ...传空为全量</td>
+</tr>
+</tbody></table>
+
+<p>响应正文</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>类型</td>
+<td>sub-resp</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>主题</td>
+<td>order_rtn</td>
+</tr>
+<tr>
+<td>errorCode</td>
+<td>String</td>
+<td>错误码</td>
+<td>0000 ...</td>
+</tr>
+<tr>
+<td>errorMessage</td>
+<td>String</td>
+<td>错误信息</td>
+<td>success ...</td>
+</tr>
+<tr>
+<td>apiKey</td>
+<td>String</td>
+<td>apiKey</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>String</td>
+<td>订单号</td>
+<td>不能重复</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>合约号</td>
+<td>样例 ETH-BTC</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>String</td>
+<td>方向</td>
+<td>0-买 1-卖</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>String</td>
+<td>订单类型</td>
+<td>1-限价单、2-市价单 、3-止盈止损 、4-冰山订单 、5-隐藏订单</td>
+</tr>
+<tr>
+<td>limtPrice</td>
+<td>String</td>
+<td>价格</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>String</td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>displaySize</td>
+<td>String</td>
+<td>展示数量</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>String</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>String</td>
+<td>订单状态</td>
+<td>0-全部成交、1-部分成交 、2-未成交、3-撤单、4-部分成交部分撤单、5-已触发止损</td>
+</tr>
+<tr>
+<td>orderTimestamp</td>
+<td>String</td>
+<td>操作时间戳</td>
+<td>13位</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">请求样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"channel"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"xxxxxxxxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"order_rtn"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"ETH/USDT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">响应样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub-resp"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"order_rtn"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"0000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"testApiKey"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="s2">"000000001"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"BTC-ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"limtPrice"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"displaySize"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderStatus"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderTimestamp"</span><span class="p">:</span><span class="s2">"1234567890123"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"testApiKey"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="s2">"000000002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"BTC-ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"limtPrice"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"displaySize"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderStatus"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderTimestamp"</span><span class="p">:</span><span class="s2">"1234567890123"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='c8e5ca7201'>交易数据</h3>
+<p>请求正文</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>true</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>true</td>
+<td>主题</td>
+<td>trade_rtn</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>false</td>
+<td>币对</td>
+<td>ETH/USDT, BTC/ETH ...传空为全量</td>
+</tr>
+</tbody></table>
+
+<p>响应正文</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>类型</td>
+<td>sub-resp</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>主题</td>
+<td>trade_rtn</td>
+</tr>
+<tr>
+<td>errorCode</td>
+<td>String</td>
+<td>错误码</td>
+<td>0000 ...</td>
+</tr>
+<tr>
+<td>errorMessage</td>
+<td>String</td>
+<td>错误信息</td>
+<td>success ...</td>
+</tr>
+<tr>
+<td>apiKey</td>
+<td>String</td>
+<td>apiKey</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeId</td>
+<td>String</td>
+<td>成交号</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>String</td>
+<td>订单号</td>
+<td></td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>合约号</td>
+<td>样例 ETH-BTC</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>String</td>
+<td>方向</td>
+<td>0-买 1-卖</td>
+</tr>
+<tr>
+<td>price</td>
+<td>String</td>
+<td>价格</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>String</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>fee</td>
+<td>String</td>
+<td>手续费</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeTimestamp</td>
+<td>String</td>
+<td>操作时间戳</td>
+<td>13位</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">请求样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"channel"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"xxxxxxxxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"trade_rtn"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"ETH/USDT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">响应样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub-resp"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"trade_rtn"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"0000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"testApiKey"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="s2">"000000001"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"BTC-ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fee"</span><span class="p">:</span><span class="s2">"0.05"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tradeTimestamp"</span><span class="p">:</span><span class="s2">"1234567890123"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"testApiKey"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="s2">"000000001"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"BTC-ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fee"</span><span class="p">:</span><span class="s2">"0.05"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tradeTimestamp"</span><span class="p">:</span><span class="s2">"1234567890123"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
