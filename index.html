@@ -3,10 +3,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link href="images/favicon-f3acf8b2.ico" rel="icon" type="image/ico" />
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>API Documentation</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -249,8 +248,11 @@
 .highlight .kd {
   color: #cb4b16;
 }
-.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
   color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
 }
 .highlight .sr {
   color: #2aa198;
@@ -280,16 +282,13 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-eb218c5b.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-1361b384.js"></script>
+      <script src="javascripts/all_nosearch-8f5ea5a5.js"></script>
 
-    <script>
-      $(function() { setupCodeCopy(); });
-    </script>
   </head>
 
-  <body class="index" data-languages="[&quot;java&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -297,17 +296,10 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-72e1bc4b.png" class="logo" alt="" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="java">java</a>
-        </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
+      <img src="images/logo-1e815a84.png" class="logo" alt="" />
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#5ea2e0cde2" class="toc-h1 toc-link" data-title="简介">简介</a>
+            <a href="#1541c0ddc8" class="toc-h1 toc-link" data-title="简介：">简介：</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#152d3db758" class="toc-h2 toc-link" data-title="联系我们">联系我们</a>
@@ -315,7 +307,7 @@
               </ul>
           </li>
           <li>
-            <a href="#2d07d50c97" class="toc-h1 toc-link" data-title="接入说明">接入说明</a>
+            <a href="#25ba3b2f0b" class="toc-h1 toc-link" data-title="接入说明：">接入说明：</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#c1ae0a8486" class="toc-h2 toc-link" data-title="接入准备">接入准备</a>
@@ -325,190 +317,65 @@
                   </li>
                   <li>
                     <a href="#c64cd15fdc" class="toc-h2 toc-link" data-title="签名认证">签名认证</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#34addae335" class="toc-h3 toc-link" data-title="签名说明">签名说明</a>
-                          </li>
-                          <li>
-                            <a href="#1fbac240b7" class="toc-h3 toc-link" data-title="签名步骤">签名步骤</a>
-                          </li>
-                          <li>
-                            <a href="#a9f7555e5e" class="toc-h3 toc-link" data-title="样例：">样例：</a>
-                          </li>
-                      </ul>
                   </li>
                   <li>
-                    <a href="#3951e02bdc" class="toc-h2 toc-link" data-title="接口概览">接口概览</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#5076603a3e" class="toc-h3 toc-link" data-title="接口类型">接口类型</a>
-                          </li>
-                          <li>
-                            <a href="#26d2ab2ffb" class="toc-h3 toc-link" data-title="接口简述">接口简述</a>
-                          </li>
-                      </ul>
+                    <a href="#b1d007015a" class="toc-h2 toc-link" data-title="接口概览：">接口概览：</a>
                   </li>
                   <li>
                     <a href="#e82ff6cf6f" class="toc-h2 toc-link" data-title="环境信息">环境信息</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#7a4cfb2662" class="toc-h3 toc-link" data-title="测试环境">测试环境</a>
-                          </li>
-                          <li>
-                            <a href="#7f152260df" class="toc-h3 toc-link" data-title="生产环境">生产环境</a>
-                          </li>
-                      </ul>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#0adb1147b3" class="toc-h1 toc-link" data-title="常见问题">常见问题</a>
+            <a href="#cbe8c976ee" class="toc-h1 toc-link" data-title="常见问题：">常见问题：</a>
           </li>
           <li>
             <a href="#rest-api" class="toc-h1 toc-link" data-title="Rest API">Rest API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#2d07d50c97-2" class="toc-h2 toc-link" data-title="接入说明">接入说明</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#c1fd2fc5ac" class="toc-h3 toc-link" data-title="限频规则">限频规则</a>
-                          </li>
-                          <li>
-                            <a href="#21d67c3c4c" class="toc-h3 toc-link" data-title="请求格式">请求格式</a>
-                          </li>
-                          <li>
-                            <a href="#dac673286f" class="toc-h3 toc-link" data-title="返回格式">返回格式</a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                    <a href="#rest-api-2" class="toc-h2 toc-link" data-title="REST API">REST API</a>
+                    <a href="#2d07d50c97" class="toc-h2 toc-link" data-title="接入说明">接入说明</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#websocket-api" class="toc-h1 toc-link" data-title="Websocket API">Websocket API</a>
+            <a href="#websocket-api" class="toc-h1 toc-link" data-title="WebSocket API">WebSocket API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#2d07d50c97-3" class="toc-h2 toc-link" data-title="接入说明">接入说明</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#8225783f38" class="toc-h3 toc-link" data-title="接入地址">接入地址</a>
-                          </li>
-                          <li>
-                            <a href="#1853724646" class="toc-h3 toc-link" data-title="心跳消息">心跳消息</a>
-                          </li>
-                          <li>
-                            <a href="#21d67c3c4c-2" class="toc-h3 toc-link" data-title="请求格式">请求格式</a>
-                          </li>
-                          <li>
-                            <a href="#dac673286f-2" class="toc-h3 toc-link" data-title="返回格式">返回格式</a>
-                          </li>
-                      </ul>
+                    <a href="#2d07d50c97-2" class="toc-h2 toc-link" data-title="接入说明">接入说明</a>
                   </li>
                   <li>
                     <a href="#1da6708ecc" class="toc-h2 toc-link" data-title="鉴权">鉴权</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#0719dac40c" class="toc-h3 toc-link" data-title="请求正文">请求正文</a>
-                          </li>
-                          <li>
-                            <a href="#ac5260f829" class="toc-h3 toc-link" data-title="响应正文">响应正文</a>
-                          </li>
-                      </ul>
                   </li>
                   <li>
                     <a href="#65cd7614bc" class="toc-h2 toc-link" data-title="订阅主题">订阅主题</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#0719dac40c-2" class="toc-h3 toc-link" data-title="请求正文">请求正文</a>
-                          </li>
-                          <li>
-                            <a href="#ac5260f829-2" class="toc-h3 toc-link" data-title="响应正文">响应正文</a>
-                          </li>
-                      </ul>
                   </li>
                   <li>
                     <a href="#b109d834a1" class="toc-h2 toc-link" data-title="取消订阅">取消订阅</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#0719dac40c-3" class="toc-h3 toc-link" data-title="请求正文">请求正文</a>
-                          </li>
-                          <li>
-                            <a href="#ac5260f829-3" class="toc-h3 toc-link" data-title="响应正文">响应正文</a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                    <a href="#websocket-api-2" class="toc-h2 toc-link" data-title="websocket API">websocket API</a>
                   </li>
               </ul>
           </li>
           <li>
             <a href="#a38a81c9d5" class="toc-h1 toc-link" data-title="错误信息">错误信息</a>
+          </li>
+          <li>
+            <a href="#rest-api-2" class="toc-h1 toc-link" data-title="Rest API 接口文档">Rest API 接口文档</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#244a640ee8" class="toc-h2 toc-link" data-title="错误码划分规范">错误码划分规范</a>
+                    <a href="#1" class="toc-h2 toc-link" data-title="1、通用">1、通用</a>
                   </li>
                   <li>
-                    <a href="#e95a10d43b" class="toc-h2 toc-link" data-title="错误码对照表">错误码对照表</a>
+                    <a href="#2" class="toc-h2 toc-link" data-title="2、交易">2、交易</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#restapi" class="toc-h1 toc-link" data-title="RestAPI接口文档">RestAPI接口文档</a>
+            <a href="#websocket-api-2" class="toc-h1 toc-link" data-title="WebSocket API 接口文档">WebSocket API 接口文档</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1a0fdce8f8" class="toc-h2 toc-link" data-title="通用">通用</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#8aa898cda7" class="toc-h3 toc-link" data-title="查询服务器时间">查询服务器时间</a>
-                          </li>
-                          <li>
-                            <a href="#api" class="toc-h3 toc-link" data-title="查询API发行号">查询API发行号</a>
-                          </li>
-                      </ul>
+                    <a href="#1-websocket" class="toc-h2 toc-link" data-title="1、WebSocket行情数据(公有流)">1、WebSocket行情数据(公有流)</a>
                   </li>
                   <li>
-                    <a href="#dfe799947f" class="toc-h2 toc-link" data-title="交易">交易</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#8eb267a6ca" class="toc-h3 toc-link" data-title="创建限价单">创建限价单</a>
-                          </li>
-                          <li>
-                            <a href="#3b402408df" class="toc-h3 toc-link" data-title="创建市价单">创建市价单</a>
-                          </li>
-                          <li>
-                            <a href="#4e53c0fccd" class="toc-h3 toc-link" data-title="撤销订单">撤销订单</a>
-                          </li>
-                          <li>
-                            <a href="#90376e83a0" class="toc-h3 toc-link" data-title="查询订单">查询订单</a>
-                          </li>
-                          <li>
-                            <a href="#c240f9632f" class="toc-h3 toc-link" data-title="查询成交">查询成交</a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                    <a href="#713fd96fb2" class="toc-h2 toc-link" data-title="资产">资产</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#e7457154f4" class="toc-h3 toc-link" data-title="查询资产">查询资产</a>
-                          </li>
-                      </ul>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#websocket" class="toc-h1 toc-link" data-title="WebSocket接口文档">WebSocket接口文档</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#websocket-2" class="toc-h2 toc-link" data-title="WebSocket行情数据(公有流)">WebSocket行情数据(公有流)</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#d9d514d202" class="toc-h3 toc-link" data-title="行情数据">行情数据</a>
-                          </li>
-                      </ul>
+                    <a href="#2-websocket" class="toc-h2 toc-link" data-title="2、WebSocket订单交易数据(私有流)">2、WebSocket订单交易数据(私有流)</a>
                   </li>
               </ul>
           </li>
@@ -517,11 +384,11 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='5ea2e0cde2'>简介</h1>
+        <h1 id='1541c0ddc8'>简介：</h1>
 <p>欢迎使用HashKey API！此文档是HashKey API的唯一官方文档，HashKey API提供的能力会在此持续更新，请大家及时关注。</p>
 <h2 id='152d3db758'>联系我们</h2>
 <p>使用过程中如有问题或者建议，您可选择以下任一方式联系我们。</p>
-<h1 id='2d07d50c97'>接入说明</h1><h2 id='c1ae0a8486'>接入准备</h2>
+<h1 id='25ba3b2f0b'>接入说明：</h1><h2 id='c1ae0a8486'>接入准备</h2>
 <p>如需使用API ，请先登录网页端，完成API key的申请和权限配置，再据此文档详情进行开发和交易。
 每个账户最多可创建10组Api Key，每个Api Key可对应设置读取、交易、提现三种权限。
 权限说明如下：
@@ -551,7 +418,7 @@
 </thead><tbody>
 <tr>
 <td>x-access-key</td>
-<td>&lt;API_KEY&gt;</td>
+<td><API_KEY></td>
 <td>您申请的 API Key 中的 Access Key</td>
 </tr>
 <tr>
@@ -570,7 +437,9 @@
 <td>签名协议的版本，默认为1</td>
 </tr>
 </tbody></table>
-<h3 id='1fbac240b7'>签名步骤</h3><h3 id='a9f7555e5e'>样例：</h3><div class="highlight"><pre class="highlight java tab-java"><code>         <span class="cm">/**
+<h3 id='1fbac240b7'>签名步骤</h3>
+<p><strong>样例：</strong></p>
+<div class="highlight"><pre class="highlight java tab-java"><code>         <span class="cm">/**
          * 签名说明：签名所需字段apiKey、apiSecret、timestamp、version、各请求接口字段。
          *                 字段名和字段值采用key-value形式，且对Key使用ASCII码排序.
          *                 以下为测试数据demo
@@ -608,7 +477,7 @@
             <span class="n">mac</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">secretKey</span><span class="o">);</span>
             <span class="k">return</span> <span class="n">mac</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">plainData</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
          <span class="o">}</span>
-</code></pre></div><h2 id='3951e02bdc'>接口概览</h2><h3 id='5076603a3e'>接口类型</h3>
+</code></pre></div><h2 id='b1d007015a'>接口概览：</h2><h3 id='5076603a3e'>接口类型</h3>
 <p>HashKey Pro为用户提供两种接口，您可根据自己的使用场景来选择适合的方式。
 <strong>Rest API</strong>
 REST，即Representational State Transfer的缩写，是目前较为流行的基于HTTP的一种通信机制，每一个URL代表一种资源。
@@ -625,7 +494,7 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <p>Restful URL: https://int.hashkey3.com</p>
 
 <p>WebSocket: wss://int.hashkey3.com</p>
-<h1 id='0adb1147b3'>常见问题</h1><h1 id='rest-api'>Rest API</h1><h2 id='2d07d50c97-2'>接入说明</h2><h3 id='c1fd2fc5ac'>限频规则</h3>
+<h1 id='cbe8c976ee'>常见问题：</h1><h1 id='rest-api'>Rest API</h1><h2 id='2d07d50c97'>接入说明</h2><h3 id='c1fd2fc5ac'>限频规则</h3>
 <p>除已单独标注限频值的接口外 - 每个API Key 在1秒之内限制10次 </p>
 
 <p>比如：
@@ -660,30 +529,30 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>接口返回数据主体</td>
 </tr>
 </tbody></table>
-<h2 id='rest-api-2'>REST API</h2>
-<p><a href="https://github.com/hashkey-pro/open-api/blob/master/rest-api.md">rest-api</a></p>
-<h1 id='websocket-api'>Websocket API</h1><h2 id='2d07d50c97-3'>接入说明</h2><h3 id='8225783f38'>接入地址</h3>
+<h1 id='websocket-api'>WebSocket API</h1><h2 id='2d07d50c97-2'>接入说明</h2><h3 id='8225783f38'>接入地址</h3>
+<p><code>/api/websocket-api/v1/stream</code></p>
+<h3 id='243efa49ff'>接入限制</h3>
 <ul>
-<li> /api/websocket-api/v1/stream
-### 接入限制</li>
 <li> 同一apiKey最多允许创建10条session长连接。比如：订单成交数据订阅，同一apiKey最多允许建立10条session连接。</li>
 <li> 同一ip最多允许建立5条session长连接。比如：行情数据推送无需apiKey，同一ip地址最多允许建立5条连接。</li>
 </ul>
 <h3 id='1853724646'>心跳消息</h3>
-<p>当用户的Websocket客户端连接到HashKey Websocket服务器后，服务器会定期（当前设为10秒）向其发送ping消息并包含一整数值如下：
-<code>java
-{&quot;type&quot;:&quot;ping&quot;,&quot;data&quot;=&quot;1492420473027&quot;}
-</code></p>
+<p>当用户的Websocket客户端连接到HashKey Websocket服务器后，服务器会定期（当前设为10秒）向其发送ping消息并包含一整数值如下：</p>
+
+<p><code>{&quot;type&quot;:&quot;ping&quot;,&quot;data&quot;=&quot;1492420473027&quot;}</code></p>
 
 <p>当用户的Websocket客户端接收到此心跳消息后，应返回pong消息并包含同一整数值：</p>
-<div class="highlight"><pre class="highlight java tab-java"><code><span class="o">{</span><span class="s">"type"</span><span class="o">:</span><span class="s">"pong"</span><span class="o">,</span><span class="s">"data"</span><span class="o">=</span><span class="s">"1492420473027"</span><span class="o">}</span>
-</code></pre></div>
+
+<p><code>{&quot;type&quot;:&quot;pong&quot;,&quot;data&quot;=&quot;1492420473027&quot;}</code></p>
+
 <p>注：当Websocket服务器连续两次发送了<code>ping</code>消息却没有收到任何一次<code>pong</code>消息返回后，服务器将主动断开与此客户端的连接。</p>
 <h3 id='21d67c3c4c-2'>请求格式</h3>
 <p>所有的请求都是JSON格式，订阅不同topic传递不同参数，请参考具体接口请求样例。</p>
 <h3 id='dac673286f-2'>返回格式</h3>
 <p>所有的响应都是JSON格式，不同topic返回data各有不同，请参考具体接口响应样例。</p>
-<h2 id='1da6708ecc'>鉴权</h2><h3 id='0719dac40c'>请求正文</h3>
+<h2 id='1da6708ecc'>鉴权</h2>
+<p><strong>请求正文</strong></p>
+
 <table><thead>
 <tr>
 <th>参数</th>
@@ -729,7 +598,9 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>签名协议的版本，默认为1</td>
 </tr>
 </tbody></table>
-<h3 id='ac5260f829'>响应正文</h3>
+
+<p><strong>响应正文</strong></p>
+
 <table><thead>
 <tr>
 <th>参数</th>
@@ -744,14 +615,14 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>String</td>
 <td>true</td>
 <td>操作类型</td>
-<td>默认为auth-resp</td>
+<td>默认为auth</td>
 </tr>
 <tr>
 <td>errorCode</td>
 <td>String</td>
 <td>true</td>
 <td>错误码</td>
-<td>0000</td>
+<td>000</td>
 </tr>
 <tr>
 <td>errorMessage</td>
@@ -761,23 +632,25 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>success</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
-<span class="o">{</span>
-    <span class="s">"type"</span><span class="o">:</span><span class="s">"auth"</span><span class="o">,</span>
-    <span class="s">"auth"</span><span class="o">:{</span>
-        <span class="s">"x-access-key"</span><span class="o">:</span><span class="s">"xxxxxxxxx"</span><span class="o">,</span>
-        <span class="s">"x-access-sign"</span><span class="o">:</span><span class="s">"xxxxxxxxx"</span><span class="o">,</span>
-        <span class="s">"x-access-timestamp"</span><span class="o">:</span><span class="s">"150782303000"</span><span class="o">,</span>
-        <span class="s">"x-access-version"</span><span class="o">:</span><span class="s">"2"</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="n">响应样例</span><span class="err">：</span>
-<span class="o">{</span>
-    <span class="s">"type"</span><span class="o">:</span><span class="s">"auth-resp"</span><span class="o">,</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">"success"</span>    
-<span class="o">}</span>
-</code></pre></div><h2 id='65cd7614bc'>订阅主题</h2><h3 id='0719dac40c-2'>请求正文</h3>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">请求样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"auth"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"x-access-key"</span><span class="p">:</span><span class="s2">"xxxxxxxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"x-access-sign"</span><span class="p">:</span><span class="s2">"xxxxxxxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"x-access-timestamp"</span><span class="p">:</span><span class="s2">"150782303000"</span><span class="err">，</span><span class="w">
+        </span><span class="nl">"x-access-version"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">响应样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="w">    
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='65cd7614bc'>订阅主题</h2>
+<p><strong>请求正文</strong></p>
+
 <table><thead>
 <tr>
 <th>参数</th>
@@ -816,7 +689,9 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='ac5260f829-2'>响应正文</h3>
+
+<p><strong>响应正文</strong></p>
+
 <table><thead>
 <tr>
 <th>参数</th>
@@ -831,14 +706,14 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>String</td>
 <td>true</td>
 <td>操作类型</td>
-<td>默认为sub-resp</td>
+<td>默认为sub</td>
 </tr>
 <tr>
 <td>errorCode</td>
 <td>String</td>
 <td>true</td>
 <td>错误码</td>
-<td>0000</td>
+<td>000</td>
 </tr>
 <tr>
 <td>errorMessage</td>
@@ -851,36 +726,30 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>data</td>
 <td>Object</td>
 <td>true</td>
-<td>数据</td>
+<td>快照数据</td>
 <td></td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
-<span class="o">{</span>
-    <span class="s">"type"</span><span class="o">:</span><span class="s">"sub"</span><span class="o">,</span>
-    <span class="s">"channels"</span><span class="o">:</span>  <span class="o">[</span>
-        <span class="o">{</span>
-        <span class="s">"topic"</span><span class="o">:</span><span class="s">"xxxxxxxxx"</span><span class="o">,</span>
-        <span class="o">......</span>
-        <span class="o">},</span>
-        <span class="o">{</span>
-        <span class="s">"topic"</span><span class="o">:</span><span class="s">"xxxxxxxxx"</span><span class="o">,</span>
-        <span class="o">......</span>
-        <span class="o">}</span>
-    <span class="o">]</span>
-<span class="o">}</span>
-<span class="n">响应样例</span><span class="err">：</span>
-<span class="o">{</span>
-    <span class="s">"type"</span><span class="o">:</span><span class="s">"sub-resp"</span><span class="o">,</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">"success"</span><span class="o">,</span>
-    <span class="s">"data"</span><span class="o">:</span> <span class="o">[</span>
-        <span class="o">{</span>
-           <span class="o">....</span>
-        <span class="o">}</span>
-    <span class="o">]</span>
-<span class="o">}</span>
-</code></pre></div><h2 id='b109d834a1'>取消订阅</h2><h3 id='0719dac40c-3'>请求正文</h3>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">请求样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"channel"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"xxxxxxxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="err">......</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">响应样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="err">......</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='b109d834a1'>取消订阅</h2>
+<p><strong>请求正文</strong></p>
+
 <table><thead>
 <tr>
 <th>参数</th>
@@ -912,7 +781,9 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='ac5260f829-3'>响应正文</h3>
+
+<p><strong>响应正文</strong></p>
+
 <table><thead>
 <tr>
 <th>参数</th>
@@ -927,14 +798,14 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>String</td>
 <td>true</td>
 <td>操作类型</td>
-<td>默认为unsub-resp</td>
+<td>默认为unsub</td>
 </tr>
 <tr>
 <td>errorCode</td>
 <td>String</td>
 <td>true</td>
 <td>错误码</td>
-<td>0000</td>
+<td>000</td>
 </tr>
 <tr>
 <td>errorMessage</td>
@@ -944,23 +815,23 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>success</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
-<span class="o">{</span>
-    <span class="s">"type"</span><span class="o">:</span><span class="s">"unsub"</span><span class="o">,</span>
-    <span class="s">"channel"</span><span class="o">:</span>  <span class="o">{</span>
-        <span class="s">"topic"</span><span class="o">:</span><span class="s">"xxxxxxxxx"</span><span class="o">,</span>
-        <span class="o">......</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="n">响应样例</span><span class="err">：</span>
-<span class="o">{</span>
-    <span class="s">"type"</span><span class="o">:</span><span class="s">"unsub-resp"</span><span class="o">,</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">"success"</span>
-<span class="o">}</span>
-</code></pre></div><h2 id='websocket-api-2'>websocket API</h2>
-<p><a href="https://github.com/hashkey-pro/open-api/blob/master/websocket-api.md">websocket-api</a></p>
-<h1 id='a38a81c9d5'>错误信息</h1><h3 id='244a640ee8'>错误码划分规范</h3>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">请求样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"channel"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"xxxxxxxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="err">......</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">响应样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='a38a81c9d5'>错误信息</h1>
+<p><strong>错误码划分规范</strong></p>
+
 <table><thead>
 <tr>
 <th>错误码</th>
@@ -968,19 +839,21 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 </tr>
 </thead><tbody>
 <tr>
-<td>0000~0099</td>
+<td>000~099</td>
 <td>公共错误码</td>
 </tr>
 <tr>
-<td>0100~0199</td>
+<td>100~199</td>
 <td>WebSocket错误码</td>
 </tr>
 <tr>
-<td>0200~0299</td>
+<td>200~299</td>
 <td>行情错误码</td>
 </tr>
 </tbody></table>
-<h3 id='e95a10d43b'>错误码对照表</h3>
+
+<p><strong>错误码对照表</strong></p>
+
 <table><thead>
 <tr>
 <th>错误类型</th>
@@ -991,27 +864,29 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 </thead><tbody>
 <tr>
 <td>公共错误码</td>
-<td>0000</td>
+<td>000</td>
 <td>success</td>
 <td>成功</td>
 </tr>
 <tr>
 <td>公共错误码</td>
-<td>0092</td>
+<td>092</td>
 <td>network error</td>
 <td>网络连接异常</td>
 </tr>
 <tr>
 <td>公共错误码</td>
-<td>0096</td>
+<td>096</td>
 <td>system error</td>
 <td>系统异常</td>
 </tr>
 </tbody></table>
-<h1 id='restapi'>RestAPI接口文档</h1><h2 id='1a0fdce8f8'>通用</h2><h3 id='8aa898cda7'>查询服务器时间</h3>
-<p>Http request:  GET info/time
-请求正文：无<br>
-响应正文：    </p>
+<h1 id='rest-api-2'>Rest API 接口文档</h1><h2 id='1'>1、通用</h2><h3 id='1-1'>1.1、查询服务器时间</h3>
+<p><strong>Http request:</strong>  GET info/time</p>
+
+<p><strong>请求正文：</strong>  无</p>
+
+<p><strong>响应正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1029,21 +904,22 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 </tr>
 </tbody></table>
 
-<p>样例：</p>
-<div class="highlight"><pre class="highlight java tab-java"><code>
-<span class="n">响应样例</span><span class="err">：</span>
+<p><strong>样例：</strong></p>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">响应样例</span><span class="err">：</span>
 <span class="o">{</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"errNo"</span><span class="o">:</span><span class="s">"200"</span><span class="o">,</span>
+    <span class="s">"errMsg"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
     <span class="s">"data"</span><span class="o">:{</span>
         <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"timestamp"</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></div><h3 id='api'>查询API发行号</h3>
-<p>Http request:  GET info/version
-请求正文：无
-响应正文：</p>
+</code></pre></div><h3 id='1-2-api'>1.2、查询API发行号</h3>
+<p><strong>Http request:</strong>  GET info/version</p>
+
+<p><strong>请求正文：</strong> 无</p>
+
+<p><strong>响应正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1061,20 +937,20 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 </tr>
 </tbody></table>
 
-<p>样例：</p>
-<div class="highlight"><pre class="highlight java tab-java"><code>
-<span class="n">响应样例</span><span class="err">：</span>
+<p><strong>样例：</strong></p>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">响应样例</span><span class="err">：</span>
 <span class="o">{</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"errNo"</span><span class="o">:</span><span class="s">"200"</span><span class="o">,</span>
+    <span class="s">"errMsg"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
     <span class="s">"data"</span><span class="o">:{</span>
         <span class="s">"version"</span><span class="o">:</span><span class="s">"version"</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></div><h2 id='dfe799947f'>交易</h2><h3 id='8eb267a6ca'>创建限价单</h3>
-<p>Http request:  POST limit/order/create
-请求正文：</p>
+</code></pre></div><h2 id='2'>2、交易</h2><h3 id='2-1'>2.1、创建限价单</h3>
+<p><strong>Http request:</strong>  POST limit/order/create</p>
+
+<p><strong>请求正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1122,7 +998,7 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 </tr>
 </tbody></table>
 
-<p>响应正文：</p>
+<p><strong>响应正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1183,12 +1059,34 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <tr>
 <td>timestamp</td>
 <td>String</td>
-<td>下单时间戳</td>
+<td>操作时间戳</td>
 <td>13位</td>
 </tr>
 </tbody></table>
 
-<p>样例：</p>
+<p><strong>响应码：</strong></p>
+
+<table><thead>
+<tr>
+<th>响应码</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>下单成功、订单已经提交处理</td>
+</tr>
+<tr>
+<td>207</td>
+<td>下单请求包含格式验证错误。查看结果以获取详细信息</td>
+</tr>
+<tr>
+<td>400</td>
+<td>请求格式无效</td>
+</tr>
+</tbody></table>
+
+<p><strong>样例：</strong></p>
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
 <span class="o">{</span>
     <span class="s">"orderId"</span><span class="o">:</span><span class="s">"000000001"</span><span class="o">,</span>
@@ -1199,8 +1097,8 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <span class="o">}</span>
 <span class="n">响应样例</span><span class="err">：</span>
 <span class="o">{</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"errNo"</span><span class="o">:</span><span class="s">"200"</span><span class="o">,</span>
+    <span class="s">"errMsg"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
     <span class="s">"data"</span><span class="o">:{</span>
         <span class="s">"apiKey"</span><span class="o">:</span><span class="s">"testApiKey"</span><span class="o">,</span>
         <span class="s">"orderId"</span><span class="o">:</span><span class="s">"000000001"</span><span class="o">,</span>
@@ -1215,9 +1113,10 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></div><h3 id='3b402408df'>创建市价单</h3>
-<p>Http request:  POST market/order/create
-请求正文：</p>
+</code></pre></div><h3 id='2-2'>2.2、创建市价单</h3>
+<p><strong>Http request:</strong>  POST market/order/create</p>
+
+<p><strong>请求正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1258,7 +1157,7 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 </tr>
 </tbody></table>
 
-<p>响应正文：</p>
+<p><strong>响应正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1319,12 +1218,34 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <tr>
 <td>timestamp</td>
 <td>String</td>
-<td>下单时间戳</td>
+<td>操作时间戳</td>
 <td>13位</td>
 </tr>
 </tbody></table>
 
-<p>样例：</p>
+<p><strong>响应码：</strong></p>
+
+<table><thead>
+<tr>
+<th>响应码</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>下单成功、订单已经提交处理</td>
+</tr>
+<tr>
+<td>207</td>
+<td>下单请求包含格式验证错误。查看结果以获取详细信息</td>
+</tr>
+<tr>
+<td>400</td>
+<td>请求格式无效</td>
+</tr>
+</tbody></table>
+
+<p><strong>样例：</strong></p>
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
 <span class="o">{</span>
     <span class="s">"orderId"</span><span class="o">:</span><span class="s">"000000001"</span><span class="o">,</span>
@@ -1334,8 +1255,8 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <span class="o">}</span>
 <span class="n">响应样例</span><span class="err">：</span>
 <span class="o">{</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"errNo"</span><span class="o">:</span><span class="s">"200"</span><span class="o">,</span>
+    <span class="s">"errMsg"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
     <span class="s">"data"</span><span class="o">:{</span>
         <span class="s">"apiKey"</span><span class="o">:</span><span class="s">"testApiKey"</span><span class="o">,</span>
         <span class="s">"orderId"</span><span class="o">:</span><span class="s">"000000001"</span><span class="o">,</span>
@@ -1349,9 +1270,348 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
         <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='4e53c0fccd'>撤销订单</h3>
-<p>Http request:  POST /order/cancel
-请求正文：</p>
+</code></pre></div><h3 id='2-3'>2.3、创建限价止损单</h3>
+<p><strong>Http request:</strong>  POST stopL/order/create</p>
+
+<p><strong>请求正文：</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>注释</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>String</td>
+<td>true</td>
+<td>订单号</td>
+<td>不能重复</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>true</td>
+<td>合约号</td>
+<td>样例 ETH-BTC</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>String</td>
+<td>true</td>
+<td>方向</td>
+<td>0-买 1-卖</td>
+</tr>
+<tr>
+<td>price</td>
+<td>String</td>
+<td>true</td>
+<td>价格</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>String</td>
+<td>true</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>String</td>
+<td>true</td>
+<td>触发价</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>响应正文：</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>注释</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>String</td>
+<td>订单号</td>
+<td></td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>合约号</td>
+<td>样例 ETH-BTC</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>String</td>
+<td>方向</td>
+<td>0-买 1-卖</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>String</td>
+<td>订单类型</td>
+<td>1-限价单、2-市价单 、3-止损限价单 、4-冰山订单 、5-隐藏订单 、6-止损市价单</td>
+</tr>
+<tr>
+<td>limtPrice</td>
+<td>String</td>
+<td>价格</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>String</td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>displaySize</td>
+<td>String</td>
+<td>展示数量</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>String</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>String</td>
+<td>操作时间戳</td>
+<td>13位</td>
+</tr>
+</tbody></table>
+
+<p><strong>响应码：</strong></p>
+
+<table><thead>
+<tr>
+<th>响应码</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>下单成功、订单已经提交处理</td>
+</tr>
+<tr>
+<td>207</td>
+<td>下单请求包含格式验证错误。查看结果以获取详细信息</td>
+</tr>
+<tr>
+<td>400</td>
+<td>请求格式无效</td>
+</tr>
+</tbody></table>
+
+<p><strong>样例：</strong></p>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
+<span class="o">{</span>
+    <span class="s">"orderId"</span><span class="o">:</span><span class="s">"000000001"</span><span class="o">,</span>
+    <span class="s">"instrumentId"</span><span class="o">:</span><span class="s">"BTC-ETH"</span><span class="o">,</span>
+    <span class="s">"direction"</span><span class="o">:</span><span class="s">"0"</span><span class="o">,</span>
+    <span class="s">"price"</span><span class="o">:</span><span class="s">"1"</span><span class="o">,</span>
+    <span class="s">"volume"</span><span class="o">:</span><span class="s">"1"</span><span class="err">，</span>
+    <span class="s">"stopPrice"</span><span class="o">:</span><span class="s">"2"</span>
+<span class="o">}</span>
+<span class="n">响应样例</span><span class="err">：</span>
+<span class="o">{</span>
+    <span class="s">"errNo"</span><span class="o">:</span><span class="s">"200"</span><span class="o">,</span>
+    <span class="s">"errMsg"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"data"</span><span class="o">:{</span>
+        <span class="s">"apiKey"</span><span class="o">:</span><span class="s">"testApiKey"</span><span class="o">,</span>
+        <span class="s">"orderId"</span><span class="o">:</span><span class="s">"000000001"</span><span class="o">,</span>
+        <span class="s">"orderType"</span><span class="o">:</span><span class="s">"3"</span><span class="o">,</span>
+        <span class="s">"instrumentId"</span><span class="o">:</span><span class="s">"BTC-ETH"</span><span class="o">,</span>
+        <span class="s">"direction"</span><span class="o">:</span><span class="s">"0"</span><span class="o">,</span>
+        <span class="s">"limtPrice"</span><span class="o">:</span><span class="s">"1"</span><span class="o">,</span>
+        <span class="s">"volume"</span><span class="o">:</span><span class="s">"1"</span><span class="o">,</span>
+        <span class="s">"stopPrice"</span><span class="o">:</span><span class="s">"2"</span><span class="o">,</span>
+        <span class="s">"displaySize"</span><span class="o">:</span><span class="s">"0"</span><span class="o">,</span>
+        <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h3 id='2-4'>2.4、创建市价止损单</h3>
+<p><strong>Http request:</strong>  POST market/order/create</p>
+
+<p><strong>请求正文：</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>注释</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>String</td>
+<td>true</td>
+<td>订单号</td>
+<td>不能重复</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>true</td>
+<td>合约号</td>
+<td>样例 ETH-BTC</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>String</td>
+<td>true</td>
+<td>方向</td>
+<td>0-买 1-卖</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>String</td>
+<td>true</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>String</td>
+<td>true</td>
+<td>触发价</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>响应正文：</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>注释</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>String</td>
+<td>订单号</td>
+<td></td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>合约号</td>
+<td>样例 ETH-BTC</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>String</td>
+<td>方向</td>
+<td>0-买 1-卖</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>String</td>
+<td>订单类型</td>
+<td>1-限价单、2-市价单 、3-止损限价单 、4-冰山订单 、5-隐藏订单 、6-止损市价单</td>
+</tr>
+<tr>
+<td>limtPrice</td>
+<td>String</td>
+<td>价格</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>String</td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>displaySize</td>
+<td>String</td>
+<td>展示数量</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>String</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>String</td>
+<td>操作时间戳</td>
+<td>13位</td>
+</tr>
+</tbody></table>
+
+<p><strong>响应码：</strong></p>
+
+<table><thead>
+<tr>
+<th>响应码</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>下单成功、订单已经提交处理</td>
+</tr>
+<tr>
+<td>207</td>
+<td>下单请求包含格式验证错误。查看结果以获取详细信息</td>
+</tr>
+<tr>
+<td>400</td>
+<td>请求格式无效</td>
+</tr>
+</tbody></table>
+
+<p><strong>样例：</strong></p>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
+<span class="o">{</span>
+    <span class="s">"orderId"</span><span class="o">:</span><span class="s">"000000001"</span><span class="o">,</span>
+    <span class="s">"instrumentId"</span><span class="o">:</span><span class="s">"BTC-ETH"</span><span class="o">,</span>
+    <span class="s">"direction"</span><span class="o">:</span><span class="s">"0"</span><span class="o">,</span>
+    <span class="s">"volume"</span><span class="o">:</span><span class="s">"1"</span><span class="o">,</span>
+    <span class="s">"stopPrice"</span><span class="o">:</span><span class="s">"2"</span>
+<span class="o">}</span>
+<span class="n">响应样例</span><span class="err">：</span>
+<span class="o">{</span>
+    <span class="s">"errNo"</span><span class="o">:</span><span class="s">"200"</span><span class="o">,</span>
+    <span class="s">"errMsg"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"data"</span><span class="o">:{</span>
+        <span class="s">"apiKey"</span><span class="o">:</span><span class="s">"testApiKey"</span><span class="o">,</span>
+        <span class="s">"orderId"</span><span class="o">:</span><span class="s">"000000001"</span><span class="o">,</span>
+        <span class="s">"orderType"</span><span class="o">:</span><span class="s">"6"</span><span class="o">,</span>
+        <span class="s">"instrumentId"</span><span class="o">:</span><span class="s">"BTC-ETH"</span><span class="o">,</span>
+        <span class="s">"direction"</span><span class="o">:</span><span class="s">"0"</span><span class="o">,</span>
+        <span class="s">"limtPrice"</span><span class="o">:</span><span class="s">"1"</span><span class="o">,</span>
+        <span class="s">"volume"</span><span class="o">:</span><span class="s">"1"</span><span class="o">,</span>
+        <span class="s">"stopPrice"</span><span class="o">:</span><span class="s">"2"</span><span class="o">,</span>
+        <span class="s">"displaySize"</span><span class="o">:</span><span class="s">"0"</span><span class="o">,</span>
+        <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h3 id='2-5'>2.5、撤销订单</h3>
+<p><strong>Http request:</strong>  POST /order/cancel</p>
+
+<p><strong>请求正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1371,7 +1631,7 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 </tr>
 </tbody></table>
 
-<p>响应正文：</p>
+<p><strong>响应正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1438,8 +1698,30 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <tr>
 <td>timestamp</td>
 <td>String</td>
-<td>下单时间戳</td>
+<td>操作时间戳</td>
 <td>13位</td>
+</tr>
+</tbody></table>
+
+<p><strong>响应码：</strong></p>
+
+<table><thead>
+<tr>
+<th>响应码</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>撤单成功、订单已经提交处理</td>
+</tr>
+<tr>
+<td>207</td>
+<td>撤单请求包含格式验证错误。查看结果以获取详细信息</td>
+</tr>
+<tr>
+<td>400</td>
+<td>请求格式无效</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
@@ -1448,8 +1730,8 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <span class="o">}</span>
 <span class="n">响应样例</span><span class="err">：</span>
 <span class="o">{</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"errNo"</span><span class="o">:</span><span class="s">"200"</span><span class="o">,</span>
+    <span class="s">"errMsg"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
     <span class="s">"data"</span><span class="o">:{</span>
         <span class="s">"apiKey"</span><span class="o">:</span><span class="s">"testApiKey"</span><span class="o">,</span>
         <span class="s">"orderId"</span><span class="o">:</span><span class="s">"000000001"</span><span class="o">,</span>
@@ -1463,9 +1745,10 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
         <span class="s">"timestamp"</span><span class="o">:</span><span class="s">"1234567890123"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='90376e83a0'>查询订单</h3>
-<p>Http request:  GET /order/find
-请求正文：</p>
+</code></pre></div><h3 id='2-6'>2.6、查询订单</h3>
+<p><strong>Http request:</strong>  GET /order/find</p>
+
+<p><strong>请求正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1505,6 +1788,13 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>1-限价单、2-市价单 、3-止盈止损 、4-冰山订单 、5-隐藏订单</td>
 </tr>
 <tr>
+<td>states</td>
+<td>String</td>
+<td>false</td>
+<td>订单状态 0-全部订单，1-已完成订单，2-pending订单</td>
+<td></td>
+</tr>
+<tr>
 <td>start</td>
 <td>String</td>
 <td>false</td>
@@ -1518,9 +1808,23 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>结束时间</td>
 <td>yyyyMMdd HH:mm:ss</td>
 </tr>
+<tr>
+<td>pageNo</td>
+<td>String</td>
+<td>false</td>
+<td>当前页码</td>
+<td>默认第一页</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>String</td>
+<td>false</td>
+<td>每页数量</td>
+<td>默认返回1000条</td>
+</tr>
 </tbody></table>
 
-<p>响应正文：</p>
+<p><strong>响应正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1593,8 +1897,30 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <tr>
 <td>timestamp</td>
 <td>String</td>
-<td>下单时间戳</td>
+<td>操作时间戳</td>
 <td>13位</td>
+</tr>
+</tbody></table>
+
+<p><strong>响应码：</strong></p>
+
+<table><thead>
+<tr>
+<th>响应码</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>查单成功</td>
+</tr>
+<tr>
+<td>207</td>
+<td>查单请求包含格式验证错误。查看结果以获取详细信息</td>
+</tr>
+<tr>
+<td>400</td>
+<td>请求格式无效</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
@@ -1603,8 +1929,8 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <span class="o">}</span>
 <span class="n">响应样例</span><span class="err">：</span>
 <span class="o">{</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,,</span>
+    <span class="s">"errNo"</span><span class="o">:</span><span class="s">"200"</span><span class="o">,</span>
+    <span class="s">"errMsg"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
     <span class="s">"data"</span><span class="o">:[</span>
         <span class="o">{</span>
             <span class="s">"apiKey"</span><span class="o">:</span><span class="s">"testApiKey"</span><span class="o">,</span>
@@ -1634,9 +1960,10 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
         <span class="o">}</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div><h3 id='c240f9632f'>查询成交</h3>
-<p>Http request:  GET /trade/find
-请求正文：</p>
+</code></pre></div><h3 id='2-7'>2.7、查询成交</h3>
+<p><strong>Http request:</strong>  GET /trade/find</p>
+
+<p><strong>请求正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1675,9 +2002,23 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>结束时间</td>
 <td>yyyyMMdd HH:mm:ss</td>
 </tr>
+<tr>
+<td>pageNo</td>
+<td>String</td>
+<td>false</td>
+<td>当前页码</td>
+<td>默认第一页</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>String</td>
+<td>false</td>
+<td>每页数量</td>
+<td>默认返回1000条</td>
+</tr>
 </tbody></table>
 
-<p>响应正文：</p>
+<p><strong>响应正文：</strong></p>
 
 <table><thead>
 <tr>
@@ -1742,14 +2083,36 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>13位</td>
 </tr>
 </tbody></table>
+
+<p><strong>响应码：</strong></p>
+
+<table><thead>
+<tr>
+<th>响应码</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>成交查询成功</td>
+</tr>
+<tr>
+<td>207</td>
+<td>成交查询请求包含格式验证错误。查看结果以获取详细信息</td>
+</tr>
+<tr>
+<td>400</td>
+<td>请求格式无效</td>
+</tr>
+</tbody></table>
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
 <span class="o">{</span>
     <span class="s">"instrumentId"</span><span class="o">:</span><span class="s">"BTC-ETH"</span>
 <span class="o">}</span>
 <span class="n">响应样例</span><span class="err">：</span>
 <span class="o">{</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
+    <span class="s">"errNo"</span><span class="o">:</span><span class="s">"200"</span><span class="o">,</span>
+    <span class="s">"errMsg"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
     <span class="s">"data"</span><span class="o">:[</span>
         <span class="o">{</span>
             <span class="s">"apiKey"</span><span class="o">:</span><span class="s">"testApiKey"</span><span class="o">,</span>
@@ -1775,62 +2138,153 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
         <span class="o">}</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div><h2 id='713fd96fb2'>资产</h2><h3 id='e7457154f4'>查询资产</h3>
-<p>Http request:  GET /balance/find</p>
-
-<p>请求正文：
-无参</p>
-
-<p>响应正文：</p>
+</code></pre></div><h1 id='websocket-api-2'>WebSocket API 接口文档</h1><h2 id='1-websocket'>1、WebSocket行情数据(公有流)</h2><h3 id='1-1-k'>1.1、K线数据</h3>
+<p><strong>请求正文</strong></p>
 
 <table><thead>
 <tr>
-<th>参数名</th>
+<th>参数</th>
 <th>类型</th>
-<th>注释</th>
+<th>是否必填</th>
+<th>描述</th>
 <th>说明</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>assetId</td>
+<td>type</td>
 <td>String</td>
-<td>资产id</td>
-<td></td>
+<td>true</td>
+<td>类型</td>
+<td>sub</td>
 </tr>
 <tr>
-<td>balance</td>
+<td>topic</td>
 <td>String</td>
-<td>资产余额</td>
-<td></td>
+<td>true</td>
+<td>主题</td>
+<td>candle_stick</td>
 </tr>
 <tr>
-<td>available</td>
+<td>period</td>
 <td>String</td>
-<td>可用余额</td>
-<td></td>
+<td>true</td>
+<td>K线周期</td>
+<td>1m, 5m, 15m, 30m, 60m</td>
 </tr>
 <tr>
-<td>frozen</td>
+<td>instrumentId</td>
 <td>String</td>
-<td>冻结余额</td>
-<td></td>
+<td>true</td>
+<td>币对</td>
+<td>ETH/USDT, BTC/ETH ...</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight java tab-java"><code><span class="n">请求样例</span><span class="err">：</span>
 
-<span class="n">响应样例</span><span class="err">：</span>
-<span class="o">{</span>
-    <span class="s">"errorCode"</span><span class="o">:</span><span class="s">"0000"</span><span class="o">,</span>
-    <span class="s">"errorMessage"</span><span class="o">:</span><span class="s">""</span><span class="o">,</span>
-    <span class="s">"data"</span><span class="o">:{</span>
-        <span class="s">"assetId"</span><span class="o">:</span><span class="s">"ETH"</span><span class="o">,</span>
-        <span class="s">"balance"</span><span class="o">:</span><span class="s">"20000"</span><span class="o">,</span>
-        <span class="s">"available"</span><span class="o">:</span><span class="s">"18000"</span><span class="o">,</span>
-        <span class="s">"frozen"</span><span class="o">:</span><span class="s">"2000"</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id='websocket'>WebSocket接口文档</h1><h2 id='websocket-2'>WebSocket行情数据(公有流)</h2><h3 id='d9d514d202'>行情数据</h3>
-<p>请求正文</p>
+<p><strong>响应正文</strong></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>主题</td>
+<td>candle_stick</td>
+</tr>
+<tr>
+<td>errorCode</td>
+<td>String</td>
+<td>错误码</td>
+<td>000 ...</td>
+</tr>
+<tr>
+<td>errorMessage</td>
+<td>String</td>
+<td>错误信息</td>
+<td>success ...</td>
+</tr>
+<tr>
+<td>high</td>
+<td>String</td>
+<td>高</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>String</td>
+<td>开</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>String</td>
+<td>低</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>String</td>
+<td>收</td>
+<td></td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>币对</td>
+<td>ETH/USDT, BTC/ETH ...</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>String</td>
+<td>成交量</td>
+<td></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>String</td>
+<td>时间戳</td>
+<td>1492420473027</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">请求样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"channel"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"candle_stick"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"period"</span><span class="p">:</span><span class="s2">"1m"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"ETH/USDT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">响应样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"candle_stick"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"close"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"high"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"low"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"open"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"ETH/USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="s2">"1492420473027"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='1-2'>1.2、行情数据</h3>
+<p><strong>请求正文</strong></p>
 
 <table><thead>
 <tr>
@@ -1864,7 +2318,7 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 </tr>
 </tbody></table>
 
-<p>响应正文</p>
+<p><strong>响应正文</strong></p>
 
 <table><thead>
 <tr>
@@ -1878,19 +2332,19 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 <td>type</td>
 <td>String</td>
 <td>类型</td>
-<td>sub-resp</td>
+<td>sub</td>
 </tr>
 <tr>
 <td>topic</td>
 <td>String</td>
 <td>主题</td>
-<td>market_data</td>
+<td>candle_stick</td>
 </tr>
 <tr>
 <td>errorCode</td>
 <td>String</td>
 <td>错误码</td>
-<td>0000 ...</td>
+<td>000 ...</td>
 </tr>
 <tr>
 <td>errorMessage</td>
@@ -1976,9 +2430,9 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 
 </span><span class="err">响应样例：</span><span class="w">
 </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub-resp"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"market_data"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"0000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"000"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -2009,12 +2463,625 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='1-3'>1.3、深度行情数据</h3>
+<p><strong>请求正文</strong></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>true</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>true</td>
+<td>主题</td>
+<td>depth_market_data</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>true</td>
+<td>币对</td>
+<td>ETH/USDT, BTC/ETH ...</td>
+</tr>
+</tbody></table>
+
+<p><strong>响应正文</strong></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>主题</td>
+<td>depth_market_data</td>
+</tr>
+<tr>
+<td>errorCode</td>
+<td>String</td>
+<td>错误码</td>
+<td>000 ...</td>
+</tr>
+<tr>
+<td>errorMessage</td>
+<td>String</td>
+<td>错误信息</td>
+<td>success ...</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>String</td>
+<td>成交量</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>String</td>
+<td>单价</td>
+<td></td>
+</tr>
+<tr>
+<td>total</td>
+<td>String</td>
+<td>总金额</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">请求样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"channel"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"depth_market_data"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"ETH/USDT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">响应样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"depth_market_data"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"ask"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"amount"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"total"</span><span class="p">:</span><span class="s2">"6"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"amount"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"total"</span><span class="p">:</span><span class="s2">"6"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='1-4'>1.4、全量成交回报数据</h3>
+<p><strong>请求正文</strong></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>true</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>true</td>
+<td>主题</td>
+<td>trade_rtn_all</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>false</td>
+<td>币对</td>
+<td>ETH/USDT, BTC/ETH ...传空为全量</td>
+</tr>
+</tbody></table>
+
+<p><strong>响应正文</strong></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>主题</td>
+<td>trade_rtn_all</td>
+</tr>
+<tr>
+<td>errorCode</td>
+<td>String</td>
+<td>错误码</td>
+<td>000 ...</td>
+</tr>
+<tr>
+<td>errorMessage</td>
+<td>String</td>
+<td>错误信息</td>
+<td>success ...</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>String</td>
+<td>费用</td>
+<td></td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>币对</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>String</td>
+<td>交易方向</td>
+<td>0-买入 ， 1-卖出</td>
+</tr>
+<tr>
+<td>tradeId</td>
+<td>String</td>
+<td>交易ID</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>String</td>
+<td>成交数量</td>
+<td></td>
+</tr>
+<tr>
+<td>total</td>
+<td>String</td>
+<td>成交额</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>String</td>
+<td>价格</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeTimestamp</td>
+<td>String</td>
+<td>交易时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">请求样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"channel"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"trade_rtn_all"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"ETH/USDT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">响应样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"trade_rtn_all"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"fee"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"ETH-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="s2">"1000001"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"total"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"tradeTimestamp"</span><span class="p">:</span><span class="s2">"2020/07/01 18:08:08"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"fee"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"ETH-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="s2">"1000001"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"total"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"tradeTimestamp"</span><span class="p">:</span><span class="s2">"2020/07/01 18:08:08"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='2-websocket'>2、WebSocket订单交易数据(私有流)</h2><h3 id='1-1-2'>1.1、订单数据</h3>
+<p><strong>请求正文</strong></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>true</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>true</td>
+<td>主题</td>
+<td>order_rtn</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>false</td>
+<td>币对</td>
+<td>ETH/USDT, BTC/ETH ...传空为全量</td>
+</tr>
+</tbody></table>
+
+<p><strong>响应正文</strong></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>主题</td>
+<td>order_rtn</td>
+</tr>
+<tr>
+<td>errorCode</td>
+<td>String</td>
+<td>错误码</td>
+<td>000 ...</td>
+</tr>
+<tr>
+<td>errorMessage</td>
+<td>String</td>
+<td>错误信息</td>
+<td>success ...</td>
+</tr>
+<tr>
+<td>apiKey</td>
+<td>String</td>
+<td>apiKey</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>String</td>
+<td>订单号</td>
+<td>不能重复</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>合约号</td>
+<td>样例 ETH-BTC</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>String</td>
+<td>方向</td>
+<td>0-买 1-卖</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>String</td>
+<td>订单类型</td>
+<td>1-限价单、2-市价单 、3-止盈止损 、4-冰山订单 、5-隐藏订单</td>
+</tr>
+<tr>
+<td>limtPrice</td>
+<td>String</td>
+<td>价格</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>String</td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>displaySize</td>
+<td>String</td>
+<td>展示数量</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>String</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>String</td>
+<td>订单状态</td>
+<td>0-全部成交、1-部分成交 、2-未成交、3-撤单、4-部分成交部分撤单、5-已触发止损</td>
+</tr>
+<tr>
+<td>orderTimestamp</td>
+<td>String</td>
+<td>操作时间戳</td>
+<td>13位</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">请求样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"channel"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"xxxxxxxxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"order_rtn"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"ETH/USDT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">响应样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"order_rtn"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"testApiKey"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="s2">"000000001"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"BTC-ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"limtPrice"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"displaySize"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderStatus"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderTimestamp"</span><span class="p">:</span><span class="s2">"1234567890123"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"testApiKey"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="s2">"000000002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"BTC-ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"limtPrice"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"displaySize"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderStatus"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderTimestamp"</span><span class="p">:</span><span class="s2">"1234567890123"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='1-2-2'>1.2、交易数据</h3>
+<p><strong>请求正文</strong></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>true</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>true</td>
+<td>主题</td>
+<td>trade_rtn</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>false</td>
+<td>币对</td>
+<td>ETH/USDT, BTC/ETH ...传空为全量</td>
+</tr>
+</tbody></table>
+
+<p><strong>响应正文</strong></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>类型</td>
+<td>sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>主题</td>
+<td>trade_rtn</td>
+</tr>
+<tr>
+<td>errorCode</td>
+<td>String</td>
+<td>错误码</td>
+<td>000 ...</td>
+</tr>
+<tr>
+<td>errorMessage</td>
+<td>String</td>
+<td>错误信息</td>
+<td>success ...</td>
+</tr>
+<tr>
+<td>apiKey</td>
+<td>String</td>
+<td>apiKey</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeId</td>
+<td>String</td>
+<td>成交号</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>String</td>
+<td>订单号</td>
+<td></td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>合约号</td>
+<td>样例 ETH-BTC</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>String</td>
+<td>方向</td>
+<td>0-买 1-卖</td>
+</tr>
+<tr>
+<td>price</td>
+<td>String</td>
+<td>价格</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>String</td>
+<td>数量</td>
+<td></td>
+</tr>
+<tr>
+<td>fee</td>
+<td>String</td>
+<td>手续费</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeTimestamp</td>
+<td>String</td>
+<td>操作时间戳</td>
+<td>13位</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">请求样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"channel"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"xxxxxxxxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"trade_rtn"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"ETH/USDT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">响应样例：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"trade_rtn"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="s2">"000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"testApiKey"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="s2">"000000001"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"BTC-ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fee"</span><span class="p">:</span><span class="s2">"0.05"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tradeTimestamp"</span><span class="p">:</span><span class="s2">"1234567890123"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="s2">"testApiKey"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="s2">"000000001"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"instrumentId"</span><span class="p">:</span><span class="s2">"BTC-ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fee"</span><span class="p">:</span><span class="s2">"0.05"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tradeTimestamp"</span><span class="p">:</span><span class="s2">"1234567890123"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="java">java</a>
-          </div>
       </div>
     </div>
   </body>
