@@ -409,6 +409,7 @@
 
         <span class="nc">TreeMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">treeMap</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeMap</span><span class="o">&lt;&gt;();</span>
 
+        <span class="c1">// 各feild可能是基本类型，也可能是对象</span>
         <span class="n">treeMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"x-access-key"</span><span class="o">,</span><span class="n">key</span><span class="o">);</span> <span class="c1">//api-key</span>
         <span class="n">treeMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"x-access-timestamp"</span><span class="o">,</span><span class="n">timeOfRequest</span><span class="o">);</span> <span class="c1">//当前时间戳</span>
         <span class="n">treeMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"x-access-version"</span><span class="o">,</span><span class="s">"1"</span><span class="o">);</span><span class="c1">//版本号默认1</span>

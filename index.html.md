@@ -4,10 +4,6 @@
 欢迎使用HashKey API！此文档是HashKey API的唯一官方文档，HashKey API提供的能力会在此持续更新，请大家及时关注。
 
 
-## 联系我们
-使用过程中如有问题或者建议，您可选择以下任一方式联系我们。
-
-
 # 接入说明：
 ## 接入准备
 如需使用API ，请先登录网页端，完成API key的申请和权限配置，再据此文档详情进行开发和交易。
@@ -27,23 +23,9 @@
 
 ## 签名认证
 ### 签名说明
-API 请求在通过 internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。
-每一个API Key需要有适当的权限才能访问相应的接口，每个新创建的API Key都需要分配权限。在使用接口前，请查看每个接口的权限类型，并确认你的API Key有相应的权限。
 
-对API端点的所有HTTP请求都需要身份验证和授权。
-用户可以通过创建API key流程获得key和sercet，key和sercet用于验证和授权所有请求。
-以下标头应添加到所有HTTP请求中：
+> 签名样例：
 
-Key  | Value | Description
-------------- | ------------- | -----------
-x-access-key  | <API_KEY> |您申请的 API Key 中的 Access Key
-x-access-sign  |  \<signatureOfRequest>| 签名计算得出的值，用于确保签名有效和未被篡改
-x-access-timestamp  | \<timeOfRequest> |当前时间格式为当前的时间戳（以毫秒为单位）
-x-access-version  |  \<versionOfRequest>   | 签名协议的版本，默认为1
-
-### 签名步骤
-
-**样例：**
 ```java
          /**
          * 签名说明：签名所需字段apiKey、apiSecret、timestamp、version、各请求接口字段。
@@ -56,6 +38,7 @@ x-access-version  |  \<versionOfRequest>   | 签名协议的版本，默认为1
 
         TreeMap<String,String> treeMap = new TreeMap<>();
 
+        // 各feild可能是基本类型，也可能是对象
         treeMap.put("x-access-key",key); //api-key
         treeMap.put("x-access-timestamp",timeOfRequest); //当前时间戳
         treeMap.put("x-access-version","1");//版本号默认1
@@ -85,6 +68,21 @@ x-access-version  |  \<versionOfRequest>   | 签名协议的版本，默认为1
          }
 ```
 
+API 请求在通过 internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。
+每一个API Key需要有适当的权限才能访问相应的接口，每个新创建的API Key都需要分配权限。在使用接口前，请查看每个接口的权限类型，并确认你的API Key有相应的权限。
+
+对API端点的所有HTTP请求都需要身份验证和授权。
+用户可以通过创建API key流程获得key和sercet，key和sercet用于验证和授权所有请求。
+以下标头应添加到所有HTTP请求中：
+
+Key  | Value | Description
+------------- | ------------- | -----------
+x-access-key  | <API_KEY> |您申请的 API Key 中的 Access Key
+x-access-sign  |  \<signatureOfRequest>| 签名计算得出的值，用于确保签名有效和未被篡改
+x-access-timestamp  | \<timeOfRequest> |当前时间格式为当前的时间戳（以毫秒为单位）
+x-access-version  |  \<versionOfRequest>   | 签名协议的版本，默认为1
+
+
 ## 接口概览：
 ### 接口类型
 HashKey Pro为用户提供两种接口，您可根据自己的使用场景来选择适合的方式。
@@ -95,7 +93,6 @@ REST，即Representational State Transfer的缩写，是目前较为流行的基
 **WebSocket API**
 WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服务器全双工通信，通过一次简单的握手就可以建立客户端和服务器连接，服务器可以根据业务规则主动推送信息给客户端。
 市场行情和买卖深度等信息，建议开发者使用WebSocket API进行获取。
-### 接口简述
 
 ## 环境信息
 ### 测试环境
@@ -109,7 +106,7 @@ Restful URL: https://int.hashkey3.com
 WebSocket: wss://int.hashkey3.com
 
 # 常见问题：
-
+暂无
 
 # Rest API
 ## 接入说明
@@ -158,6 +155,32 @@ data	|Object	|接口返回数据主体
 
 ## 鉴权
 
+> 鉴权
+>
+> 请求样例：
+
+```json
+{
+    "type":"auth",
+    "auth":{
+        "x-access-key":"xxxxxxxxx",
+        "x-access-sign":"xxxxxxxxx",
+        "x-access-timestamp":"150782303000"，
+		"x-access-version":"2",
+    }
+}
+```
+
+> 响应样例：
+
+```json        
+{
+    "type":"auth",
+    "errorCode":"000",
+    "errorMessage":"success"    
+}
+```
+
 **请求正文**
 
 |  参数  |类型 |  是否必填|注释   |  说明   |
@@ -176,26 +199,35 @@ type	| String|true |操作类型 |	默认为auth
 errorCode	| String |true|错误码 |	000
 errorMessage| String	|true |错误信息 |	success
 
+
+## 订阅主题
+
+> 订阅主题
+>
+> 请求样例：
+
 ```json
-请求样例：
 {
-    "type":"auth",
-    "auth":{
-        "x-access-key":"xxxxxxxxx",
-        "x-access-sign":"xxxxxxxxx",
-        "x-access-timestamp":"150782303000"，
-		"x-access-version":"2",
+    "type":"sub",
+    "channel":{
+        "topic":"xxxxxxxxx",
+		......
     }
-}
-响应样例：
-{
-    "type":"auth",
-    "errorCode":"000",
-    "errorMessage":"success"    
 }
 ```
 
-## 订阅主题
+> 响应样例：
+
+```json
+{
+    "type":"sub",
+    "errorCode":"000",
+    "errorMessage":"success",
+	"data":{
+	......
+	}
+}
+```
 
 **请求正文**
 
@@ -216,27 +248,33 @@ errorCode	| String |true|错误码 |	000
 errorMessage| String	|true |错误信息 |	success
 data | Object |true|快照数据|
 
+
+## 取消订阅
+
+> 取消订阅
+>
+> 请求样例：
+
 ```json
-请求样例：
 {
-    "type":"sub",
+    "type":"unsub",
     "channel":{
         "topic":"xxxxxxxxx",
 		......
     }
 }
-响应样例：
+```
+
+> 响应样例：
+
+```json
 {
-    "type":"sub",
+    "type":"unsub",
     "errorCode":"000",
-    "errorMessage":"success",
-	"data":{
-	......
-	}
+    "errorMessage":"success"
 }
 ```
 
-## 取消订阅
 **请求正文**
 
 |  参数  |类型 |  是否必填|注释   |  说明   |
@@ -253,24 +291,6 @@ topic | String |true |订阅的主题  |
 type	| String|true |操作类型 |	默认为unsub
 errorCode	| String |true|错误码 |	000
 errorMessage| String	|true |错误信息 |	success
-
-
-```json
-请求样例：
-{
-    "type":"unsub",
-    "channel":{
-        "topic":"xxxxxxxxx",
-		......
-    }
-}
-响应样例：
-{
-    "type":"unsub",
-    "errorCode":"000",
-    "errorMessage":"success"
-}
-```
 
 
 # 错误信息
@@ -295,6 +315,21 @@ errorMessage| String	|true |错误信息 |	success
 # Rest API接口文档
 ## 1、通用
 ### 1.1、查询服务器时间
+
+> 查询服务器时间
+>
+> 响应样例：
+
+```json
+{
+	"errNo":"200",
+	"errMsg":"",
+	"data":{
+		"timestamp":"timestamp"
+	}
+}
+```
+
 **Http request:**  GET info/time
 
 **请求正文：** 无
@@ -305,21 +340,23 @@ errorMessage| String	|true |错误信息 |	success
 ------------- | ------------  | -------------  | -------------
 timestamp  | String  | 时间戳  | UTC时间
 
-**样例：**
-```json
 
-响应样例：
+### 1.2、查询API发行号
+
+> 查询API发行号
+>
+> 响应样例：
+
+```json
 {
 	"errNo":"200",
 	"errMsg":"",
 	"data":{
-		"timestamp":"timestamp"
+		"version":"version"
 	}
 }
-
 ```
 
-### 1.2、查询API发行号
 **Http request:**  GET info/version
 
 **请求正文：** 无
@@ -330,22 +367,45 @@ timestamp  | String  | 时间戳  | UTC时间
 ------------- | ------------  | -------------  | -------------
 version  | String  | 版本号  |
 
-**样例：**
-```json
 
-响应样例：
+## 2、交易
+### 2.1、创建限价单
+
+> 创建限价单
+>
+> 请求样例：
+
+```json
+{
+	"orderId":"000000001",
+	"instrumentId":"BTC-ETH",
+	"direction":"0",
+	"price":"1",
+	"volume":"1"
+}
+```
+
+> 响应样例：
+
+```json
 {
 	"errNo":"200",
 	"errMsg":"",
 	"data":{
-		"version":"version"
+		"apiKey":"testApiKey",
+		"orderId":"000000001",
+     	"orderType":"1",
+    	"instrumentId":"BTC-ETH",
+    	"direction":"0",
+    	"limtPrice":"1",
+    	"volume":"1",
+    	"stopPrice":"0",
+    	"displaySize":"0",
+    	"timestamp":"1234567890123"
 	}
 }
-
 ```
 
-## 2、交易
-### 2.1、创建限价单
 **Http request:**  POST limit/order/create
 
 **请求正文：**
@@ -380,24 +440,32 @@ timestamp  | String | 操作时间戳  | 13位
 207  | 下单请求包含格式验证错误。查看结果以获取详细信息
 400  | 请求格式无效
 
-**样例：**
+
+### 2.2、创建市价单
+
+> 创建市价单
+>
+> 请求样例：
+
 ```json
-请求样例：
 {
 	"orderId":"000000001",
 	"instrumentId":"BTC-ETH",
 	"direction":"0",
-	"price":"1",
 	"volume":"1"
 }
-响应样例：
+```
+
+> 响应样例：
+
+```json
 {
 	"errNo":"200",
 	"errMsg":"",
 	"data":{
 		"apiKey":"testApiKey",
 		"orderId":"000000001",
-     	"orderType":"1",
+     	"orderType":"2",
     	"instrumentId":"BTC-ETH",
     	"direction":"0",
     	"limtPrice":"1",
@@ -407,10 +475,8 @@ timestamp  | String | 操作时间戳  | 13位
     	"timestamp":"1234567890123"
 	}
 }
-
 ```
 
-### 2.2、创建市价单
 **Http request:**  POST market/order/create
 
 **请求正文：**
@@ -444,35 +510,45 @@ timestamp  | String | 操作时间戳  | 13位
 207  | 下单请求包含格式验证错误。查看结果以获取详细信息
 400  | 请求格式无效
 
-**样例：**
+
+### 2.3、创建限价止损单
+
+> 创建限价止损单
+>
+> 请求样例：
+
 ```json
-请求样例：
 {
 	"orderId":"000000001",
 	"instrumentId":"BTC-ETH",
 	"direction":"0",
-	"volume":"1"
+	"price":"1",
+	"volume":"1"，
+	"stopPrice":"2"
 }
-响应样例：
+```
+
+> 响应样例：
+
+```json
 {
 	"errNo":"200",
 	"errMsg":"",
 	"data":{
-		"apiKey":"testApiKey",
+	    "apiKey":"testApiKey",
 		"orderId":"000000001",
-     	"orderType":"2",
+     	"orderType":"3",
     	"instrumentId":"BTC-ETH",
     	"direction":"0",
     	"limtPrice":"1",
     	"volume":"1",
-    	"stopPrice":"0",
+    	"stopPrice":"2",
     	"displaySize":"0",
     	"timestamp":"1234567890123"
 	}
 }
 ```
 
-### 2.3、创建限价止损单
 **Http request:**  POST stopL/order/create
 
 **请求正文：**
@@ -508,25 +584,33 @@ timestamp  | String | 操作时间戳  | 13位
 207  | 下单请求包含格式验证错误。查看结果以获取详细信息
 400  | 请求格式无效
 
-**样例：**
+
+### 2.4、创建市价止损单
+
+> 创建市价止损单
+>
+> 请求样例：
+
 ```json
-请求样例：
 {
 	"orderId":"000000001",
 	"instrumentId":"BTC-ETH",
 	"direction":"0",
-	"price":"1",
-	"volume":"1"，
+	"volume":"1",
 	"stopPrice":"2"
 }
-响应样例：
+```
+
+> 响应样例：
+
+```json
 {
 	"errNo":"200",
 	"errMsg":"",
 	"data":{
 	    "apiKey":"testApiKey",
 		"orderId":"000000001",
-     	"orderType":"3",
+     	"orderType":"6",
     	"instrumentId":"BTC-ETH",
     	"direction":"0",
     	"limtPrice":"1",
@@ -538,7 +622,6 @@ timestamp  | String | 操作时间戳  | 13位
 }
 ```
 
-### 2.4、创建市价止损单
 **Http request:**  POST market/order/create
 
 **请求正文：**
@@ -573,36 +656,40 @@ timestamp  | String | 操作时间戳  | 13位
 207  | 下单请求包含格式验证错误。查看结果以获取详细信息
 400  | 请求格式无效
 
-**样例：**
+
+### 2.5、撤销订单
+
+> 撤销订单
+>
+> 请求样例：
+
 ```json
-请求样例：
 {
-	"orderId":"000000001",
-	"instrumentId":"BTC-ETH",
-	"direction":"0",
-	"volume":"1",
-	"stopPrice":"2"
+	"orderId":"000000001"
 }
-响应样例：
+```
+
+> 响应样例：
+
+```json
 {
 	"errNo":"200",
 	"errMsg":"",
 	"data":{
 	    "apiKey":"testApiKey",
 		"orderId":"000000001",
-     	"orderType":"6",
+     	"orderType":"1",
     	"instrumentId":"BTC-ETH",
     	"direction":"0",
     	"limtPrice":"1",
-    	"volume":"1",
-    	"stopPrice":"2",
+    	"volume":"2",
+    	"stopPrice":"0",
     	"displaySize":"0",
     	"timestamp":"1234567890123"
 	}
 }
 ```
 
-### 2.5、撤销订单
 **Http request:**  POST /order/cancel
 
 **请求正文：**
@@ -634,31 +721,56 @@ timestamp  | String | 操作时间戳  | 13位
 207  | 撤单请求包含格式验证错误。查看结果以获取详细信息
 400  | 请求格式无效
 
+
+### 2.6、查询订单
+
+> 查询订单
+>
+> 请求样例：
+
 ```json
-请求样例：
 {
-	"orderId":"000000001"
-}
-响应样例：
-{
-	"errNo":"200",
-	"errMsg":"",
-	"data":{
-	    "apiKey":"testApiKey",
-		"orderId":"000000001",
-     	"orderType":"1",
-    	"instrumentId":"BTC-ETH",
-    	"direction":"0",
-    	"limtPrice":"1",
-    	"volume":"2",
-    	"stopPrice":"0",
-    	"displaySize":"0",
-    	"timestamp":"1234567890123"
-	}
+	"instrumentId":"BTC-ETH"
 }
 ```
 
-### 2.6、查询订单
+> 响应样例：
+
+```json
+{
+	"errNo":"200",
+	"errMsg":"",
+	"data":[
+		{
+			"apiKey":"testApiKey",
+			"orderId":"000000001",
+			"orderType":"1",
+			"instrumentId":"BTC-ETH",
+			"direction":"0",
+			"limtPrice":"1",
+			"volume":"2",
+			"stopPrice":"0",
+			"displaySize":"0",
+			"orderStatus":"0",
+			"timestamp":"1234567890123"
+		},
+		{
+			"apiKey":"testApiKey",
+			"orderId":"000000002",
+			"orderType":"1",
+			"instrumentId":"BTC-ETH",
+			"direction":"0",
+			"limtPrice":"1",
+			"volume":"2",
+			"stopPrice":"0",
+			"displaySize":"0",
+			"orderStatus":"0",
+			"timestamp":"1234567890123"
+		}
+	]
+}
+```
+
 **Http request:**  GET /order/find
 
 **请求正文：**
@@ -699,12 +811,22 @@ timestamp  | String | 操作时间戳  | 13位
 207  | 查单请求包含格式验证错误。查看结果以获取详细信息
 400  | 请求格式无效
 
+
+### 2.7、查询成交
+
+> 查询成交
+>
+> 请求样例：
+
 ```json
-请求样例：
 {
 	"instrumentId":"BTC-ETH"
 }
-响应样例：
+```
+
+> 响应样例：
+
+```json
 {
 	"errNo":"200",
 	"errMsg":"",
@@ -712,34 +834,29 @@ timestamp  | String | 操作时间戳  | 13位
 		{
 			"apiKey":"testApiKey",
 			"orderId":"000000001",
-			"orderType":"1",
+			"tradeId":"1",
 			"instrumentId":"BTC-ETH",
 			"direction":"0",
-			"limtPrice":"1",
+			"price":"1",
 			"volume":"2",
-			"stopPrice":"0",
-			"displaySize":"0",
-			"orderStatus":"0",
+			"fee":"0.05",
 			"timestamp":"1234567890123"
 		},
 		{
 			"apiKey":"testApiKey",
-			"orderId":"000000002",
-			"orderType":"1",
+			"orderId":"000000001",
+			"tradeId":"2",
 			"instrumentId":"BTC-ETH",
-			"direction":"0",
-			"limtPrice":"1",
+			"direction":"1",
+			"price":"1",
 			"volume":"2",
-			"stopPrice":"0",
-			"displaySize":"0",
-			"orderStatus":"0",
+			"fee":"0.05",
 			"timestamp":"1234567890123"
 		}
 	]
 }
 ```
 
-### 2.7、查询成交
 **Http request:**  GET /trade/find
 
 **请求正文：**
@@ -775,48 +892,47 @@ timestamp  | String | 操作时间戳  | 13位
 207  | 成交查询请求包含格式验证错误。查看结果以获取详细信息
 400  | 请求格式无效
 
-```json
-请求样例：
-{
-	"instrumentId":"BTC-ETH"
-}
-响应样例：
-{
-	"errNo":"200",
-	"errMsg":"",
-	"data":[
-		{
-			"apiKey":"testApiKey",
-			"orderId":"000000001",
-			"tradeId":"1",
-			"instrumentId":"BTC-ETH",
-			"direction":"0",
-			"price":"1",
-			"volume":"2",
-			"fee":"0.05",
-			"timestamp":"1234567890123"
-		},
-		{
-			"apiKey":"testApiKey",
-			"orderId":"000000001",
-			"tradeId":"2",
-			"instrumentId":"BTC-ETH",
-			"direction":"1",
-			"price":"1",
-			"volume":"2",
-			"fee":"0.05",
-			"timestamp":"1234567890123"
-		}
-	]
-}
-```
-
 
 
 # WebSocket接口文档
 
 ## 1、WebSocket行情数据(公有流)
 ### 1.1、K线数据
+
+> K线数据
+>
+> 请求样例：
+
+```json
+{
+    "type":"sub",
+    "channel":{
+        "topic":"candle_stick",
+        "period":"1m",
+        "instrumentId":"ETH/USDT"
+    }
+}
+```
+
+> 响应样例：
+
+```json
+{
+    "type":"sub",
+    "topic":"candle_stick",
+    "errorCode":"000",
+    "errorMessage":"success",
+    "data":{
+        "close":"2",
+        "high":"2",
+        "low":"2",
+        "open":"2",
+        "instrumentId":"ETH/USDT",
+        "timestamp":"1492420473027",
+        "volume":"0"
+    }
+}
+```
 
 **请求正文**
 
@@ -843,67 +959,14 @@ instrumentId| String|true|	币对|	ETH/USDT, BTC/ETH ...
 | volume	| String| 成交量 |
 |timestamp	| String|时间戳|	1492420473027
 
-```json
-请求样例：
-{
-    "type":"sub",
-    "channel":{
-        "topic":"candle_stick",
-        "period":"1m",
-        "instrumentId":"ETH/USDT"
-    }
-}
-
-响应样例：
-{
-    "type":"sub",
-    "topic":"candle_stick",
-    "errorCode":"000",
-    "errorMessage":"success",
-    "data":{
-        "close":"2",
-        "high":"2",
-        "low":"2",
-        "open":"2",
-        "instrumentId":"ETH/USDT",
-        "timestamp":"1492420473027",
-        "volume":"0"
-    }
-}
-```
-
 
 ### 1.2、行情数据
-**请求正文**
 
-|  参数 |类型  |是否必填|  描述   |  说明   |
-| --- | --- | --- | ---| ---
-| type| String	|true| 类型	| sub
-| topic| String|true	| 主题	| market_data
-| instrumentId| String|true| 	币对| 	ETH/USDT, BTC/ETH ...
-
-**响应正文**
-
-|  参数  |类型 |  描述   |  说明   |
-| --- | --- | --- | ---
-|type	| String| 类型	| sub
-|topic| String	| 主题	| candle_stick
-|errorCode| String	| 错误码	| 000 ...
-|errorMessage	| String| 错误信息| 	success ...
-|high| String| 	高	|
-|low	| String| 低	|
-|close| String| 	收	|
-|instrumentId| String	| 币对| ETH/USDT, BTC/ETH ...
-|base| String	|  源币种    |
-|target	| String |    目标币种   |
-|lastPrice| String	|   最新价格    |
-|lastPriceValuation| String	|  最新价格估值   |
-|chgRate| String	|  变化比例    |
-|chgVol| String	|    变化量  |
-|volume| String	| 成交量|
+> 行情数据
+>
+> 请求样例：
 
 ```json
-请求样例：
 {
     "type":"sub",
     "channel":{
@@ -911,8 +974,11 @@ instrumentId| String|true|	币对|	ETH/USDT, BTC/ETH ...
         "instrumentId":"ETH/USDT"
     }
 } 
+```
 
-响应样例：
+> 响应样例：
+
+```json
 {
     "type":"sub",
     "topic":"market_data",
@@ -949,31 +1015,42 @@ instrumentId| String|true|	币对|	ETH/USDT, BTC/ETH ...
 }
 ```
 
-
-### 1.3、深度行情数据
-
 **请求正文**
 
-|  参数  |类型 |是否必填|  描述   |  说明   |
-| --- | --- | --- |--- | --- 
-type	| String|true |类型 |	sub
-topic	| String |true|主题 |	depth_market_data
-instrumentId| String |true|	币对	 |ETH/USDT, BTC/ETH ...
+|  参数 |类型  |是否必填|  描述   |  说明   |
+| --- | --- | --- | ---| ---
+| type| String	|true| 类型	| sub
+| topic| String|true	| 主题	| market_data
+| instrumentId| String|true| 	币对| 	ETH/USDT, BTC/ETH ...
 
 **响应正文**
 
-|  参数 |类型  |  描述   |  说明   |
-| --- | --- | --- | --- |
-type	| String |类型 |	sub
-topic	| String |主题 |	depth_market_data
-errorCode	| String |错误码 |	000 ...
-errorMessage| String	 |错误信息 |	success ...
-amount	| String |  成交量  	 |
-price	| String |	单价	 |
-total	| String |	总金额 |
+|  参数  |类型 |  描述   |  说明   |
+| --- | --- | --- | ---
+|type	| String| 类型	| sub
+|topic| String	| 主题	| candle_stick
+|errorCode| String	| 错误码	| 000 ...
+|errorMessage	| String| 错误信息| 	success ...
+|high| String| 	高	|
+|low	| String| 低	|
+|close| String| 	收	|
+|instrumentId| String	| 币对| ETH/USDT, BTC/ETH ...
+|base| String	|  源币种    |
+|target	| String |    目标币种   |
+|lastPrice| String	|   最新价格    |
+|lastPriceValuation| String	|  最新价格估值   |
+|chgRate| String	|  变化比例    |
+|chgVol| String	|    变化量  |
+|volume| String	| 成交量|
+
+
+### 1.3、深度行情数据
+
+> 深度行情数据
+>
+> 请求样例：
 
 ```json
-请求样例：
 {
     "type":"sub",
     "channel":{
@@ -981,7 +1058,11 @@ total	| String |	总金额 |
         "instrumentId":"ETH/USDT"
     }
 }
-响应样例：
+```
+
+> 响应样例：
+
+```json
 {
     "type":"sub",
     "topic":"depth_market_data",
@@ -1004,39 +1085,34 @@ total	| String |	总金额 |
 }
 ```
 
-
-### 1.4、全量成交回报数据
-
-
 **请求正文**
 
 |  参数  |类型 |是否必填|  描述   |  说明   |
 | --- | --- | --- |--- | --- 
 type	| String|true |类型 |	sub
-topic	| String |true|主题 |	trade_rtn_all
-instrumentId| String |false|	币对	 |ETH/USDT, BTC/ETH ...传空为全量
-
+topic	| String |true|主题 |	depth_market_data
+instrumentId| String |true|	币对	 |ETH/USDT, BTC/ETH ...
 
 **响应正文**
 
-|  参数  |类型 |  描述   |  说明   |
-| --- | --- | --- | ---
-type| String	|类型	|sub
-topic	| String|主题|	trade_rtn_all
-errorCode| String|	错误码|	000 ...
-errorMessage| String	|错误信息|	success ...
-fee	| String|		费用	|
-instrumentId	| String	|	币对 	|
-direction| String		|	交易方向	| 0-买入 ， 1-卖出
-tradeId		| String|	交易ID		|
-volume	| String	|		成交数量	|
-total	| String	|	成交额		|
-price	| String	|	价格		|
-tradeTimestamp	| String	|	交易时间		|
+|  参数 |类型  |  描述   |  说明   |
+| --- | --- | --- | --- |
+type	| String |类型 |	sub
+topic	| String |主题 |	depth_market_data
+errorCode	| String |错误码 |	000 ...
+errorMessage| String	 |错误信息 |	success ...
+amount	| String |  成交量  	 |
+price	| String |	单价	 |
+total	| String |	总金额 |
 
+
+### 1.4、全量成交回报数据
+
+> 全量成交回报数据
+>
+> 请求样例：
 
 ```json
-请求样例：
 {
     "type":"sub",
     "channel":{
@@ -1044,7 +1120,11 @@ tradeTimestamp	| String	|	交易时间		|
         "instrumentId":"ETH/USDT"
     }
 }
-响应样例：
+```
+
+> 响应样例：
+
+```json
 {
     "type":"sub",
     "topic":"trade_rtn_all",
@@ -1075,41 +1155,42 @@ tradeTimestamp	| String	|	交易时间		|
 }
 ```
 
+**请求正文**
+
+|  参数  |类型 |是否必填|  描述   |  说明   |
+| --- | --- | --- |--- | --- 
+type	| String|true |类型 |	sub
+topic	| String |true|主题 |	trade_rtn_all
+instrumentId| String |false|	币对	 |ETH/USDT, BTC/ETH ...传空为全量
+
+
+**响应正文**
+
+|  参数  |类型 |  描述   |  说明   |
+| --- | --- | --- | ---
+type| String	|类型	|sub
+topic	| String|主题|	trade_rtn_all
+errorCode| String|	错误码|	000 ...
+errorMessage| String	|错误信息|	success ...
+fee	| String|		费用	|
+instrumentId	| String	|	币对 	|
+direction| String		|	交易方向	| 0-买入 ， 1-卖出
+tradeId		| String|	交易ID		|
+volume	| String	|		成交数量	|
+total	| String	|	成交额		|
+price	| String	|	价格		|
+tradeTimestamp	| String	|	交易时间		|
+
+
 ## 2、WebSocket订单交易数据(私有流)
 
 ### 1.1、订单数据
 
-
-**请求正文**
-
-|  参数  |类型 |是否必填|  描述   |  说明   |
-| --- | --- | --- | --- | ---
-type| String|true|	类型|	sub
-topic	| String|true|主题	|order_rtn
-instrumentId| String|false|	币对	|ETH/USDT, BTC/ETH ...传空为全量
-
-**响应正文**
-
-|  参数   | 类型 |  描述   |  说明   |
-| --- | --- | --- | --- |
-type	 | String|类型	|sub
-topic	 | String|主题|	order_rtn
-errorCode | String|	错误码|	000 ...
-errorMessage | String	|错误信息|	success ...
-apiKey  | String  | apiKey  |
-orderId  | String  | 订单号  | 不能重复
-instrumentId  | String  | 合约号  | 样例 ETH-BTC
-direction  |  String  | 方向 | 0-买 1-卖
-orderType  | String  | 订单类型  | 1-限价单、2-市价单 、3-止盈止损 、4-冰山订单 、5-隐藏订单
-limtPrice  | String  | 价格  |
-stopPrice  | String  | 触发价  |
-displaySize  | String   | 展示数量|
-volume  | String | 数量  |
-orderStatus  | String | 订单状态  | 0-全部成交、1-部分成交 、2-未成交、3-撤单、4-部分成交部分撤单、5-已触发止损
-orderTimestamp  | String | 操作时间戳  | 13位
+> 订单数据
+>
+> 请求样例：
 
 ```json
-请求样例：
 {
     "type":"sub",
     "channel":{
@@ -1118,7 +1199,11 @@ orderTimestamp  | String | 操作时间戳  | 13位
         "instrumentId":"ETH/USDT"
     }
 }
-响应样例：
+```
+
+> 响应样例：
+
+```json
 {
     "type":"sub",
     "topic":"order_rtn",
@@ -1155,40 +1240,41 @@ orderTimestamp  | String | 操作时间戳  | 13位
 }
 ```
 
-### 1.2、交易数据
-
-
 **请求正文**
 
-|  参数   | 类型|是否必填 |  描述   |  说明   |
+|  参数  |类型 |是否必填|  描述   |  说明   |
 | --- | --- | --- | --- | ---
 type| String|true|	类型|	sub
-topic	| String|true|主题	|trade_rtn
+topic	| String|true|主题	|order_rtn
 instrumentId| String|false|	币对	|ETH/USDT, BTC/ETH ...传空为全量
-
-
 
 **响应正文**
 
 |  参数   | 类型 |  描述   |  说明   |
-| --- | --- | --- | --- | 
-type  | String 	|类型	|sub
-topic	  | String |主题|	trade_rtn
-errorCode  | String |	错误码|	000 ...
-errorMessage	  | String |错误信息|	success ...
+| --- | --- | --- | --- |
+type	 | String|类型	|sub
+topic	 | String|主题|	order_rtn
+errorCode | String|	错误码|	000 ...
+errorMessage | String	|错误信息|	success ...
 apiKey  | String  | apiKey  |
-tradeId  | String  | 成交号  |
-orderId  | String  | 订单号  |
+orderId  | String  | 订单号  | 不能重复
 instrumentId  | String  | 合约号  | 样例 ETH-BTC
 direction  |  String  | 方向 | 0-买 1-卖
-price  | String  | 价格  |
-volume  | String  | 数量  |
-fee  | String   | 手续费|
-tradeTimestamp  | String | 操作时间戳  | 13位
+orderType  | String  | 订单类型  | 1-限价单、2-市价单 、3-止盈止损 、4-冰山订单 、5-隐藏订单
+limtPrice  | String  | 价格  |
+stopPrice  | String  | 触发价  |
+displaySize  | String   | 展示数量|
+volume  | String | 数量  |
+orderStatus  | String | 订单状态  | 0-全部成交、1-部分成交 、2-未成交、3-撤单、4-部分成交部分撤单、5-已触发止损
+orderTimestamp  | String | 操作时间戳  | 13位
 
+### 1.2、交易数据
+
+> 交易数据
+>
+> 请求样例：
 
 ```json
-请求样例：
 {
     "type":"sub",
     "channel":{
@@ -1197,7 +1283,11 @@ tradeTimestamp  | String | 操作时间戳  | 13位
         "instrumentId":"ETH/USDT"
     }
 }
-响应样例：
+```
+
+> 响应样例：
+
+```json
 {
     "type":"sub",
     "topic":"trade_rtn",
@@ -1229,3 +1319,32 @@ tradeTimestamp  | String | 操作时间戳  | 13位
     ]
 }
 ```
+
+**请求正文**
+
+|  参数   | 类型|是否必填 |  描述   |  说明   |
+| --- | --- | --- | --- | ---
+type| String|true|	类型|	sub
+topic	| String|true|主题	|trade_rtn
+instrumentId| String|false|	币对	|ETH/USDT, BTC/ETH ...传空为全量
+
+
+
+**响应正文**
+
+|  参数   | 类型 |  描述   |  说明   |
+| --- | --- | --- | --- | 
+type  | String 	|类型	|sub
+topic	  | String |主题|	trade_rtn
+errorCode  | String |	错误码|	000 ...
+errorMessage	  | String |错误信息|	success ...
+apiKey  | String  | apiKey  |
+tradeId  | String  | 成交号  |
+orderId  | String  | 订单号  |
+instrumentId  | String  | 合约号  | 样例 ETH-BTC
+direction  |  String  | 方向 | 0-买 1-卖
+price  | String  | 价格  |
+volume  | String  | 数量  |
+fee  | String   | 手续费|
+tradeTimestamp  | String | 操作时间戳  | 13位
+
