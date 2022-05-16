@@ -37,7 +37,7 @@
 
     **注意：** 接口文档中每个接口都有标注需要的权限, 如果没有标注则不做权限控制.
 
-* 用户必须为API-KEY设定IP白名单列表, 只有在白名单列表中的IP地址才可以使用API-KEY发起指令调用，每个API-KEY最多可以绑定5个IP, 如果用户有多个API-KEY，需要分别为其绑定IP白名单
+* 用户可以为API-KEY设定IP白名单列表, 如果给API-KEY设置了白名单, 只有在白名单列表中的IP地址才可以使用API-KEY发起指令调用，每个API-KEY最多可以绑定5个IP, 如果用户有多个API-KEY，需要分别为其绑定IP白名单
 
 * 用户需要通过API-KEY在交易时进行身份认证, REST和WebSocket两种模式都需要, API-KEY的签名算法见后续章节
 
@@ -210,33 +210,33 @@ WebSocket: wss://api.pro.hashkey.com
 
 **Request Content：**
 
-| **PARAMETER**   | **TYPE** | **REQUIRED** | **DESCRIPTION**                                              |
-| --------------- | -------- | ------------ | ------------------------------------------------------------ |
+| **PARAMETER**   | **TYPE** | **REQUIRED** | **DESCRIPTION**                                                                                             |
+| --------------- | -------- | ------------ |-------------------------------------------------------------------------------------------------------------|
 | type            | string   | true         | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| client_order_id | string   | true         | Client need to ensure unrepeated                             |
-| instrument_id   | string   | true         | e.g. "ETH-BTC"                                               |
-| direction       | string   | true         | "buy" or "sell"                                              |
-| stop_price      | string   | false        | Required when order type is stopLimit or stopMarket          |
-| price           | string   | true         | Required when order type is limit or stopLimit               |
-| volume          | string   | true         | Volume                                                       |
-| post_only       | bool     | false        | Only maker                                                   |
-| time_in_force (currently unused) | string | false | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD |
+| client_order_id | string   | true         | Client need to ensure unrepeated                                                                            |
+| instrument_id   | string   | true         | e.g. "ETH-BTC"                                                                                              |
+| direction       | string   | true         | "buy" or "sell"                                                                                             |
+| stop_price      | string   | false        | Required when order type is stopLimit or stopMarket                                                         |
+| price           | string   | true         | Limit Price. Required when order type is limit or stopLimit                                                 |
+| volume          | string   | true         | Total Volume                                                                                                |
+| post_only       | bool     | false        | Only maker                                                                                                  |
+| time_in_force (currently unused) | string | false | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD                                             |
 
  **Response Content：**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                              |
-| --------------- | -------- | ------------------------------------------------------------ |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
+| --------------- | -------- |--------------------------------------------------------------------------------------------------------------|
 | type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id    | string   | Server order id.                                             |
-| client_order_id | string   | Client order id.                                             |
-| instrument_id   | string   | e.g. "ETH-BTC"                                               |
-| direction       | string   | "buy" or "sell"                                              |
-| stop_price      | string   | Required when order type is stopLimit or stopMarket          |
-| price           | string   | Required when order type is limit or stopLimit               |
-| volume          | string   | Volume                                                       |
-| post_only       | bool     | Only maker                                                   |
-| timestamp       | int64    | millisecond time-stamp                                       |
-| time_in_force (currently unused) | string   | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD |
+| sys_order_id    | string   | Server order id.                                                                                             |
+| client_order_id | string   | Client order id.                                                                                             |
+| instrument_id   | string   | e.g. "ETH-BTC"                                                                                               |
+| direction       | string   | "buy" or "sell"                                                                                              |
+| stop_price      | string   | Required when order type is stopLimit or stopMarket                                                          |
+| price           | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
+| volume          | string   | Total Volume                                                                                                 |
+| post_only       | bool     | Only maker                                                                                                   |
+| timestamp       | int64    | millisecond time-stamp                                                                                       |
+| time_in_force (currently unused) | string   | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD                                              |
 
 **Request Example：**
 
@@ -248,7 +248,7 @@ WebSocket: wss://api.pro.hashkey.com
     "client_order_id":"000000001",      // 客户订单号
     "instrument_id":"ETH-BTC",          // 合约ID
     "direction":"buy",                  // 买卖方向, buy:买, sell:卖
-    "price":"1",                        // 价格
+    "price":"1",                        // 限价
     "volume":"1",                       // 数量
     "post_only": true                   // 是否只做maker
 }
@@ -267,7 +267,7 @@ WebSocket: wss://api.pro.hashkey.com
         "instrument_id":"ETH-BTC",      // 合约编号
         "direction":"buy",              // 买卖方向
         "stop_price": "0",              // 触发价格
-        "price":"1",                    // 价格
+        "price":"1",                    // 限价
         "volume":"1",                   // 数量
         "post_only": true,              // 是否只做maker
         "timestamp": 1478692862000      // 交易时间
@@ -287,10 +287,10 @@ WebSocket: wss://api.pro.hashkey.com
 
  **Response Content：**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**  |
-| --------------- | -------- | ---------------- |
-| sys_order_id    | string   | Server order id. |
-| client_order_id | string   | Client order id. |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION**           |
+| --------------- | -------- |---------------------------|
+| sys_order_id    | string   | Server order id.          |
+| client_order_id | string   | Client order id. (unused) |
 
 **Request example：**
 
@@ -332,24 +332,24 @@ WebSocket: wss://api.pro.hashkey.com
 
 **Response Content：**
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**                                              |
-| ------------- | -------- | ------------------------------------------------------------ |
+| **PARAMETER** | **TYPE** | **DESCRIPTION**                                                                                              |
+| ------------- | -------- |--------------------------------------------------------------------------------------------------------------|
 | type          | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id  | string   | Server Order ID                                              |
-| client_order_id | string | Client order id.                                             |
-| instrument_id | string   | e.g. "ETH-BTC"                                               |
-| direction     | string   | "buy" or "sell"                                              |
-| stop_price    | string   | Required when order type is stopLimit or stopMarket          |
-| price         | string   | Required when order type is limit or stopLimit               |
-| volume        | string   | Volume                                                       |
-| status        | string   | Order status                                                 |
-| post_only     | bool     | Only maker                                                   |
-| timestamp     | int      | millisecond time-stamp                                       |
-| filled_size   | string   | The size that has been filled                                |
-| avg_filled_price (currently unused) | string | The average price for filled parts       |
-| fee (currently unused) | string | Transaction fee                                       |
-| fee_ccy (currently unused) | string | Transaction fee currency                          |
-| time_in_force (currently unused) | string | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD |
+| sys_order_id  | string   | Server Order ID                                                                                              |
+| client_order_id | string | Client order id.                                                                                             |
+| instrument_id | string   | e.g. "ETH-BTC"                                                                                               |
+| direction     | string   | "buy" or "sell"                                                                                              |
+| stop_price    | string   | Required when order type is stopLimit or stopMarket                                                          |
+| price         | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
+| volume        | string   | Original Total Volume                                                                                        |
+| status        | string   | Order status                                                                                                 |
+| post_only     | bool     | Only maker                                                                                                   |
+| timestamp     | int      | millisecond time-stamp                                                                                       |
+| filled_size   | string   | The size that has been filled                                                                                |
+| avg_filled_price (currently unused) | string | The average price for filled parts                                                                           |
+| fee (currently unused) | string | Transaction fee                                                                                              |
+| fee_ccy (currently unused) | string | Transaction fee currency                                                                                     |
+| time_in_force (currently unused) | string | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD                                              |
 
 **Order status**
 
@@ -381,8 +381,8 @@ WebSocket: wss://api.pro.hashkey.com
         "instrument_id":"ETH-BTC",      // 合约编号
         "direction":"buy",              // 买卖方向
         "stop_price":"0",               // 止损触发价格
-        "price":"1",                    // 价格
-        "volume":"1",                   // 数量
+        "price":"1",                    // 限价
+        "volume":"1",                   // 原始数量
         "status": "FILLED",             // 订单状态
         "post_only": "false",           // 是否仅作为maker
         "timestamp": 1478692862000,     // 交易时间
@@ -1105,9 +1105,7 @@ WebSocket: wss://api.pro.hashkey.com
 | trade_id      | string   | Trade Id                 |
 | volume        | string   | Volume                   |
 | price         | string   | Price                    |
-| trade_time    | int64x   | millisecond time-stamp   |
-| fee           | string   | Transaction fee          |
-| fee_ccy       | string   | Transaction fee currency |
+| timestamp    | int64x   | millisecond time-stamp   |
 
 **How to Subscribe：**
 
@@ -1135,7 +1133,7 @@ WebSocket: wss://api.pro.hashkey.com
                 "trade_id":"1000001",           // 成交编号
                 "volume":"2",                   // 数量
                 "price":"2",                    // 价格
-                "trade_time":1478692862000,     // 交易时间
+                "timestamp":1478692862000,     // 交易时间
                 "fee":"2",                      // 手续费
                 "fee_ccy": "USDT"               // 手续费币种
             },
@@ -1145,7 +1143,7 @@ WebSocket: wss://api.pro.hashkey.com
                 "trade_id":"1000002",
                 "volume":"2",
                 "price":"2",
-                "trade_time":1478692862000,
+                "timestamp":1478692862000,
                 "fee":"2",
                 "fee_ccy": "USDT"
             }
@@ -1174,24 +1172,24 @@ WebSocket: wss://api.pro.hashkey.com
 
 **Data Content:**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                              |
-| --------------- | -------- | ------------------------------------------------------------ |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
+| --------------- | -------- |--------------------------------------------------------------------------------------------------------------|
 | type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id    | string   | Server Order ID                                              |
-| client_order_id | string   | Client order id.                                             |
-| instrument_id   | string   | e.g. "ETH-BTC"                                               |
-| direction       | string   | "buy" or "sell"                                              |
-| stop_price      | string   | Required when order type is stopLimit or stopMarket          |
-| price           | string   | Required when order type is limit or stopLimit               |
-| volume          | string   | Volume                                                       |
-| status          | string   | Order status                                                 |
-| post_only       | bool     | Only maker                                                   |
-| timestamp       | int      | millisecond time-stamp                                       |
-| filled_size     | string   | The size that has been filled                                |
-| avg_filled_price (currently unused) | string | The average price for filled parts         |
-| fee (currently unused) | string | Transaction fee                                         |
-| fee_ccy (currently unused) | string | Transaction fee currency                            |
-| time_in_force (currently unused) | string | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD |
+| sys_order_id    | string   | Server Order ID                                                                                              |
+| client_order_id | string   | Client order id.                                                                                             |
+| instrument_id   | string   | e.g. "ETH-BTC"                                                                                               |
+| direction       | string   | "buy" or "sell"                                                                                              |
+| stop_price      | string   | Required when order type is stopLimit or stopMarket                                                          |
+| price           | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
+| volume          | string   | Original Total Volume                                                                                        |
+| status          | string   | Order status                                                                                                 |
+| post_only       | bool     | Only maker                                                                                                   |
+| timestamp       | int      | millisecond time-stamp                                                                                       |
+| filled_size     | string   | The size that has been filled                                                                                |
+| avg_filled_price (currently unused) | string | The average price for filled parts                                                                           |
+| fee (currently unused) | string | Transaction fee                                                                                              |
+| fee_ccy (currently unused) | string | Transaction fee currency                                                                                     |
+| time_in_force (currently unused) | string | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD                                              |
 
 **How to Subscribe：**
 
@@ -1220,8 +1218,8 @@ WebSocket: wss://api.pro.hashkey.com
         "instrument_id":"ETH-BTC",      // 合约编号
         "direction":"buy",              // 买卖方向
         "stop_price":"0",               // 止损触发价格
-        "price":"1",                    // 价格
-        "volume":"1",                   // 数量
+        "price":"1",                    // 限价
+        "volume":"1",                   // 原始数量
         "status": "FILLED",             // 订单状态
         "post_only": "false",           // 是否仅作为maker
         "timestamp": 1478692862000,     // 交易时间
@@ -1255,7 +1253,7 @@ WebSocket: wss://api.pro.hashkey.com
 | volume          | string   | Volume                               |
 | fee             | string   | Fee                                  |
 | fee_ccy         | string   | Transaction fee currency, e.g. "ETH" |
-| trade_time      | int64    | Trade millisecond time-stamp         |
+| timestamp      | int64    | Trade millisecond time-stamp         |
 
 **How to Subscribe：**
 
@@ -1287,7 +1285,7 @@ WebSocket: wss://api.pro.hashkey.com
             "volume":"1",                   // 数量
             "fee":"0.05",                   // 手续费
             "fee_ccy": "ETH",               // 手续费币种
-            "trade_time": 1478692862000     // 交易时间
+            "timestamp": 1478692862000     // 交易时间
         },
         {
             "sys_order_id":"120000002",
@@ -1299,7 +1297,7 @@ WebSocket: wss://api.pro.hashkey.com
             "volume":"2",
             "fee":"0.05",
             "fee_ccy": "ETH",
-            "trade_time":1478692862000
+            "timestamp":1478692862000
         }
     ]
 }

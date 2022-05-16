@@ -33,7 +33,7 @@ In order to facilitate users' quick understanding, the following lists the commo
   * **TRANSFER** transfer permission is used for transfer interfaces.
   * **WITHDRAWAL** withdraw permission is used for creating or cancelling withdraw requests.
 
-* Users must set IP whitelist for API-KEY. Only the IPs in the whitelist can call the API. Each API-KEY can be bound to a maximum of 5 IPs. If the user has multiple  API-KEYs, it is necessary to bind IP whitelists for them respectively.
+* Users can set IP whitelist for API-KEY. If user set IP for the API-KEY, only the IPs in the whitelist can call the API. Each API-KEY can be bound to a maximum of 5 IPs. If the user has multiple  API-KEYs, it is necessary to bind IP whitelists for them respectively.
 
 * Users need to authenticate the transaction through the API-KEY. Both REST and WebSocket modes are required. For the signature algorithm of the API-KEY, see the following chapters.
 
@@ -204,33 +204,33 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 **Request Content：**
 
-| **PARAMETER**   | **TYPE** | **REQUIRED** | **DESCRIPTION**                                              |
-| --------------- | -------- | ------------ | ------------------------------------------------------------ |
+| **PARAMETER**   | **TYPE** | **REQUIRED** | **DESCRIPTION**                                                                                              |
+| --------------- | -------- | ------------ |--------------------------------------------------------------------------------------------------------------|
 | type            | string   | true         | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| client_order_id | string   | true         | Client need to ensure unrepeated                             |
-| instrument_id   | string   | true         | e.g. "ETH-BTC"                                               |
-| direction       | string   | true         | "buy" or "sell"                                              |
-| stop_price      | string   | false        | Required when order type is stopLimit or stopMarket          |
-| price           | string   | true         | Required when order type is limit or stopLimit               |
-| volume          | string   | true         | Volume                                                       |
-| post_only       | bool     | false        | Only maker                                                   |
-| time_in_force (currently unused) | string | false | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD |
+| client_order_id | string   | true         | Client need to ensure unrepeated                                                                             |
+| instrument_id   | string   | true         | e.g. "ETH-BTC"                                                                                               |
+| direction       | string   | true         | "buy" or "sell"                                                                                              |
+| stop_price      | string   | false        | Required when order type is stopLimit or stopMarket                                                          |
+| price           | string   | true         | Limit price. Required when order type is limit or stopLimit                                                  |
+| volume          | string   | true         | Total Volume                                                                                                 |
+| post_only       | bool     | false        | Only maker                                                                                                   |
+| time_in_force (currently unused) | string | false | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD                                              |
 
  **Response Content：**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                              |
-| --------------- | -------- | ------------------------------------------------------------ |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
+| --------------- | -------- |--------------------------------------------------------------------------------------------------------------|
 | type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id    | string   | Server order id.                                             |
-| client_order_id | string   | Client order id.                                             |
-| instrument_id   | string   | e.g. "ETH-BTC"                                               |
-| direction       | string   | "buy" or "sell"                                              |
-| stop_price      | string   | Required when order type is stopLimit or stopMarket          |
-| price           | string   | Required when order type is limit or stopLimit               |
-| volume          | string   | Volume                                                       |
-| post_only       | bool     | Only maker                                                   |
-| timestamp       | int64    | millisecond time-stamp                                       |
-| time_in_force (currently unused) | string   | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD |
+| sys_order_id    | string   | Server order id.                                                                                             |
+| client_order_id | string   | Client order id.                                                                                             |
+| instrument_id   | string   | e.g. "ETH-BTC"                                                                                               |
+| direction       | string   | "buy" or "sell"                                                                                              |
+| stop_price      | string   | Required when order type is stopLimit or stopMarket                                                          |
+| price           | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
+| volume          | string   | Total Volume                                                                                                 |
+| post_only       | bool     | Only maker                                                                                                   |
+| timestamp       | int64    | millisecond time-stamp                                                                                       |
+| time_in_force (currently unused) | string   | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD                                              |
 
 **Request Example：**
 
@@ -242,8 +242,8 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
     "client_order_id":"000000001",      // Client order ID
     "instrument_id":"ETH-BTC",          // Instrument ID
     "direction":"buy",                  // Trade direction direction
-    "price":"1",                        // Price
-    "volume":"1",                       // Volume
+    "price":"1",                        // Limit price
+    "volume":"1",                       // Total Volume
     "post_only": true                   // Whether to only be a maker
 }
 ```
@@ -260,9 +260,9 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
         "client_order_id":"000000001",  // Client orde rID
         "instrument_id":"ETH-BTC",      // Instrument ID
         "direction":"buy",              // Trade direction
-        "stop_price": "0",              // Trigger price
-        "price":"1",                    // Price
-        "volume":"1",                   // Volume
+        "stop_price": "0",              // Stop price
+        "price":"1",                    // Limit price
+        "volume":"1",                   // Total Volume
         "post_only": true,              // Whether to only be a maker
         "timestamp": 1478692862000      // Order timestamp
     }
@@ -284,7 +284,7 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 | **PARAMETER**   | **TYPE** | **DESCRIPTION**  |
 | --------------- | -------- | ---------------- |
 | sys_order_id    | string   | Server order id. |
-| client_order_id | string   | Client order id. |
+| client_order_id | string   | Client order id.(unused) |
 
 **Request example：**
 
@@ -326,24 +326,24 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 **Response Content：**
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**                                              |
-| ------------- | -------- | ------------------------------------------------------------ |
+| **PARAMETER** | **TYPE** | **DESCRIPTION**                                                                                              |
+| ------------- | -------- |--------------------------------------------------------------------------------------------------------------|
 | type          | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id  | string   | Server Order ID                                              |
-| client_order_id | string | Client order id.                                             |
-| instrument_id | string   | e.g. "ETH-BTC"                                               |
-| direction     | string   | "buy" or "sell"                                              |
-| stop_price    | string   | Required when order type is stopLimit or stopMarket          |
-| price         | string   | Required when order type is limit or stopLimit               |
-| volume        | string   | Volume                                                       |
-| status        | string   | Order status                                                 |
-| post_only     | bool     | Only maker                                                   |
-| timestamp     | int      | millisecond time-stamp                                       |
-| filled_size   | string   | The size that has been filled                                |
-| avg_filled_price (currently unused) | string | The average price for filled parts       |
-| fee (currently unused) | string | Transaction fee                                       |
-| fee_ccy (currently unused) | string | Transaction fee currency                          |
-| time_in_force (currently unused) | string | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD |
+| sys_order_id  | string   | Server Order ID                                                                                              |
+| client_order_id | string | Client order id.                                                                                             |
+| instrument_id | string   | e.g. "ETH-BTC"                                                                                               |
+| direction     | string   | "buy" or "sell"                                                                                              |
+| stop_price    | string   | Required when order type is stopLimit or stopMarket                                                          |
+| price         | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
+| volume        | string   | Original Total Volume                                                                                        |
+| status        | string   | Order status                                                                                                 |
+| post_only     | bool     | Only maker                                                                                                   |
+| timestamp     | int      | millisecond time-stamp                                                                                       |
+| filled_size   | string   | The size that has been filled                                                                                |
+| avg_filled_price (currently unused) | string | The average price for filled parts                                                                           |
+| fee (currently unused) | string | Transaction fee                                                                                              |
+| fee_ccy (currently unused) | string | Transaction fee currency                                                                                     |
+| time_in_force (currently unused) | string | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD                                              |
 
 **Order status**
 
@@ -376,10 +376,10 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
         "instrument_id":"ETH-BTC",      // InstrumentID
         "direction":"buy",              // Trade direction
         "stop_price":"0",               // Stop price
-        "price":"1",                    // Price
-        "volume":"1",                   // Volume
+        "price":"1",                    // Limit Price
+        "volume":"1",                   // Original Total Volume
         "status": "filled",             // Order status
-        "post_only": "false",           // Only as "maker"
+        "post_only": false,           // Only as "maker"
         "timestamp": 1478692862000,     // Order timestamp
         "filled_size": "1"              // The size that has been filled
     }]
@@ -653,8 +653,8 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
             "high":"10",                    // High price
             "low":"10",                     // Low price
             "volume_in_base":"100",         // Volume
-            "start_time":1646213700000,     // Start time
-            "end_time":1646213760000        // End time
+            "start_timestamp":1646213700000,     // Start time
+            "end_timestamp":1646213760000        // End time
         }
     ]
 }
@@ -894,16 +894,16 @@ Push every 2000 milliseconds
 
 **Data Content:**
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**                               |
-| ------------- | -------- | --------------------------------------------- |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION**                               |
+|-----------------| -------- | --------------------------------------------- |
 | instrument_id   | string   | e.g. "ETH-USDT", "ETH-BTC"                    |
 | high            | string   | High  price                                   |
 | open            | string   | Open price                                    |
 | low             | string   | Low  price                                    |
 | close           | string   | Close  price                                  |
 | volume_in_base  | string   | Volume in base asset, e.g, ETH in ETH-BTC     |
-| start_time      | int64    | millisecond time-stamp     e.g. 1646213700000 |
-| end_time        | int64    | millisecond time-stamp     e.g. 1646213800000 |
+| start_timestamp | int64    | millisecond time-stamp     e.g. 1646213700000 |
+| end_timestamp   | int64    | millisecond time-stamp     e.g. 1646213800000 |
 
 **How to Subscribe：**
 
@@ -932,8 +932,8 @@ Push every 2000 milliseconds
             "high":"10",                    // Highest price
             "low":"10",                     // Lowest price
             "volume_in_base":"100",         // Volume in base asset
-            "start_time":1646213700000,     // Start time
-            "end_time":1646213760000        // End time
+            "start_timestamp":1646213700000,     // Start time
+            "end_timestamp":1646213760000        // End time
     }
 }
 ```
@@ -1061,29 +1061,29 @@ Push every 500 milliseconds(If there is any change)
         "asks":[                            // Sell 50 levels, sorted from small to large according to the price
             {
                 "volume":"3",               // volume
-                "price":"2",                // price
+                "price":"2"                // price
             },
             {
                 "volume":"3",
-                "price":"2",
+                "price":"3"
             }
         ],
         "bids":[
             {                              // Buy 50 levels, sorted from large to small according to the price
                 "volume":"3",
-                "price":"2",
+                "price":"2"
             }
         ]
     }
 }
 ```
 
-### 3.2.4 Total Transaction Data
+### 3.2.4 Total Trade Data
 
 **Request Content:**
 
 | **PARAMETER** | **TYPE** | **REQUIRED** | **DESCRIPTION**            |
-| ------------- | -------- | ------------ | -------------------------- |
+| ------------- | -------- |--------------| -------------------------- |
 | type          | string   | true         | "sub"                      |
 | topic         | string   | true         | "trade_rtn_all"            |
 | instrument_id | string   | false        | e.g. "ETH-USDT", "ETH-BTC" |
@@ -1097,16 +1097,14 @@ Push every 500 milliseconds(If there is any change)
 
 **Data Content:**
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**  |
-| ------------- | -------- | ---------------- |
-| instrument_id | string   | Instrument Id    |
-| direction     | string   | "buy" or "sell"  |
-| trade_id      | string   | Trade Id         |
-| volume        | string   | Volume           |
-| price         | string   | Price            |
-| trade_time    | int64x   | millisecond time-stamp |
-| fee           | string   | Transaction fee  |
-| fee_ccy       | string   | Transaction fee currency  |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION**  |
+|-----------------| -------- | ---------------- |
+| instrument_id   | string   | Instrument Id    |
+| direction       | string   | "buy" or "sell"  |
+| trade_id        | string   | Trade Id         |
+| volume          | string   | Volume           |
+| price           | string   | Price            |
+| timestamp | int64x   | millisecond time-stamp |
 
 **How to Subscribe：**
 
@@ -1134,9 +1132,7 @@ Push every 500 milliseconds(If there is any change)
                 "trade_id":"1000001",           // Trade ID
                 "volume":"2",                   // Volume
                 "price":"2",                    // Price
-                "trade_time":1478692862000,     // Trade time
-                "fee":"2",                      // Transaction fee
-                "fee_ccy": "USDT"               // Transaction fee currency
+                "timestamp":1478692862000     // Trade time
             },
             {
                 "instrument_id":"ETH-USDT",
@@ -1144,9 +1140,7 @@ Push every 500 milliseconds(If there is any change)
                 "trade_id":"1000002",
                 "volume":"2",
                 "price":"2",
-                "trade_time":1478692862000,
-                "fee":"2",
-                "fee_ccy": "USDT"
+                "timestamp":1478692862000
             }
         ]
 }
@@ -1173,24 +1167,24 @@ Push every 500 milliseconds(If there is any change)
 
 **Data Content:**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                              |
-| --------------- | -------- | ------------------------------------------------------------ |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
+| --------------- | -------- |--------------------------------------------------------------------------------------------------------------|
 | type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id    | string   | Server Order ID                                              |
-| client_order_id | string   | Client order id.                                             |
-| instrument_id   | string   | e.g. "ETH-BTC"                                               |
-| direction       | string   | "buy" or "sell"                                              |
-| stop_price      | string   | Required when order type is stopLimit or stopMarket          |
-| price           | string   | Required when order type is limit or stopLimit               |
-| volume          | string   | Volume                                                       |
-| status          | string   | Order status                                                 |
-| post_only       | bool     | Only maker                                                   |
-| timestamp       | int      | millisecond time-stamp                                       |
-| filled_size     | string   | The size that has been filled                                |
-| avg_filled_price (currently unused) | string | The average price for filled parts         |
-| fee (currently unused) | string | Transaction fee                                         |
-| fee_ccy (currently unused) | string | Transaction fee currency                            |
-| time_in_force (currently unused) | string | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD |
+| sys_order_id    | string   | Server Order ID                                                                                              |
+| client_order_id | string   | Client order id.                                                                                             |
+| instrument_id   | string   | e.g. "ETH-BTC"                                                                                               |
+| direction       | string   | "buy" or "sell"                                                                                              |
+| stop_price      | string   | Required when order type is stopLimit or stopMarket                                                          |
+| price           | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
+| volume          | string   | Original Total Volume                                                                                        |
+| status          | string   | Order status                                                                                                 |
+| post_only       | bool     | Only maker                                                                                                   |
+| timestamp       | int      | millisecond time-stamp                                                                                       |
+| filled_size     | string   | The size that has been filled                                                                                |
+| avg_filled_price (currently unused) | string | The average price for filled parts                                                                           |
+| fee (currently unused) | string | Transaction fee                                                                                              |
+| fee_ccy (currently unused) | string | Transaction fee currency                                                                                     |
+| time_in_force (currently unused) | string | default: limit: GTC, market and stopMarket: IOC, stopLimit: GFD                                              |
 
 **How to Subscribe：**
 
@@ -1218,10 +1212,10 @@ Push every 500 milliseconds(If there is any change)
         "instrument_id":"ETH-BTC",      // InstrumentID
         "direction":"buy",              // Trade direction
         "stop_price":"0",               // Stop price
-        "price":"1",                    // Price
-        "volume":"1",                   // Volume
+        "price":"1",                    // Limit Price
+        "volume":"1",                   // Original Total Volume
         "status": "filled",             // Order status
-        "post_only": "false",           // Only as "maker"
+        "post_only": false,           // Only as "maker"
         "timestamp": 1478692862000,     // Order timestamp
         "filled_size": "1"              // The size that has been filled
     }]
@@ -1241,7 +1235,7 @@ Push every 500 milliseconds(If there is any change)
 **Response Content:**
 
 | **PARAMETER**   | **TYPE** | **DESCRIPTION**        |
-| --------------- | -------- | ---------------------- |
+|-----------------| -------- | ---------------------- |
 | type            | string   | "sub-resp"             |
 | topic           | string   | "trade_rtn"            |
 | trade_id        | string   | Trade Id               |
@@ -1253,7 +1247,7 @@ Push every 500 milliseconds(If there is any change)
 | volume          | string   | Volume                 |
 | fee             | string   | Fee                    |
 | fee_ccy         | string   | Transaction fee currency, e.g. "ETH" |
-| trade_time      | int64    | Trade millisecond time-stamp |
+| timestamp | int64    | Trade millisecond time-stamp |
 
 **How to Subscribe：**
 
@@ -1285,7 +1279,7 @@ Push every 500 milliseconds(If there is any change)
             "volume":"1",                   // Volume
             "fee":"0.05",                   // Transaction fee
             "fee_ccy": "ETH",               // Transaction fee currency
-            "trade_time": 1478692862000     // Trade time
+            "timestamp": 1478692862000     // Trade time
         },
         {
             "sys_order_id":"120000002",
@@ -1297,7 +1291,7 @@ Push every 500 milliseconds(If there is any change)
             "volume":"2",
             "fee":"0.05",
             "fee_ccy": "ETH",
-            "trade_time":1478692862000
+            "timestamp":1478692862000
         }
     ]
 }
