@@ -670,7 +670,7 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 | type               | string   | true         | Default: auth                                                                            |
 | x-access-key       | string   | true         | The API Access Key you applied for.                                                      |
 | x-access-sign      | string   | true         | A value calculated by the hash value from request to ensure it is valid and not tampered. |
-| x-access-timestamp | int64    | true         | The timestamp represents the time of request (in milliseconds).                          |
+| x-access-timestamp | string    | true         | The timestamp represents the time of request (in milliseconds).                          |
 | x-access-version   | string   | true         | Signature protocol version. Default version is 1.                                        |
 
 **Request Example：**
@@ -681,7 +681,7 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
     "auth":{
         "x-access-key":"xxxxxxxxx",
         "x-access-sign":"xxxxxxxxx",
-        "x-access-timestamp": 1478692862000,
+        "x-access-timestamp": "1478692862000",
         "x-access-version":"v1.0"
     },
     "id": 1
