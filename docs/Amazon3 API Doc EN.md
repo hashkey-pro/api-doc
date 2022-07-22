@@ -204,11 +204,91 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 }
 ```
 
+### 2.2.3 Query instruments
+
+**Http Request:** GET info/instruments
+
+**Request Content：** null
+
+**Response Content：**
+
+| **PARAMETER**           | **TYPE** | **DESCRIPTION**                                                                                                                                                    |
+|-------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| instrument_id           | string   | Instrument ID.                                                                                                                                                     |
+| base_asset              | string   | Base  Asset.                                                                                                                                                       |
+| quote_asset             | string   | Quote Asset.                                                                                                                                                       |
+| product_type            | string   | Product Type(Token/Token:digital assets exchange, Token/Fiat:exchange digital assets to fiat currency, ST/Token:exchange ST to digital assets, ST/Fiat:exchange ST to fiat currency) |
+| price_tick              | string    | Price tick.                                                                                                                                                        |
+| max_market_order_volume | string    | Max market order volume.                                                                                                                                           |
+| min_market_order_volume | string    | Min market order volume.                                                                                                                                           |
+| max_limit_order_volume  | string    | Max limit order volume.                                                                                                                                            |
+| min_limit_order_volume  | string    | Min limit order volume.                                                                                                                                            |
+
+**Response Example：**
+
+```json
+{
+  "error_code":"0000",        
+  "error_message":"",         
+  "data":[{
+    "instrument_id":"BTC-ETH",                 
+    "base_asset":"BTC",                        
+    "quote_asset":"ETH",                      
+    "product_type": "Token/Token",
+    "price_tick": "0.00000001",                
+    "max_market_order_volume": "10000000.1",   
+    "min_market_order_volume": "0.00000001",   
+    "max_limit_order_volume": "10000000.1",    
+    "min_limit_order_volume": "0.00000001"
+  }]
+}
+```
+
+### 2.2.4 Query instrument status
+
+**Http Request:** GET info/instrument_status/{:instrument_id}
+
+**Request example：**
+
+```context
+ GET "https://domain/info/instrument_status/ETH-BTC"
+```
+
+**Response Content：**
+
+| **PARAMETER** | **TYPE** | **DESCRIPTION**                                                                                                 |
+|---------------|----------|-----------------------------------------------------------------------------------------------------------------|
+| instrument_id | string   | Instrument ID.                                                                                                  |
+| status        | string   | Status  "BeforeTrading"、"NoTrading"、"Continuous"、"AuctionOrdering"、 "AuctionBalance"、 "AuctionMatch"、"Closed"   |
+
+| instrument status       | description        |
+|-------------------------|--------------------|
+| BeforeTrading           | Before trading     |
+| NoTrading               | No trading         |
+| Continuous              | Continuous trading |
+| AuctionOrdering         | Auction ordering   |
+| AuctionBalance          | Auction balance    |
+| AuctionMatch            | Auction match      |
+| Closed                  | Closed             |
+
+**Response Example：**
+
+```json
+{
+  "error_code":"0000",       
+  "error_message":"",       
+  "data":[{
+    "instrument_id":"ETH-BTC",          
+    "status":"Continuous"                          
+  }]
+}
+```
+
 ## 2.3 Trading
 
 ### 2.3.1 Create An Order(TRADE permission is required)
 
-**Http Request:** POST /orders
+**Http Request:** POST /order
 
 **Request Content：**
 
@@ -305,7 +385,36 @@ null
 }
 ```
 
-### 2.3.3 Get Order Data(READ permission is required)
+### 2.3.3 Cancel all orders（TRADE permission is required）
+
+**Http Request:** DELETE /orders
+
+**Query Parameters：**
+
+| **PARAMETER** | **TYPE**   | **REQUIRED** | **DESCRIPTION**                         |
+|------------|------------|--------------|-----------------------------------------|
+| instrument_id       | string     | false        | Cancel orders on a specific instrument_id only |
+
+
+**Response Content：**
+null
+
+**Request example：**
+
+```context
+ DELETE "https://domain/orders?instrument_id=BTC-ETH"
+```
+
+**Response Example：**
+
+```json
+{
+    "error_code":"0000",    // Error code
+    "error_message":""     // Error message
+}
+```
+
+### 2.3.4 Get Order Data(READ permission is required)
 
 **Http Request:**  GET /orders
 
@@ -389,9 +498,9 @@ null
 }
 ```
 
-### 2.3.4 Retrieve Trade Data(READ permission is required)
+### 2.3.5 Retrieve Trade Data(READ permission is required)
 
-**Http Request: **GET /trades
+**Http Request:** GET /trades
 
 **Query Parameters** **:**
 
@@ -513,7 +622,7 @@ null
 
 ```json
 {
-    "assetId":"ETH",
+    "asset":"ETH",
     "amount":"1",
     "from_account_id": "B000000000001",
     "to_account_id":"B000000000002"
@@ -529,6 +638,129 @@ null
     "data":{}
 }
 
+```
+
+### 2.4.3 Query withdrawal history（READ permission is required）
+
+**Http Request:** GET /withdraw/history
+
+**Query Parameters** **:**
+
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
+|-------------------| -------- |--------------|------------------------------------------------------------|
+| currency          | string   | false        | Currency                                            |
+| status            | string   | false        | Status   "failed"、"withdrawing"、"successful"、"cancelling"、"cancelled"              |
+| limit             | string    | true         | Limit on number of results to return. min 1 max 200 |
+| page              | string    | true         | Used for pagination. Page number.                          |
+| start_timestamp   | string    | true         | millisecond time-stamp                                     |
+| end_timestamp     | string    | true         | millisecond time-stamp                                     |
+
+
+**Response Content：**
+
+| **PARAMETER**     | **TYPE** | **DESCRIPTION**                |
+|-------------------|----------|--------------------------------|
+| withdraw_order_id | string   | withdraw order ID              |
+| txn_id            | string   | Txn ID                         |
+| network           | string   | Network (currently unused)     |
+| currency          | string   | Currency                       |
+| address           | string   | Withdrawal destination address |
+| memo              | string   | Memo                           |
+| volume            | string   | Volume                         |
+| status            | string   | Status                         |
+| gas_fee           | string   | Gas Fee                        |
+| gas_fee_ccy       | string   | Gas Fee Currency               |
+| fee               | string   | Fee                            |
+| fee_ccy           | string   | Fee Currency                   |
+| timestamp         | int64    | Timestamp                      |
+
+**Request example：**
+
+```context
+ GET "https://domain/withdraw/history?currency=BTC&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page="
+```
+
+
+**Response Example：**
+
+```json
+{
+  "error_code":"0000",
+  "error_message":"",
+  "data":[{
+    "withdraw_order_id": "00000001",
+    "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
+    "currency": "BTC",
+    "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
+    "memo": "",
+    "volume": "1",
+    "status": "successful",
+    "fee": "0.004",
+    "fee_ccy": "BTC",
+    "gas_fee": "0.0001",
+    "gas_fee_ccy": "BTC",
+    "timestamp": 1478692862000
+  }]
+}
+```
+
+### 2.4.4 Query deposit history（READ permission is required）
+
+**Http Request:** GET /deposit/history
+
+**Query Parameters** **:**
+
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
+|-------------------| -------- |--------------|------------------------------------------------------------|
+| currency          | string   | false        | Currency                                                                                          |
+| status           | string    | false        | Status  "addressToBeVerified"、"underReview"、"successful"、"failed"、"refundInProgress"、"refundComplete"、"refundFailed" |
+| page              | string    | true         | Used for pagination. Page number.                   |
+| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
+| start_timestamp   | string    | true         | millisecond time-stamp                                     |
+| end_timestamp     | string    | true         | millisecond time-stamp                                     |
+
+
+**Response Content：**
+
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**            |
+|------------------|----------|----------------------------|
+| deposit_order_id | string   | Deposit order ID           |
+| txn_id           | string   | Txn ID                     |
+| network           | string   | Network (currently unused) |
+| currency         | string   | Currency                   |
+| address          | string   | Deposit source address     |
+| memo             | string   | Memo                       |
+| volume           | string   | Volume                     |
+| status           | string   | Status                     |
+| fee              | string   | Fee                        |
+| fee_ccy          | string   | Fee Currency               |
+| timestamp        | int64    | Timestamp                  |
+
+**Request example：**
+
+```context
+ GET "https://domain/deposit/history?currency=BTC&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page="
+```
+
+**Response Example：**
+
+```json
+{
+  "error_code":"0000",
+  "error_message":"",
+  "data":[{
+    "deposit_order_id": "00000001",
+    "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
+    "currency": "BTC",
+    "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
+    "memo": "",
+    "volume": "1",
+    "status": "successful",
+    "fee": "0.004",
+    "fee_ccy": "BTC",
+    "timestamp": 1478692862000
+  }]
+}
 ```
 
 ## 2.5 Market
@@ -604,7 +836,6 @@ null
 | trade_id      | string   | Trade ID         |
 | price         | string   | Price            |
 | volume        | string   | Volume           |
-| direction     | string   | "buy" or "sell"  |
 | timestamp     | int64    | millisecond time-stamp |
 
 **Response Example：**
@@ -619,7 +850,6 @@ null
             "trade_id": "123456789",        // Trade ID
             "price": "10",                  // Price
             "volume": "100",                // Volume
-            "direction":"buy",              // Trade direction
             "timestamp": 1478692862000      // Trade timestamp
         }
     ]
@@ -670,7 +900,7 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 | type               | string   | true         | Default: auth                                                                            |
 | x-access-key       | string   | true         | The API Access Key you applied for.                                                      |
 | x-access-sign      | string   | true         | A value calculated by the hash value from request to ensure it is valid and not tampered. |
-| x-access-timestamp | string    | true         | The timestamp represents the time of request (in milliseconds).                          |
+| x-access-timestamp | string   | true         | The timestamp represents the time of request (in milliseconds).                          |
 | x-access-version   | string   | true         | Signature protocol version. Default version is 1.                                        |
 
 **Request Example：**
@@ -702,10 +932,10 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 **Request Content:**
 
 | **PARAMETER** | **TYPE**     | **REQUIRED** | **DESCRIPTION**      |
-| ------------- | ------------ | ------------ | -------------------- |
+|---------------| ------------ | ------------ |----------------------|
 | type          | string       | true         | "sub"                |
 | id            | integer      | true         | Unique request id    |
-| Parameters    | object array | true         | Subscribe Parameters |
+| parameters    | object array | true         | Subscribe parameters |
 | => topic      | string       | true         | Topic                |
 
 **Response Content:**
@@ -744,10 +974,10 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 **Request Content:**
 
 | **PARAMETER** | **TYPE**     | **REQUIRED** | **DESCRIPTION**        |
-| ------------- |--------------| ------------ | ---------------------- |
+|---------------|--------------| ------------ |------------------------|
 | type          | string       | true         | "unsub"                |
 | id            | int64        | true         | Unique request id      |
-| Parameters    | object array | true         | Unsubscribe Parameters |
+| parameters    | object array | true         | Unsubscribe parameters |
 | => topic      | string       | true         | Topic                  |
 | error_code    | string       | true         | Error code             |
 | error_message | string       | true         | Explain error info     |
@@ -1015,14 +1245,13 @@ Push every 500 milliseconds(If there is any change)
 
 **Data Content:**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**  |
-|-----------------| -------- | ---------------- |
-| instrument_id   | string   | Instrument Id    |
-| direction       | string   | "buy" or "sell"  |
-| trade_id        | string   | Trade Id         |
-| volume          | string   | Volume           |
-| price           | string   | Price            |
-| timestamp | int64x   | millisecond time-stamp |
+| **PARAMETER** | **TYPE** | **DESCRIPTION**        |
+|---------------| -------- |------------------------|
+| instrument_id | string   | Instrument Id          |
+| trade_id      | string   | Trade Id               |
+| volume        | string   | Volume                 |
+| price         | string   | Price                  |
+| timestamp     | int64x   | millisecond time-stamp |
 
 **How to Subscribe：**
 
@@ -1046,7 +1275,6 @@ Push every 500 milliseconds(If there is any change)
     "data":[
             {
                 "instrument_id":"ETH-USDT",     // Instrument ID
-                "direction":"buy",              // Trade direction
                 "trade_id":"1000001",           // Trade ID
                 "volume":"2",                   // Volume
                 "price":"2",                    // Price
@@ -1054,7 +1282,6 @@ Push every 500 milliseconds(If there is any change)
             },
             {
                 "instrument_id":"ETH-USDT",
-                "direction":"sell",
                 "trade_id":"1000002",
                 "volume":"2",
                 "price":"2",
@@ -1063,6 +1290,59 @@ Push every 500 milliseconds(If there is any change)
         ]
 }
 ```
+
+### 3.2.5 Instruments status change
+
+**Request Content:**
+
+| **PARAMETER** | **TYPE** | **REQUIRED** | **DESCRIPTION**             |
+| ------------- | -------- | ------------ |-----------------------------|
+| type          | string   | true         | "sub"                       |
+| topic         | string   | true         | "instruments_status_change" |
+| instrument_id | string   | false        | e.g. "ETH-USDT", "ETH-BTC"  |
+
+**Response Content:**
+
+| **PARAMETER** | **TYPE** | **DESCRIPTION**  |
+| ------------- | -------- | ---------------- |
+| type          | string   | "sub-resp"               |
+| topic         | string   | Topic                    |
+
+**Data Content:**
+
+| **PARAMETER** | **TYPE** | **DESCRIPTION**        |
+|---------------| -------- |------------------------|
+| instrument_id | string   | Instrument Id          |
+| status        | string   | Status                 |
+
+
+**How to Subscribe：**
+
+```json
+{
+    "type":"sub",
+    "parameters":[{
+        "topic":"instruments_status_change",
+    }],
+    "id": 1
+}
+```
+
+**Request Response：**
+
+```json
+{
+    "type":"sub-resp",
+    "topic":"instruments_status_change",                    
+    "data":[
+            {
+                "instrument_id":"ETH-BTC",      
+                "status":""                     
+            }
+        ]
+}
+```
+
 
 ## 3.3  Transaction Data (Private Stream)
 
