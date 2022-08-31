@@ -252,7 +252,8 @@ WebSocket: wss://api.pro.hashkey.com
 
 ### 2.2.4 查询合约状态
 
-**Http Request:** GET info/instrument_status/{:instrument_id}
+**Http Request:** GET info/instrument_status/{:instrument_id} 
+* 以上url中instrument_id是必填的
 
 **Request example：**
 
@@ -683,7 +684,7 @@ null
 **Request example：**
 
 ```context
- GET "https://domain/withdraw/history?currency=BTC&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page="
+ GET "https://domain/withdraw/history?currency=BTC&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page=1"
 ```
 
 **Response Example：**
@@ -744,7 +745,7 @@ null
 **Request example：**
 
 ```context
- GET "https://domain/deposit/history?currency=BTC&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page="
+ GET "https://domain/deposit/history?currency=BTC&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page=1"
 ```
 
 **Response Example：**
@@ -763,6 +764,54 @@ null
       "status": "successful",
       "fee": "0.004",
       "fee_ccy": "BTC",
+      "timestamp": 1478692862000
+    }]
+}
+```
+
+### 2.4.5 划转记录查询（需要“READ” 权限）
+
+**Http Request:** GET /assets/transfer/history
+
+**Query Parameters** **:**
+
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
+|-------------------| -------- |--------------|------------------------------------------------------------|
+| start_timestamp   | string    | true         | millisecond time-stamp                                     |
+| end_timestamp     | string    | true         | millisecond time-stamp                                     |
+| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
+| page              | string    | true         | Used for pagination. Page number.                          |
+
+**Response Content：**
+
+| **PARAMETER**   | **TYPE** | **DESCRIPTION**        |
+|-----------------|----------|------------------------|
+| asset           | string   | Asset ID               |
+| amount          | string   | Amount                 |
+| from_account_id | string   | From Account ID        |
+| to_account_id   | string   | To Account ID          |
+| status          | string   | "successful", "failed" |
+| timestamp       | int64    | Timestamp              |
+
+
+**Request example：**
+
+```context
+ GET "https://domain/assets/transfer/history?start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page=1"
+```
+
+**Response Example：**
+
+```json
+{
+    "error_code":"0000",
+    "error_message":"",
+    "data":[{
+      "asset":"ETH",
+      "amount":"1",
+      "from_account_id": "B000000000001",
+      "to_account_id":"B000000000002",
+      "status": "successful",
       "timestamp": 1478692862000
     }]
 }
@@ -867,8 +916,8 @@ null
 ## 3.1 接入控制
 
 ### 3.1.1 WebSocket API 会话限制
-* 一个IP地址最多可以同时建立5个WebSocket会话，使用APIKey可以为WebSocket会话授权，每个APIKey可以同时为10个会话授权
-* 未授权的会话可以订阅行情数据等公有数据，已授权的会话可以订阅私有数据
+* 使用APIKey可以为WebSocket会话授权，每个APIKey可以同时为10个会话授权
+* 公有流和私有流的订阅都需要授权
 
 
 **URL for Access:**
@@ -877,13 +926,13 @@ null
 
 ### 3.1.2 心跳消息
 
-当用户的Websocket客户端应用程序与HashKey Websocket服务器连接时，服务器将定期（当前设置为每10秒）发送一条包含以下整数值的ping消息。
+当用户的Websocket客户端应用程序与HashKey Websocket服务器连接时，服务器将定期（当前设置为每10秒）发送一条包含sessionID和当前时间戳的ping消息。
 
 ```json
- {"type":"ping","data":"1492420473027"}
+ {"type":"ping","sessionID":"74939a43-0523-4cb1-a870-0dbadfda6a62","data":"1492420473027"}
 ```
 
-当用户从Websocket客户端应用程序接收到上述消息时，应该返回一条包含相同整数值的pong消息。
+当用户从Websocket客户端应用程序接收到上述消息时，应该返回一条包含相同时间戳的pong消息。
 
 ```json
 {"type":"pong","data":"1492420473027"}
@@ -930,8 +979,9 @@ null
 
 ```json
 {
-    "id": 1,
-    "result": true
+    "type":"auth-resp",
+    "error_code": "0000",
+    "error_message": "success"
 }
 ```
 

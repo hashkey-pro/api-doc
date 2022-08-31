@@ -247,6 +247,7 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 ### 2.2.4 Query instrument status
 
 **Http Request:** GET info/instrument_status/{:instrument_id}
+* instrument_id is required in the above url
 
 **Request example：**
 
@@ -677,7 +678,7 @@ null
 **Request example：**
 
 ```context
- GET "https://domain/withdraw/history?currency=BTC&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page="
+ GET "https://domain/withdraw/history?currency=BTC&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page=1"
 ```
 
 
@@ -739,7 +740,7 @@ null
 **Request example：**
 
 ```context
- GET "https://domain/deposit/history?currency=BTC&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page="
+ GET "https://domain/deposit/history?currency=BTC&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page=1"
 ```
 
 **Response Example：**
@@ -760,6 +761,54 @@ null
     "fee_ccy": "BTC",
     "timestamp": 1478692862000
   }]
+}
+```
+
+### 2.4.5 Query assets transfer history（READ permission is required）
+
+**Http Request:** GET /assets/transfer/history
+
+**Query Parameters** **:**
+
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
+|-------------------| -------- |--------------|------------------------------------------------------------|
+| start_timestamp   | string    | true         | millisecond time-stamp                                     |
+| end_timestamp     | string    | true         | millisecond time-stamp                                     |
+| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
+| page              | string    | true         | Used for pagination. Page number.                          |
+
+**Response Content：**
+
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**    |
+|------------------|----------|--------------------|
+| asset           | string   | Asset ID           |
+| amount          | string   | Amount             |
+| from_account_id | string   | From Account ID    |
+| to_account_id   | string   | To Account ID      |
+| status          | string   | "successful", "failed" |
+| timestamp       | int64    | Timestamp          |
+
+
+**Request example：**
+
+```context
+ GET "https://domain/assets/transfer/history?start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page=1"
+```
+
+**Response Example：**
+
+```json
+{
+    "error_code":"0000",
+    "error_message":"",
+    "data":[{
+      "asset":"ETH",
+      "amount":"1",
+      "from_account_id": "B000000000001",
+      "to_account_id":"B000000000002",
+      "status": "successful",
+      "timestamp": 1478692862000
+    }]
 }
 ```
 
@@ -861,21 +910,21 @@ null
 ## 3.1 Access
 
 ### 3.1.1 WebSocket API session Limit
-* One IP address can establish 5 websocket sessions at the same time, use apikey to authorize websocket sessions, and 10 sessions can be authorized at the same time.
-* Unauthorized sessions can subscribe to public data such as market data, and authorized sessions can subscribe to private data.
+* Use apikey to authorize websocket sessions, and 10 sessions can be authorized at the same time.
+* Only authorized sessions can subscribe to private data and public data.
 
 **URL for Access:**
  /stream
 
 ### 3.1.2 Heartbeat Message
 
-When user's Websocket client application gets connected with the HashKey Websocket server, the server will periodically (every 10 seconds currently) send a ping message that contains an integer value as follows.
+When user's Websocket client application gets connected with the HashKey Websocket server, the server will periodically (every 10 seconds currently) send a ping message containing the sessionID and current timestamp.
 
 ```json
- {"type":"ping","data":"1492420473027"}
+ {"type":"ping","sessionID":"74939a43-0523-4cb1-a870-0dbadfda6a62","data":"1492420473027"}
 ```
 
-When the user receives the mentioned message from the Websocket client application, a pong message containing the same integer value should be returned.
+When the user receives the mentioned message from the Websocket client application, a pong message containing the same timestamp should be returned.
 
 ```json
 {"type":"pong","data":"1492420473027"}
@@ -922,8 +971,9 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 
 ```json
 {
-    "id": 1,
-    "result": true
+    "type":"auth-resp",
+    "error_code": "0000",
+    "error_message": "success"
 }
 ```
 
