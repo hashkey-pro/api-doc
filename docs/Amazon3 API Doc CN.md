@@ -126,9 +126,9 @@ public class SignDemo {
 
 ### 1.2.1 测试环境
 
-Restful URL: <https://api-test.pro.hashkey.com>
+Restful URL: <https://api-pro-sim.hashkey.com>
 
-WebSocket: wss://api-test.pro.hashkey.com
+WebSocket: wss://api-pro-sim.hashkey.com
 
 ### 1.2.2 生产环境
 
@@ -1078,7 +1078,7 @@ null
 ### 3.2.1 K线
 
 **推送频率**
-每2000毫秒推送一次
+每1000毫秒推送一次
 
 **Request Content:**
 

@@ -120,9 +120,9 @@ public class SignDemo {
 
 ### 1.2.1 Testing Environment
 
-Restful URL: <https://api-test.pro.hashkey.com>
+Restful URL: <https://api-pro-sim.hashkey.com>
 
-WebSocket: wss://api-test.pro.hashkey.com
+WebSocket: wss://api-pro-sim.hashkey.com
 
 ### 1.2.2 Production Environment
 
@@ -1070,7 +1070,7 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 ### 3.2.1 Kline
 
 **Push Frequency**
-Push every 2000 milliseconds
+Push every 1000 milliseconds
 
 **Request Content:**
 
