@@ -886,6 +886,7 @@ null
 | price         | string   | Price            |
 | volume        | string   | Volume           |
 | timestamp     | int64    | millisecond time-stamp |
+| direction     | string   | Taker direction        |
 
 **Response Example：**
 
@@ -900,6 +901,7 @@ null
             "price": "10",                  // Price
             "volume": "100",                // Volume
             "timestamp": 1478692862000      // Trade timestamp
+            "direction": "buy"              // Taker direction
         }
     ]
 }
@@ -1281,7 +1283,7 @@ Push every 500 milliseconds(If there is any change)
 **Request Content:**
 
 | **PARAMETER** | **TYPE** | **REQUIRED** | **DESCRIPTION**            |
-| ------------- | -------- |--------------| -------------------------- |
+| ------------- | -------- |--------------|----------------------------|
 | type          | string   | true         | "sub"                      |
 | topic         | string   | true         | "trade_rtn_all"            |
 | instrument_id | string   | false        | e.g. "ETH-USDT", "ETH-BTC" |
@@ -1293,6 +1295,7 @@ Push every 500 milliseconds(If there is any change)
 | type          | string   | "sub-resp"       |
 | topic         | string   | Topic            |
 
+
 **Data Content:**
 
 | **PARAMETER** | **TYPE** | **DESCRIPTION**        |
@@ -1302,6 +1305,7 @@ Push every 500 milliseconds(If there is any change)
 | volume        | string   | Volume                 |
 | price         | string   | Price                  |
 | timestamp     | int64x   | millisecond time-stamp |
+| direction     | string   | Taker direction        |
 
 **How to Subscribe：**
 
@@ -1328,14 +1332,16 @@ Push every 500 milliseconds(If there is any change)
                 "trade_id":"1000001",           // Trade ID
                 "volume":"2",                   // Volume
                 "price":"2",                    // Price
-                "timestamp":1478692862000     // Trade time
+                "timestamp":1478692862000,      // Trade time
+                "direction": "buy"              // Taker direction
             },
             {
                 "instrument_id":"ETH-USDT",
                 "trade_id":"1000002",
                 "volume":"2",
                 "price":"2",
-                "timestamp":1478692862000
+                "timestamp":1478692862000,
+                "direction": "buy"              
             }
         ]
 }

@@ -885,13 +885,14 @@ null
 
 **Response Content：**
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**  |
-| ------------- | -------- | ---------------- |
-| instrument_id | string   | e.g. "ETH-BTC"   |
-| trade_id      | string   | Trade ID         |
-| price         | string   | Price            |
-| volume        | string   | Volume           |
+| **PARAMETER** | **TYPE** | **DESCRIPTION**        |
+|---------------| -------- |------------------------|
+| instrument_id | string   | e.g. "ETH-BTC"         |
+| trade_id      | string   | Trade ID               |
+| price         | string   | Price                  |
+| volume        | string   | Volume                 |
 | timestamp     | int64    | millisecond time-stamp |
+| direction     | string   | Taker direction        |
 
 **Response Example：**
 
@@ -905,7 +906,8 @@ null
             "trade_id": "123456789",        // 成交编号
             "price": "10",                  // 价格
             "volume": "100",                // 数量
-            "timestamp": 1478692862000      // 时间
+            "timestamp": 1478692862000,     // 时间
+            "direction": "buy"              // Taker方向
         }
     ]
 }
@@ -1308,6 +1310,7 @@ null
 | volume        | string   | Volume                   |
 | price         | string   | Price                    |
 | timestamp    | int64x   | millisecond time-stamp   |
+| direction     | string   | Taker direction        |
 
 **How to Subscribe：**
 
@@ -1335,8 +1338,7 @@ null
                 "volume":"2",                   // 数量
                 "price":"2",                    // 价格
                 "timestamp":1478692862000,      // 交易时间
-                "fee":"2",                      // 手续费
-                "fee_ccy": "BTC"                // 手续费币种
+                "direction": "buy"              // Taker方向
             },
             {
                 "instrument_id":"ETH-BTC",
@@ -1344,8 +1346,7 @@ null
                 "volume":"2",
                 "price":"2",
                 "timestamp":1478692862000,
-                "fee":"2",
-                "fee_ccy": "BTC"
+                "direction": "buy"        
             }
         ]
 }
