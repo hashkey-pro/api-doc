@@ -826,8 +826,8 @@ null
 | period           | string   | true         | m -> minutes; h -> hours; d -> days; w -> weeks; M -> months;<br/> "1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h",<br/> "6h", "8h", "12h", "1d", "3d", "1w", "1M" |
 | start_timestamp  | string   | true         | millisecond time-stamp  start from 000 milliseconds of this period                                                                                                  |
 | end_timestamp    | string   | true         | millisecond time-stamp  end at 000 milliseconds of the next period                                                                                                  |
-| page             | int64    | true         | Used for pagination. Page number.                   |
-| limit            | int64    | true         | min 1 max 200                                                                                                                                                       |
+| page             | string   | true         | Used for pagination. Page number.                   |
+| limit            | string   | true         | min 1 max 200                                                                                                                                                       |
 
 **Response Content：**
 
