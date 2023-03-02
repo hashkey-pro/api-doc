@@ -134,9 +134,9 @@ WebSocket: wss://api-pro-sim.hashkey.com
 
 **注意：** 暂未对外开放
 
-Restful URL: <https://api.pro.hashkey.com>
+Restful URL: <https://api-pro.hashkey.com>
 
-WebSocket: wss://api.pro.hashkey.com
+WebSocket: wss://api-pro.hashkey.com
 
 # 2. REST API
 
