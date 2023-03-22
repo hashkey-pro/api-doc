@@ -386,7 +386,7 @@ null
 }
 ```
 
-### 2.3.3 Cancel all orders（TRADE permission is required）
+### 2.3.3 Cancel all orders(TRADE permission is required)
 
 **Http Request:** DELETE /orders
 
@@ -458,7 +458,6 @@ null
 
 | order status               | description                                                                            |
 |----------------------------|----------------------------------------------------------------------------------------|
-| -------------------------- | ------------------------------------------------------------                           |
 | NEW                        | The order has been accepted by the engine                                              |
 | FILLED                     | The order has been completed                                                           |
 | PARTIALLY_FILLED           | A part of the order has been filled, and the rest remains in the order book            |
@@ -568,7 +567,7 @@ null
 
 ## 2.4 Asset
 
-### 2.4.1 Query assets(READ permission is required)
+### 2.4.1 Query Trading Account Assets(READ permission is required)
 
 **Http Request:** GET /assets
 
@@ -598,7 +597,39 @@ null
 }
 ```
 
-### 2.4.2 Transfer between trading accounts(TRANSFER permission is required)
+### 2.4.2 Query Depository Account Assets(READ permission is required)
+
+**Http Request:** GET /assets/depositoryaccount
+
+**Request Content：** null
+
+**Response Content：**
+
+|   **PARAMETER**   | **TYPE** | **DESCRIPTION**        |
+| ----------------- | -------- | ---------------------- |
+| asset             | string   | Asset type, e.g. "BTC" |
+| available_balance | string   | Avalible balance       |
+| total_balance     | string   | Total balance          |
+| timestamp         |  int64   | millisecond time-stamp |
+
+**Response Example：**
+
+```json
+{
+    "error_code":"0000",
+    "error_message":"",
+    "data":[{
+        "asset":"ETH",
+        "available_balance": "1",
+        "total_balance": "1",
+        "timestamp": 1478692862000
+    }, {
+        // other asset
+    }]
+}
+```
+
+### 2.4.3 Transfer Between Trading Accounts(TRANSFER permission is required)
 
 **Http Request:** POST /assets/transfer
 
@@ -638,10 +669,55 @@ null
     "error_message":"",
     "data":{}
 }
-
 ```
 
-### 2.4.3 Query withdrawal history（READ permission is required）
+### 2.4.4 Transfer With Depository Accounts(TRANSFER permission is required)
+
+**Http Request:** POST /assets/transfer/depositoryaccount
+
+**Request Content：**
+
+| **PARAMETER** | **TYPE** | **REQUIRED** | **DESCRIPTION** |
+|---------------| -------- | ------------ |-----------------|
+| asset         | string   | true         | Asset ID        |
+| amount        | string   | true         | Amount          |
+| type          | string   | true         | operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account|
+
+**Response Content：**
+
+|  **PARAMETER**  | **TYPE** | **DESCRIPTION** |
+| --------------- | -------- | --------------- |
+| transaction_id  | string   | Transfer ID     |
+| asset_id        | string   | Asset ID        |
+| amount          | string   | Amount          |
+| timestamp       |  int64   | millisecond time-stamp |
+
+**Request Example：**
+
+```json
+{
+    "asset": "ETH",
+    "amount": "1",
+    "type": "01"
+}
+```
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000",
+    "error_message": "",
+    "data":{
+    	"transaction_id": "1578170686002699",
+    	"asset": "ETH",
+    	"amount": "1",
+    	"timestamp": 1478692862000
+    }
+}
+```
+
+### 2.4.5 Query Withdrawal History(READ permission is required)
 
 **Http Request:** GET /withdraw/history
 
@@ -650,7 +726,7 @@ null
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
 | currency          | string   | false        | Currency                                            |
-| status            | string   | false        | Status   "failed"、"withdrawing"、"successful"、"cancelling"、"cancelled"              |
+| status            | string   | false        | Status <br>  "failed";"withdrawing";"successful"; <br> "cancelling";"cancelled" |
 | limit             | string    | true         | Limit on number of results to return. min 1 max 200 |
 | page              | string    | true         | Used for pagination. Page number.                          |
 | start_timestamp   | string    | true         | millisecond time-stamp                                     |
@@ -705,20 +781,20 @@ null
 }
 ```
 
-### 2.4.4 Query deposit history（READ permission is required）
+### 2.4.6 Query Deposit History(READ permission is required)
 
 **Http Request:** GET /deposit/history
 
 **Query Parameters** **:**
 
-| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
-|-------------------| -------- |--------------|------------------------------------------------------------|
-| currency          | string   | false        | Currency                                                                                          |
-| status           | string    | false        | Status  "addressToBeVerified"、"underReview"、"successful"、"failed"、"refundInProgress"、"refundComplete"、"refundFailed" |
-| page              | string    | true         | Used for pagination. Page number.                   |
-| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
-| start_timestamp   | string    | true         | millisecond time-stamp                                     |
-| end_timestamp     | string    | true         | millisecond time-stamp                                     |
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                                                                                                               |
+|-------------------| -------- |--------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| currency          | string   | false        | Currency                                                                                                                                      |
+| status           | string    | false        | Status: <br>"addressToBeVerified";"underReview";"successful";<br>"failed";  "refundInProgress";"refundComplete";<br>"refundFailed";"receivingAccountCredit" |
+| page              | string    | true         | Used for pagination. Page number.                                                                                                             |
+| limit             | string    | true        | Limit on number of results to return. min 1 max 200                                                                                           |
+| start_timestamp   | string    | true         | millisecond time-stamp                                                                                                                        |
+| end_timestamp     | string    | true         | millisecond time-stamp                                                                                                                        |
 
 
 **Response Content：**
@@ -764,18 +840,19 @@ null
 }
 ```
 
-### 2.4.5 Query assets transfer history（READ permission is required）
+### 2.4.7 Query Assets Transfer History(READ permission is required)
 
 **Http Request:** GET /assets/transfer/history
 
 **Query Parameters** **:**
 
-| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
-|-------------------| -------- |--------------|------------------------------------------------------------|
-| start_timestamp   | string    | true         | millisecond time-stamp                                     |
-| end_timestamp     | string    | true         | millisecond time-stamp                                     |
-| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
-| page              | string    | true         | Used for pagination. Page number.                          |
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**  |
+|-------------------| -------- |--------------|------------------|
+| start_timestamp   | string    | true | millisecond time-stamp |
+| end_timestamp     | string    | true | millisecond time-stamp |
+| limit             | string    | true | Limit on number of results to return. min 1 max 200 |
+| page              | string    | true | Used for pagination. Page number.|
+| type              | string    | false | operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account <br> 05-Between Trading account <br> Default: 05|
 
 **Response Content：**
 
@@ -811,6 +888,8 @@ null
     }]
 }
 ```
+
+
 
 ## 2.5 Market
 
@@ -907,6 +986,69 @@ null
 }
 ```
 
+## 2.6 Account
+
+### 2.6.1 Query Main Account Info(READ permission is required)
+
+**Http Request:** GET /mainaccount
+
+**Response Content：** 无
+
+**Response Content：**
+
+|       **PARAMETER**     |**TYPE**|     **DESCRIPTION**     |
+|-------------------------| ------ |-------------------------|
+| client_id               | string | client ID               |
+| sub_account_quantity    | string | Under the current account, the number of linked sub-accounts |
+| max_sub_account_quantity| string | The maximum number of linked sub-accounts |
+
+**Response Example：**
+
+```json
+{
+    "error_code":"0000",    // Error code
+    "error_message":"",     // Error message
+    "data":{
+        "client_id": "C0000010001",      // client ID
+        "sub_account_quantity": "5",     // the number of linked sub-accounts
+        "max_sub_account_quantity": "9"  // the maximum number of linked sub-accounts
+    }
+}
+```
+### 2.6.1 Query Sub Account List(READ permission is required)
+
+**Http Request:** GET /subaccounts
+
+**Response Content：** null
+
+**Response Content：**
+
+|   **PARAMETER**  | **TYPE** |     **DESCRIPTION**     |
+|------------------| -------- |-------------------------|
+| client_id        |  string  | client ID               |
+| sub_account      |  string  | sub account name        |
+| sub_account_id   |  string  | sub account ID          |
+| label            |  string  | sub account label       |
+| timestamp        |  int64   | millisecond time-stamp  |
+
+**Response Example：**
+
+```json
+{
+    "error_code":"0000",    // Error code
+    "error_message":"",     // Error message
+    "data":[
+        {
+            "client_id": "C0000010001",       // client ID
+            "sub_account": "test",            // sub account name
+            "sub_account_id": "B0000010003",  // sub account ID
+            "label": "test",				  // sub account label
+            "timestamp": 1478692862000        // millisecond time-stamp
+        }
+    ]
+}
+```
+
 # 3. Websocket API
 
 ## 3.1 Access
@@ -956,7 +1098,7 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 
 **Request Example：**
 
- ```json
+```json
 {
     "type":"auth",
     "auth":{
@@ -967,7 +1109,7 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
     },
     "id": 1
 }
- ```
+```
 
 **Response Example：**
 
@@ -1044,7 +1186,7 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 
 **Request Example:**
 
- ```json
+```json
 {
     "type":"unsub",
     "parameters":  [{
@@ -1053,7 +1195,7 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
     }],
     "id": 2
 }
- ```
+```
 
 **Response Example:**
 

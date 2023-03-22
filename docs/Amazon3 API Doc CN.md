@@ -136,7 +136,7 @@ WebSocket: wss://api-pro-sim.hashkey.com
 
 Restful URL: <https://api-pro.hashkey.com>
 
-WebSocket: wss://api-pro.hashkey.com
+WebSocket: wss://api.pro-hashkey.com
 
 # 2. REST API
 
@@ -575,7 +575,7 @@ null
 
 ## 2.4 资产相关功能
 
-### 2.4.1 查询资产信息（需要“READ” 权限）
+### 2.4.1 查询交易账户资产信息（需要“READ” 权限）
 
 **Http Request:** GET /assets
 
@@ -605,7 +605,39 @@ null
 }
 ```
 
-### 2.4.2 主/子交易账户之间的划转（需要“TRANSFER” 权限）
+### 2.4.2 查询存管账户资产信息（需要“READ” 权限）
+
+**Http Request:** GET /assets/depositoryaccount
+
+**Request Content：** null
+
+**Response Content：**
+
+|   **PARAMETER**   | **TYPE** | **DESCRIPTION**        |
+| ----------------- | -------- | ---------------------- |
+| asset             | string   | Asset type, e.g. "BTC" |
+| available_balance | string   | Avalible balance       |
+| total_balance     | string   | Total balance          |
+| timestamp         |  int64   | millisecond time-stamp |
+
+**Response Example：**
+
+```json
+{
+    "error_code":"0000",
+    "error_message":"",
+    "data":[{
+        "asset":"ETH",
+        "available_balance": "1",
+        "total_balance": "1",
+        "timestamp": 1478692862000
+    }, {
+        // other asset
+    }]
+}
+```
+
+### 2.4.3 主/子交易账户之间的划转（需要“TRANSFER” 权限）
 
 **Http Request:** POST /assets/transfer
 
@@ -645,10 +677,55 @@ null
     "error_message":"",
     "data":{}
 }
-
 ```
 
-### 2.4.3 查询提现记录（需要“READ” 权限）
+### 2.4.4 存管账户与交易主账户之间的划转（需要“TRANSFER” 权限）
+
+**Http Request:** POST /assets/transfer/depositoryaccount
+
+**Request Content：**
+
+| **PARAMETER** | **TYPE** | **REQUIRED** | **DESCRIPTION** |
+|---------------| -------- | ------------ |-----------------|
+| asset         | string   | true         | Asset ID        |
+| amount        | string   | true         | Amount          |
+| type          | string   | true         | operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account|
+
+**Response Content：**
+
+|  **PARAMETER**  | **TYPE** | **DESCRIPTION** |
+| --------------- | -------- | --------------- |
+| transaction_id  | string   | Transfer ID     |
+| asset_id        | string   | Asset ID        |
+| amount          | string   | Amount          |
+| timestamp       |  int64   | millisecond time-stamp |
+
+**Request Example：**
+
+```json
+{
+    "asset": "ETH",
+    "amount": "1",
+    "type": "01"
+}
+```
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000",
+    "error_message": "",
+    "data":{
+    	"transaction_id": "1578170686002699",
+    	"asset": "ETH",
+    	"amount": "1",
+    	"timestamp": 1478692862000
+    }
+}
+```
+
+### 2.4.5 查询提现记录（需要“READ” 权限）
 
 **Http Request:** GET /withdraw/history
 
@@ -657,7 +734,7 @@ null
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
 | currency          | string   | false        | Currency                                            |
-| status            | string   | false        | Status   "failed"、"withdrawing"、"successful"、"cancelling"、"cancelled"              |
+| status            | string   | false        | Status <br>  "failed";"withdrawing";"successful"; <br> "cancelling";"cancelled" |
 | limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
 | page              | string    | true         | Used for pagination. Page number.                          |
 | start_timestamp   | string    | true         | millisecond time-stamp                                     |
@@ -710,7 +787,7 @@ null
 }
 ```
 
-### 2.4.4 查询充值记录（需要“READ” 权限）
+### 2.4.6 查询充值记录（需要“READ” 权限）
 
 **Http Request:** GET /deposit/history
 
@@ -719,7 +796,7 @@ null
 | **PARAMETER**    | **TYPE**  | **REQUIRED** | **DESCRIPTION**                                            |
 |------------------|-----------|--------------|------------------------------------------------------------|
 | currency        | string   | false        | Currency                                                                                          |
-| status           | string    | false        | Status  "addressToBeVerified"、"underReview"、"successful"、"failed"、"refundInProgress"、"refundComplete"、"refundFailed" |
+| status           | string    | false        | Status: <br>"addressToBeVerified";"underReview";"successful";<br>"failed";  "refundInProgress";"refundComplete";<br>"refundFailed";"receivingAccountCredit" |
 | page             | string    | true         | Used for pagination. Page number.                          |
 | limit            | string     | true        | Limit on number of results to return. min 1 max 200                                               |
 | start_timestamp  | string    | true         | millisecond time-stamp                                     |
@@ -769,7 +846,7 @@ null
 }
 ```
 
-### 2.4.5 划转记录查询（需要“READ” 权限）
+### 2.4.7 划转记录查询（需要“READ” 权限）
 
 **Http Request:** GET /assets/transfer/history
 
@@ -781,6 +858,7 @@ null
 | end_timestamp     | string    | true         | millisecond time-stamp                                     |
 | limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
 | page              | string    | true         | Used for pagination. Page number.                          |
+| type              | string    | false | operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account <br> 05-Between Trading account <br> Default: 05|
 
 **Response Content：**
 
@@ -908,6 +986,69 @@ null
             "volume": "100",                // 数量
             "timestamp": 1478692862000,     // 时间
             "direction": "buy"              // Taker方向
+        }
+    ]
+}
+```
+
+## 2.6 账户相关功能
+
+### 2.6.1 查询主账户信息（需要“READ” 权限）
+
+**Http Request:** GET /mainaccount
+
+**Response Content：** 无
+
+**Response Content：**
+
+|       **PARAMETER**     |**TYPE**|     **DESCRIPTION**     |
+|-------------------------| ------ |-------------------------|
+| client_id               | string | client ID               |
+| sub_account_quantity    | string | 当前账户下，下挂的子账户数量 |
+| max_sub_account_quantity| string | 最大下挂的子账户数量       |
+
+**Response Example：**
+
+```json
+{
+    "error_code":"0000",    // 错误码
+    "error_message":"",     // 错误描述
+    "data":{
+        "client_id": "C0000010001",      // client ID
+        "sub_account_quantity": "5",     // 当前账户下，下挂的子账户数量
+        "max_sub_account_quantity": "9"  // 最大下挂的子账户数量
+    }
+}
+```
+### 2.6.1 查询子账户列表（需要“READ” 权限）
+
+**Http Request:** GET /subaccounts
+
+**Response Content：** 无
+
+**Response Content：**
+
+|   **PARAMETER**  | **TYPE** |     **DESCRIPTION**     |
+|------------------| -------- |-------------------------|
+| client_id        |  string  | client ID               |
+| sub_account      |  string  | 子账户名称                |
+| sub_account_id   |  string  | 子账户ID                 |
+| label            |  string  | 子账户标签                |
+| timestamp        |  int64   | millisecond time-stamp |
+
+**Response Example：**
+
+```json
+{
+    "error_code":"0000",    // 错误码
+    "error_message":"",     // 错误描述
+    "data":[
+        {
+            "client_id": "C0000010001",       // client ID
+            "sub_account": "test",            // 子账户名称
+            "sub_account_id": "B0000010003",  // 子账户ID
+            "label": "test",				  // 子账户标签
+            "timestamp": 1478692862000        // millisecond time-stamp
         }
     ]
 }
