@@ -382,8 +382,8 @@ null
 
 ```json
 {
-  "error_code":"0000",    // 错误码
-  "error_message":""      // 错误描述
+  "error_code":"0000",    // Error code
+  "error_message":""      // Error message
 }
 ```
 
@@ -682,7 +682,7 @@ null
 |---------------| -------- | ------------ |-----------------|
 | asset         | string   | true         | Asset ID        |
 | amount        | string   | true         | Amount          |
-| type          | string   | true         | operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account|
+| type          | string   | true         | Operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account|
 
 **Response Content：**
 
@@ -853,7 +853,7 @@ null
 | end_timestamp     | string   | true         | millisecond time-stamp                              |
 | limit             | string   | true         | Limit on number of results to return. min 1 max 200 |
 | page              | string   | true         | Used for pagination. Page number.                   |
-| type              | string   | false        | operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account <br> 05-Between Trading account <br> Default: 05|
+| type              | string   | false        | Operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account <br> 05-Between Trading account <br> Default: 05|
 
 **Response Content：**
 
