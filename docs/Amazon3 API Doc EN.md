@@ -212,17 +212,17 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 **Response Content：**
 
-| **PARAMETER**           | **TYPE** | **DESCRIPTION**                                                                                                                                                    |
-|-------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| instrument_id           | string   | Instrument ID.                                                                                                                                                     |
-| base_asset              | string   | Base  Asset.                                                                                                                                                       |
-| quote_asset             | string   | Quote Asset.                                                                                                                                                       |
-| product_type            | string   | Product Type(Token/Token:digital assets exchange, Token/Fiat:exchange digital assets to fiat currency, ST/Token:exchange ST to digital assets, ST/Fiat:exchange ST to fiat currency) |
-| price_tick              | string    | Price tick.                                                                                                                                                        |
-| max_market_order_volume | string    | Max market order volume.                                                                                                                                           |
-| min_market_order_volume | string    | Min market order volume.                                                                                                                                           |
-| max_limit_order_volume  | string    | Max limit order volume.                                                                                                                                            |
-| min_limit_order_volume  | string    | Min limit order volume.                                                                                                                                            |
+| **PARAMETER**           | **TYPE** | **DESCRIPTION**          |
+|-------------------------|----------|--------------------------|
+| instrument_id           | string   | Instrument ID.           |
+| base_asset              | string   | Base  Asset.             |
+| quote_asset             | string   | Quote Asset.             |
+| product_type            | string   | Product Type(Token/Token:digital assets exchange, Token/Fiat:exchange digital assets to fiat currency, ST/Token:exchange ST to digital assets, ST/Fiat:exchange ST to fiat currency)           |
+| price_tick              | string   | Price tick.              |
+| max_market_order_volume | string   | Max market order volume. |
+| min_market_order_volume | string   | Min market order volume. |
+| max_limit_order_volume  | string   | Max limit order volume.  |
+| min_limit_order_volume  | string   | Min limit order volume.  |
 
 **Response Example：**
 
@@ -257,10 +257,10 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 **Response Content：**
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**                                                                                                 |
-|---------------|----------|-----------------------------------------------------------------------------------------------------------------|
-| instrument_id | string   | Instrument ID.                                                                                                  |
-| status        | string   | Status  "BeforeTrading"、"NoTrading"、"Continuous"、"AuctionOrdering"、 "AuctionBalance"、 "AuctionMatch"、"Closed"   |
+| **PARAMETER** | **TYPE** | **DESCRIPTION** |
+|---------------|----------|-----------------|
+| instrument_id | string   | Instrument ID.  |
+| status        | string   | Status  "BeforeTrading","NoTrading","Continuous","AuctionOrdering","AuctionBalance","AuctionMatch","Closed"   |
 
 | instrument status       | description        |
 |-------------------------|--------------------|
@@ -293,22 +293,22 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 **Request Content：**
 
-| **PARAMETER**   | **TYPE** | **REQUIRED**                                                  | **DESCRIPTION**                                                                                              |
-| --------------- | -------- |---------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| type            | string   | true                                                          | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| client_order_id | string   | true                                                          | Max length: 20. Must be unique                                                                               |
-| instrument_id   | string   | true                                                          | e.g. "ETH-BTC"                                                                                               |
-| direction       | string   | true                                                          | "buy" or "sell"                                                                                              |
-| stop_price      | string   | false                                                         | Required when order type is stopLimit or stopMarket                                                          |
-| price           | string   | false                                                         | Limit price. Required when order type is limit or stopLimit                                                  |
-| volume          | string   | true                                                          | Total Volume                                                                                                 |
-| post_only       | bool     | false                                                         | Only maker  default false                                                                                           |
+| **PARAMETER**   | **TYPE** | **REQUIRED**| **DESCRIPTION**                                             |
+| --------------- | -------- |-------------|-------------------------------------------------------------|
+| type            | string   | true        | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
+| client_order_id | string   | true        | Max length: 20. Must be unique                              |
+| instrument_id   | string   | true        | e.g. "ETH-BTC"                                              |
+| direction       | string   | true        | "buy" or "sell"                                             |
+| stop_price      | string   | false       | Required when order type is stopLimit or stopMarket         |
+| price           | string   | false       | Limit price. Required when order type is limit or stopLimit |
+| volume          | string   | true        | Total Volume                                                |
+| post_only       | bool     | false       | Only maker  default false                                   |
 | time_in_force (currently unused) | string   | default: limit and stopLimit: GTC, market and stopMarket: IOC |
 
  **Response Content：**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
-| --------------- | -------- |--------------------------------------------------------------------------------------------------------------|
+| **PARAMETER**   | **TYPE** | **DESCRIPTION** |
+| --------------- | -------- |-----------------|
 | type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
 | sys_order_id    | string   | Server order id.                                                                                             |
 | client_order_id | string   | Client order id.                                                                                             |
@@ -319,7 +319,7 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 | volume          | string   | Total Volume                                                                                                 |
 | post_only       | bool     | Only maker                                                                                                   |
 | timestamp       | int64    | millisecond time-stamp                                                                                       |
-| time_in_force (currently unused) | string   | default: limit and stopLimit: GTC, market and stopMarket: IOC                                                |
+| time_in_force (currently unused) | string   | default: limit and stopLimit: GTC, market and stopMarket: IOC                               |
 
 **Request Example：**
 
@@ -367,6 +367,7 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 | sys_order_id    | string     | false         | This filed is required when client_order_id is null     |
 | client_order_id | string     | false         | This filed is required when sys_order_id is null        |
 | volume          | string     | false         | If it is not input, the whole order will be cancelled   |
+
 Note: If neither sys_order_id nor client_order_id is empty, then client_order_id is ignored.
 
 **Response Content：**
@@ -393,8 +394,8 @@ null
 **Query Parameters：**
 
 | **PARAMETER** | **TYPE**   | **REQUIRED** | **DESCRIPTION**                         |
-|------------|------------|--------------|-----------------------------------------|
-| instrument_id       | string     | false        | Cancel orders on a specific instrument_id only |
+|---------------|------------|--------------|-----------------------------------------|
+| instrument_id | string     | false        | Cancel orders on a specific instrument_id only |
 
 
 **Response Content：**
@@ -425,14 +426,14 @@ null
 |-----------------| ------------ |--------------|--------------------------------------------------------------|
 | sys_order_id    | string       | false        | Server Order ID                                              |
 | instrument_id   | string       | false        | e.g. "ETH-BTC"                                               |
-| sorting         | string       | false        | "desc" or "asc"  default "asc"                                 |
+| sorting         | string       | false        | "desc" or "asc"  default "asc"                               |
 | direction       | string       | false        | "buy" or "sell"                                              |
 | type            | string       | false        | Order type                                                   |
 | status          | array string | false        | Array with order statuses to filter by.                      |
-| start_timestamp | string        | true         | millisecond time-stamp                                       |
-| end_timestamp   | string        | true         | millisecond time-stamp                                       |
-| limit           | string        | true        | Limit on number of results to return. min 1 max 200. |
-| page            | string        | true         | Used for pagination. Page number.                            |
+| start_timestamp | string       | true         | millisecond time-stamp                                       |
+| end_timestamp   | string       | true         | millisecond time-stamp                                       |
+| limit           | string       | true         | Limit on number of results to return. min 1 max 200.         |
+| page            | string       | true         | Used for pagination. Page number.                            |
 
 **Response Content：**
 
@@ -440,7 +441,7 @@ null
 |-------------------| -------- |--------------------------------------------------------------------------------------------------------------|
 | type              | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
 | sys_order_id      | string   | Server Order ID                                                                                              |
-| client_order_id   | string | Client order id.                                                                                             |
+| client_order_id   | string   | Client order id.                                                                                             |
 | instrument_id     | string   | e.g. "ETH-BTC"                                                                                               |
 | direction         | string   | "buy" or "sell"                                                                                              |
 | stop_price        | string   | Required when order type is stopLimit or stopMarket                                                          |
@@ -452,7 +453,7 @@ null
 | filled_size       | string   | The size that has been filled                                                                                |
 | unfilled_size     | string   | The size that has not been filled                                                                            |
 | avg_filled_price  | string   | Average filled price                                                                                         |
-| sum_trade_amount | string   | cumulative trading amount(turnover)                                                                          |
+| sum_trade_amount  | string   | cumulative trading amount(turnover)                                                                          |
 
 **Order status**
 
@@ -509,11 +510,11 @@ null
 | instrument_id   | string   | false        | e.g. "ETH-BTC"                                               |
 | sys_order_id    | string   | false        | Server Order ID                                              |
 | direction       | string   | false        | "buy" or "sell"                                              |
-| sorting         | string   | false        | "desc" or "asc"    default "asc"                               |
-| limit           | string    | true        | Limit on number of results to return. min 1 max 200. |
-| page            | string    | true         | Used for pagination. Page number.                            |
-| start_timestamp | string    | true         | millisecond time-stamp                                       |
-| end_timestamp   | string    | true         | millisecond time-stamp                                       |
+| sorting         | string   | false        | "desc" or "asc"    default "asc"                             |
+| limit           | string   | true         | Limit on number of results to return. min 1 max 200.         |
+| page            | string   | true         | Used for pagination. Page number.                            |
+| start_timestamp | string   | true         | millisecond time-stamp                                       |
+| end_timestamp   | string   | true         | millisecond time-stamp                                       |
 
  **Response Content:**
 
@@ -535,7 +536,7 @@ null
 | Trade type         | description |
 |--------------------|-------------|
 | Common             | Common Trade        |
-| Invalid            |  Invalid Trade        |
+| Invalid            | Invalid Trade       |
 
 
 **Request Example:**
@@ -725,12 +726,12 @@ null
 
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
-| currency          | string   | false        | Currency                                            |
+| currency          | string   | false        | Currency                                                   |
 | status            | string   | false        | Status <br>  "failed";"withdrawing";"successful"; <br> "cancelling";"cancelled" |
-| limit             | string    | true         | Limit on number of results to return. min 1 max 200 |
-| page              | string    | true         | Used for pagination. Page number.                          |
-| start_timestamp   | string    | true         | millisecond time-stamp                                     |
-| end_timestamp     | string    | true         | millisecond time-stamp                                     |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
+| page              | string   | true         | Used for pagination. Page number.                          |
+| start_timestamp   | string   | true         | millisecond time-stamp                                     |
+| end_timestamp     | string   | true         | millisecond time-stamp                                     |
 
 
 **Response Content：**
@@ -787,14 +788,14 @@ null
 
 **Query Parameters** **:**
 
-| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                                                                                                               |
-|-------------------| -------- |--------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| currency          | string   | false        | Currency                                                                                                                                      |
-| status           | string    | false        | Status: <br>"addressToBeVerified";"underReview";"successful";<br>"failed";  "refundInProgress";"refundComplete";<br>"refundFailed";"receivingAccountCredit" |
-| page              | string    | true         | Used for pagination. Page number.                                                                                                             |
-| limit             | string    | true        | Limit on number of results to return. min 1 max 200                                                                                           |
-| start_timestamp   | string    | true         | millisecond time-stamp                                                                                                                        |
-| end_timestamp     | string    | true         | millisecond time-stamp                                                                                                                        |
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                     |
+|-------------------| -------- |--------------|-----------------------------------------------------|
+| currency          | string   | false        | Currency  |
+| status            | string   | false        | Status: <br>"addressToBeVerified";"underReview";"successful";<br>"failed"; "refundInProgress";"refundComplete";<br>"refundFailed";"receivingAccountCredit" |
+| page              | string   | true         | Used for pagination. Page number.                   |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200 |
+| start_timestamp   | string   | true         | millisecond time-stamp                              |
+| end_timestamp     | string   | true         | millisecond time-stamp                              |
 
 
 **Response Content：**
@@ -803,7 +804,7 @@ null
 |------------------|----------|----------------------------|
 | deposit_order_id | string   | Deposit order ID           |
 | txn_id           | string   | Txn ID                     |
-| network           | string   | Network (currently unused) |
+| network          | string   | Network (currently unused) |
 | currency         | string   | Currency                   |
 | address          | string   | Deposit source address     |
 | memo             | string   | Memo                       |
@@ -846,24 +847,24 @@ null
 
 **Query Parameters** **:**
 
-| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**  |
-|-------------------| -------- |--------------|------------------|
-| start_timestamp   | string    | true | millisecond time-stamp |
-| end_timestamp     | string    | true | millisecond time-stamp |
-| limit             | string    | true | Limit on number of results to return. min 1 max 200 |
-| page              | string    | true | Used for pagination. Page number.|
-| type              | string    | false | operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account <br> 05-Between Trading account <br> Default: 05|
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                     |
+|-------------------| -------- |--------------|-----------------------------------------------------|
+| start_timestamp   | string   | true         | millisecond time-stamp                              |
+| end_timestamp     | string   | true         | millisecond time-stamp                              |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200 |
+| page              | string   | true         | Used for pagination. Page number.                   |
+| type              | string   | false        | operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account <br> 05-Between Trading account <br> Default: 05|
 
 **Response Content：**
 
-| **PARAMETER**    | **TYPE** | **DESCRIPTION**    |
-|------------------|----------|--------------------|
-| asset           | string   | Asset ID           |
-| amount          | string   | Amount             |
-| from_account_id | string   | From Account ID    |
-| to_account_id   | string   | To Account ID      |
-| status          | string   | "successful", "failed" |
-| timestamp       | int64    | Timestamp          |
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**        |
+|------------------|----------|------------------------|
+| asset            | string   | Asset ID               |
+| amount           | string   | Amount                 |
+| from_account_id  | string   | From Account ID        |
+| to_account_id    | string   | To Account ID          |
+| status           | string   | "successful", "failed" |
+| timestamp        | int64    | Timestamp              |
 
 
 **Request example：**
@@ -899,14 +900,14 @@ null
 
 **Query Parameters：**
 
-| **PARAMETER**    | **TYPE** | **REQUIRED** | **DESCRIPTION**                                                                                                                                                     |
-|------------------|----------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| instrument_id    | string   | true         | e.g. "ETH-BTC"                                                                                                                                                      |
+| **PARAMETER**    | **TYPE** | **REQUIRED** | **DESCRIPTION**                                         |
+|------------------|----------|--------------|---------------------------------------------------------|
+| instrument_id    | string   | true         | e.g. "ETH-BTC"                                          |
 | period           | string   | true         | m -> minutes; h -> hours; d -> days; w -> weeks; M -> months;<br/> "1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h",<br/> "6h", "8h", "12h", "1d", "3d", "1w", "1M" |
-| start_timestamp  | string   | true         | millisecond time-stamp  start from 000 milliseconds of this period                                                                                                  |
-| end_timestamp    | string   | true         | millisecond time-stamp  end at 000 milliseconds of the next period                                                                                                  |
-| page             | string   | true         | Used for pagination. Page number.                   |
-| limit            | string   | true         | min 1 max 200                                                                                                                                                       |
+| start_timestamp  | string   | true         | millisecond time-stamp  start from 000 milliseconds of this period |
+| end_timestamp    | string   | true         | millisecond time-stamp  end at 000 milliseconds of the next period |
+| page             | string   | true         | Used for pagination. Page number.                       |
+| limit            | string   | true         | min 1 max 200                                           |
 
 **Response Content：**
 
@@ -951,10 +952,10 @@ null
 | **PARAMETER**   | **TYPE** | **REQUIRED** | **DESCRIPTION**                   |
 |-----------------|----------|--------------|-----------------------------------|
 | instrument_id   | string   | false        | e.g. "ETH-BTC"                    |
-| start_timestamp | string    | true         | millisecond time-stamp            |
-| end_timestamp   | string    | true         | millisecond time-stamp            |
-| limit           | string    | true        | min 1 max 200.          |
-| page            | string    | true         | Used for pagination. Page number. |
+| start_timestamp | string   | true         | millisecond time-stamp            |
+| end_timestamp   | string   | true         | millisecond time-stamp            |
+| limit           | string   | true         | min 1 max 200.                    |
+| page            | string   | true         | Used for pagination. Page number. |
 
 **Response Content：**
 
@@ -979,7 +980,7 @@ null
             "trade_id": "123456789",        // Trade ID
             "price": "10",                  // Price
             "volume": "100",                // Volume
-            "timestamp": 1478692862000      // Trade timestamp
+            "timestamp": 1478692862000,     // Trade timestamp
             "direction": "buy"              // Taker direction
         }
     ]
@@ -996,11 +997,11 @@ null
 
 **Response Content：**
 
-|       **PARAMETER**     |**TYPE**|     **DESCRIPTION**     |
-|-------------------------| ------ |-------------------------|
-| client_id               | string | client ID               |
-| sub_account_quantity    | string | Under the current account, the number of linked sub-accounts |
-| max_sub_account_quantity| string | The maximum number of linked sub-accounts |
+| **PARAMETER**            | **TYPE** | **DESCRIPTION**         |
+| ------------------------ | -------- | ----------------------- |
+| client_id                | string   | client ID               |
+| sub_account_quantity     | string   | Under the current account, the number of linked sub-accounts |
+| max_sub_account_quantity | string   | The maximum number of linked sub-accounts |
 
 **Response Example：**
 
@@ -1015,6 +1016,7 @@ null
     }
 }
 ```
+
 ### 2.6.1 Query Sub Account List(READ permission is required)
 
 **Http Request:** GET /subaccounts
@@ -1023,13 +1025,13 @@ null
 
 **Response Content：**
 
-|   **PARAMETER**  | **TYPE** |     **DESCRIPTION**     |
-|------------------| -------- |-------------------------|
-| client_id        |  string  | client ID               |
-| sub_account      |  string  | sub account name        |
-| sub_account_id   |  string  | sub account ID          |
-| label            |  string  | sub account label       |
-| timestamp        |  int64   | millisecond time-stamp  |
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**         |
+| ---------------- | -------- | ----------------------- |
+| client_id        | string   | client ID               |
+| sub_account      | string   | sub account name        |
+| sub_account_id   | string   | sub account ID          |
+| label            | string   | sub account label       |
+| timestamp        | int64    | millisecond time-stamp  |
 
 **Response Example：**
 

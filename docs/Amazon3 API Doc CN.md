@@ -218,17 +218,17 @@ WebSocket: wss://api.pro-hashkey.com
 
 **Response Content：**
 
-| **PARAMETER**           | **TYPE** | **DESCRIPTION**                                                                                                                                                                      |
-|-------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| instrument_id           | string   | Instrument ID.                                                                                                                                                                       |
-| base_asset              | string   | Base  Asset.                                                                                                                                                                         |
-| quote_asset             | string   | Quote Asset.                                                                                                                                                                         |
+| **PARAMETER**           | **TYPE** | **DESCRIPTION**                   |
+|-------------------------|----------|-----------------------------------|
+| instrument_id           | string   | Instrument ID.                    |
+| base_asset              | string   | Base  Asset.                      |
+| quote_asset             | string   | Quote Asset.                      |
 | product_type            | string   | Product Type(Token/Token:digital assets exchange, Token/Fiat:exchange digital assets to fiat currency, ST/Token:exchange ST to digital assets, ST/Fiat:exchange ST to fiat currency) |
-| price_tick              | string    | Price tick.                                                                                                                                                                          |
-| max_market_order_volume | string    | Max market order volume.                                                                                                                                                             |
-| min_market_order_volume | string    | Min market order volume.                                                                                                                                                             |
-| max_limit_order_volume  | string    | Max limit order volume.                                                                                                                                                              |
-| min_limit_order_volume  | string    | Min limit order volume.                                                                                                                                                              |
+| price_tick              | string   | Price tick.                       |
+| max_market_order_volume | string   | Max market order volume.          |
+| min_market_order_volume | string    | Min market order volume.         |
+| max_limit_order_volume  | string    | Max limit order volume.          |
+| min_limit_order_volume  | string    | Min limit order volume.          |
 
 **Response Example：**
 
@@ -270,13 +270,13 @@ WebSocket: wss://api.pro-hashkey.com
 
 | instrument status       | description        |
 |-------------------------|--------------------|
-| BeforeTrading           | 开盘前          |
+| BeforeTrading           | 开盘前             |
 | NoTrading               | 非交易             |
-| Continuous              | 连续交易 |
-| AuctionOrdering         | 集合竞价报单      |
-| AuctionBalance          | 集合竞价价格平衡      |
-| AuctionMatch            | 集合竞价撮合  |
-| Closed                  | 收盘             |
+| Continuous              | 连续交易           |
+| AuctionOrdering         | 集合竞价报单        |
+| AuctionBalance          | 集合竞价价格平衡    |
+| AuctionMatch            | 集合竞价撮合       |
+| Closed                  | 收盘              |
 
 **Response Example：**
 
@@ -326,7 +326,7 @@ WebSocket: wss://api.pro-hashkey.com
 | volume          | string   | Total Volume                                                                                                 |
 | post_only       | bool     | Only maker                                                                                                   |
 | timestamp       | int64    | millisecond time-stamp                                                                                       |
-| time_in_force (currently unused) | string   | default: limit and stopLimit: GTC, market and stopMarket: IOC                                                |
+| time_in_force (currently unused) | string   | default: limit and stopLimit: GTC, market and stopMarket: IOC                               |
 
 **Request Example：**
 
@@ -376,6 +376,7 @@ WebSocket: wss://api.pro-hashkey.com
 | sys_order_id    | string     | false        | This filed is required when client_order_id is null     |
 | client_order_id | string     | false        | This filed is required when sys_order_id is null        |
 | volume          | string     | false        | If it is not input, the whole order will be cancelled   |
+
 注意：如果sys_order_id和client_order_id都存在，则忽略client_order_id
 
 **Response Content：**
@@ -403,8 +404,8 @@ null
 **Query Parameters：**
 
 | **PARAMETER** | **TYPE**   | **REQUIRED** | **DESCRIPTION**                         |
-|------------|------------|--------------|-----------------------------------------|
-| instrument_id       | string     | false        | Cancel orders on a specific instrument_id only |
+|---------------|------------|--------------|-----------------------------------------|
+| instrument_id | string     | false        | Cancel orders on a specific instrument_id only |
 
 
 **Response Content：**
@@ -435,13 +436,13 @@ null
 |-----------------|--------------|--------------| --------------------------------------- |
 | sys_order_id    | string       | false        | Server Order ID                         |
 | instrument_id   | string       | false        | e.g. "ETH-BTC"                          |
-| sorting         | string       | false        | "desc" or "asc" default "asc"                      |
+| sorting         | string       | false        | "desc" or "asc" default "asc"           |
 | direction       | string       | false        | "buy" or "sell"                         |
 | type            | string       | false        | Order type                              |
 | status          | array string | false        | Array with order statuses to filter by. |
 | start_timestamp | string       | true         | millisecond time-stamp                  |
 | end_timestamp   | string       | true         | millisecond time-stamp                  |
-| limit           | string       | true        | Limit on number of results to return.  min 1 max 200 |
+| limit           | string       | true         | Limit on number of results to return.  min 1 max 200 |
 | page            | string       | true         | Used for pagination. Page number.       |
 
 **Response Content：**
@@ -463,6 +464,7 @@ null
 | unfilled_size    | string   | The size that has not been filled                                                                            |
 | avg_filled_price | string   | Average filled price                                                                                         |
 | sum_trade_amount | string   | cumulative trading amount(turnover)                                                                          |
+
 **Order status**
 
 | order status       | description        |
@@ -518,11 +520,11 @@ null
 | instrument_id   | string   | false        | e.g. "ETH-BTC"                        |
 | sys_order_id    | string   | false        | Server Order ID                       |
 | direction       | string   | false        | "buy" or "sell"                       |
-| sorting         | string   | false        | "desc" or "asc" default "asc"                       |
-| limit           | string    | true        | Limit on number of results to return.min 1 max 200.|
-| page            | string    | true         | Used for pagination. Page number.     |
-| start_timestamp | string    | true         | millisecond time-stamp                |
-| end_timestamp   | string    | true         | millisecond time-stamp                |
+| sorting         | string   | false        | "desc" or "asc" default "asc"         |
+| limit           | string   | true         | Limit on number of results to return.min 1 max 200.|
+| page            | string   | true         | Used for pagination. Page number.     |
+| start_timestamp | string   | true         | millisecond time-stamp                |
+| end_timestamp   | string   | true         | millisecond time-stamp                |
 
  **Response Content: **
 
@@ -543,8 +545,8 @@ null
 
 | Trade type         | description |
 |--------------------|-------------|
-| Common             | 普通成交        |
-| Invalid            | 无效成交        |
+| Common             | 普通成交     |
+| Invalid            | 无效成交     |
 
 **Request Example:**
 
@@ -733,12 +735,12 @@ null
 
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
-| currency          | string   | false        | Currency                                            |
+| currency          | string   | false        | Currency                                                   |
 | status            | string   | false        | Status <br>  "failed";"withdrawing";"successful"; <br> "cancelling";"cancelled" |
-| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
-| page              | string    | true         | Used for pagination. Page number.                          |
-| start_timestamp   | string    | true         | millisecond time-stamp                                     |
-| end_timestamp     | string    | true         | millisecond time-stamp                                     |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
+| page              | string   | true         | Used for pagination. Page number.                          |
+| start_timestamp   | string   | true         | millisecond time-stamp                                     |
+| end_timestamp     | string   | true         | millisecond time-stamp                                     |
 
 **Response Content：**
 
@@ -793,14 +795,14 @@ null
 
 **Query Parameters** **:**
 
-| **PARAMETER**    | **TYPE**  | **REQUIRED** | **DESCRIPTION**                                            |
-|------------------|-----------|--------------|------------------------------------------------------------|
-| currency        | string   | false        | Currency                                                                                          |
-| status           | string    | false        | Status: <br>"addressToBeVerified";"underReview";"successful";<br>"failed";  "refundInProgress";"refundComplete";<br>"refundFailed";"receivingAccountCredit" |
-| page             | string    | true         | Used for pagination. Page number.                          |
-| limit            | string     | true        | Limit on number of results to return. min 1 max 200                                               |
-| start_timestamp  | string    | true         | millisecond time-stamp                                     |
-| end_timestamp    | string    | true         | millisecond time-stamp                                     |
+| **PARAMETER**    | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
+|------------------|----------|--------------|------------------------------------------------------------|
+| currency         | string   | false        | Currency                                                   |
+| status           | string   | false        | Status: <br>"addressToBeVerified";"underReview";"successful";<br>"failed";  "refundInProgress";"refundComplete";<br>"refundFailed";"receivingAccountCredit" |
+| page             | string   | true         | Used for pagination. Page number.                          |
+| limit            | string   | true         | Limit on number of results to return. min 1 max 200        |
+| start_timestamp  | string   | true         | millisecond time-stamp                                     |
+| end_timestamp    | string   | true         | millisecond time-stamp                                     |
 
 
 **Response Content：**
@@ -809,9 +811,9 @@ null
 |------------------|----------|------------------------------|
 | deposit_order_id | string   | Deposit order ID             |
 | txn_id           | string   | Txn ID                       |
-| network           | string   | Network (currently unused)   |
+| network          | string   | Network (currently unused)   |
 | currency         | string   | Currency                     |
-| address          | string   | Deposit source address  |
+| address          | string   | Deposit source address       |
 | memo             | string   | Memo                         |
 | volume           | string   | Volume                       |
 | status           | string   | Status                       |
@@ -854,11 +856,11 @@ null
 
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
-| start_timestamp   | string    | true         | millisecond time-stamp                                     |
-| end_timestamp     | string    | true         | millisecond time-stamp                                     |
-| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
-| page              | string    | true         | Used for pagination. Page number.                          |
-| type              | string    | false | operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account <br> 05-Between Trading account <br> Default: 05|
+| start_timestamp   | string   | true         | millisecond time-stamp                                     |
+| end_timestamp     | string   | true         | millisecond time-stamp                                     |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
+| page              | string   | true         | Used for pagination. Page number.                          |
+| type              | string   | false        | operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account <br> 05-Between Trading account <br> Default: 05|
 
 **Response Content：**
 
@@ -903,19 +905,19 @@ null
 
 **Query Parameters：**
 
-| **PARAMETER**   | **TYPE**  | **REQUIRED** | **DESCRIPTION**                                                                                                                                                     |
-| --------------- |-----------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| instrument_id   | string    | true         | e.g. "ETH-BTC"                                                                                                                                                      |
-| period          | string    | true         | m -> minutes; h -> hours; d -> days; w -> weeks; M -> months;<br/> "1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h",<br/> "6h", "8h", "12h", "1d", "3d", "1w", "1M" |
-| start_timestamp | string    | true         | millisecond time-stamp  start from 000 milliseconds of this period                                                                                                  |
-| end_timestamp   | string    | true         | millisecond time-stamp  end at 000 milliseconds of the next period                                                                                                  |
-| page            | string     | true         | Used for pagination. Page number.                   |
-| limit           | string     | true         | min 1 max 200                                                                                                                                                       |
+| **PARAMETER**   | **TYPE** | **REQUIRED** | **DESCRIPTION**                                                    |
+| --------------- |----------|--------------|--------------------------------------------------------------------|
+| instrument_id   | string   | true         | e.g. "ETH-BTC"                                                     |
+| period          | string   | true         | m -> minutes; h -> hours; d -> days; w -> weeks; M -> months;<br/> "1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h",<br/> "6h", "8h", "12h", "1d", "3d", "1w", "1M" |
+| start_timestamp | string   | true         | millisecond time-stamp  start from 000 milliseconds of this period |
+| end_timestamp   | string   | true         | millisecond time-stamp  end at 000 milliseconds of the next period |
+| page            | string   | true         | Used for pagination. Page number.                                  |
+| limit           | string   | true         | min 1 max 200                                                      |
 
 **Response Content：**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**        |
-|-----------------| -------- | ---------------------- |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION**              |
+|-----------------| -------- | ---------------------------- |
 | instrument_id   | string   | e.g. "ETH-BTC"               |
 | open            | string   | Open Price                   |
 | close           | string   | Close Price                  |
@@ -955,10 +957,10 @@ null
 | **PARAMETER**    | **TYPE** | **REQUIRED** | **DESCRIPTION**                   |
 |------------------| -------- |--------------|-----------------------------------|
 | instrument_id    | string   | false        | e.g. "ETH-BTC"                    |
-| start_timestamp  | string    | true         | millisecond time-stamp            |
-| end_timestamp    | string    | true         | millisecond time-stamp            |
-| limit            | string    | true        | min 1 max 200           |
-| page             | string    | true         | Used for pagination. Page number. |
+| start_timestamp  | string   | true         | millisecond time-stamp            |
+| end_timestamp    | string   | true         | millisecond time-stamp            |
+| limit            | string   | true         | min 1 max 200                     |
+| page             | string   | true         | Used for pagination. Page number. |
 
 
 **Response Content：**
@@ -1001,11 +1003,11 @@ null
 
 **Response Content：**
 
-|       **PARAMETER**     |**TYPE**|     **DESCRIPTION**     |
-|-------------------------| ------ |-------------------------|
-| client_id               | string | client ID               |
-| sub_account_quantity    | string | 当前账户下，下挂的子账户数量 |
-| max_sub_account_quantity| string | 最大下挂的子账户数量       |
+| **PARAMETER**            | **TYPE** | **DESCRIPTION**           |
+| ------------------------ | -------- | ------------------------- |
+| client_id                | string   | client ID                 |
+| sub_account_quantity     | string   | 当前账户下，下挂的子账户数量 |
+| max_sub_account_quantity | string   | 最大下挂的子账户数量        |
 
 **Response Example：**
 
@@ -1020,6 +1022,7 @@ null
     }
 }
 ```
+
 ### 2.6.1 查询子账户列表（需要“READ” 权限）
 
 **Http Request:** GET /subaccounts
@@ -1028,13 +1031,13 @@ null
 
 **Response Content：**
 
-|   **PARAMETER**  | **TYPE** |     **DESCRIPTION**     |
-|------------------| -------- |-------------------------|
-| client_id        |  string  | client ID               |
-| sub_account      |  string  | 子账户名称                |
-| sub_account_id   |  string  | 子账户ID                 |
-| label            |  string  | 子账户标签                |
-| timestamp        |  int64   | millisecond time-stamp |
+| **PARAMETER**  | **TYPE** | **DESCRIPTION**         |
+| -------------- | -------- |-------------------------|
+| client_id      | string   | client ID               |
+| sub_account    | string   | 子账户名称               |
+| sub_account_id | string   | 子账户ID                |
+| label          | string   | 子账户标签               |
+| timestamp      | int64    | millisecond time-stamp  |
 
 **Response Example：**
 
