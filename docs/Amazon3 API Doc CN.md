@@ -528,18 +528,23 @@ null
 
  **Response Content: **
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**        |
-| ------------- | -------- |------------------------|
-| trade_id      | string   | Trade ID               |
-| sys_order_id  | string   | Order ID               |
-| instrument_id | string   | e.g.  "ETH-BTC"        |
-| direction     | string   | "buy" or "sell"        |
-| price         | string   | Price                  |
-| volume        | string   | Volume                 |
-| fee           | string   | Fee                    |
-| fee_ccy       | string   | Fee Currency           |
-| timestamp     | int64    | millisecond time-stamp |
-| trade_type    | string   | "Common", "Invalid"    |
+| **PARAMETER**       | **TYPE** | **DESCRIPTION**        |
+| ------------------- | -------- |------------------------|
+| account_id          | string   | Account ID             |
+| trade_id            | string   | Trade ID               |
+| sys_order_id        | string   | Order ID               |
+| instrument_id       | string   | e.g.  "ETH-BTC"        |
+| direction           | string   | "buy" or "sell"        |
+| price               | string   | Price                  |
+| volume              | string   | Volume                 |
+| fee                 | string   | Fee                    |
+| fee_ccy             | string   | Fee Currency           |
+| timestamp           | int64    | millisecond time-stamp |
+| trade_type          | string   | "Common", "Invalid"    |
+| base_asset_id       | string   | "ETH"                  |
+| base_asset_balance  | string   | Base Asset Balance     |
+| quote_asset_id      | string   | "USDT"                 |
+| quote_asset_balance | string   | Quote Asset Balance    |
 
 **Trade Type**
 
@@ -609,7 +614,7 @@ null
 
 ### 2.4.2 查询存管账户资产信息（需要“READ” 权限）
 
-**Http Request:** GET /assets/depositoryaccount
+**Http Request:** GET /assets/custodyaccount
 
 **Request Content：** null
 
@@ -683,7 +688,7 @@ null
 
 ### 2.4.4 存管账户与交易主账户之间的划转（需要“TRANSFER” 权限）
 
-**Http Request:** POST /assets/transfer/depositoryaccount
+**Http Request:** POST /assets/transfer/custodyaccount
 
 **Request Content：**
 
@@ -691,7 +696,7 @@ null
 |---------------| -------- | ------------ |-----------------|
 | asset         | string   | true         | Asset ID        |
 | amount        | string   | true         | Amount          |
-| type          | string   | true         | Operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account|
+| type          | string   | true         | Operation type: <br> 01-Custody account to trading main account <br> 02-Trading main account to custody account <br> 03-Fiat custody account to trading main account <br> 04-Trading main account to fiat custody account|
 
 **Response Content：**
 
@@ -860,7 +865,7 @@ null
 | end_timestamp     | string   | true         | millisecond time-stamp                                     |
 | limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
 | page              | string   | true         | Used for pagination. Page number.                          |
-| type              | string   | false        | Operation type: <br> 01-Virtual asset depository account to trading main account <br> 02-Trading main account virtual asset depository account <br> 03-Legal asset depository account to trading main account <br> 04-Trading main account legal asset depository account <br> 05-Between Trading account <br> Default: 05|
+| type              | string   | false        | Operation type: <br> 01-custody account to trading main account <br> 02-Trading main account custody account <br> 03-Fiat custody account to trading main account <br> 04-Trading main account fiat custody account <br> 05-Between Trading account <br> Default: 05|
 
 **Response Content：**
 
@@ -997,7 +1002,7 @@ null
 
 ### 2.6.1 查询主账户信息（需要“READ” 权限）
 
-**Http Request:** GET /mainaccount
+**Http Request:** GET /account/trading/main
 
 **Response Content：** 无
 
@@ -1025,7 +1030,7 @@ null
 
 ### 2.6.1 查询子账户列表（需要“READ” 权限）
 
-**Http Request:** GET /subaccounts
+**Http Request:** GET /accounts/trading/sub
 
 **Response Content：** 无
 
@@ -1103,7 +1108,7 @@ null
 | type               | string   | true         | Default: auth                                               |
 | x-access-key       | string   | true         | The API Access Key you applied for.                         |
 | x-access-sign      | string   | true         | A value calculated by the hash value from request to ensure it is valid and not tampered.|
-| x-access-timestamp | string    | true         | The timestamp represents the time of request (in milliseconds). |
+| x-access-timestamp | string   | true         | The timestamp represents the time of request (in milliseconds). |
 | x-access-version   | string   | true         | Signature protocol version. Default version is 1.           |
 
 **Request Example：**
@@ -1453,8 +1458,8 @@ null
 | trade_id      | string   | Trade Id                 |
 | volume        | string   | Volume                   |
 | price         | string   | Price                    |
-| timestamp    | int64x   | millisecond time-stamp   |
-| direction     | string   | Taker direction        |
+| timestamp     | int64x   | millisecond time-stamp   |
+| direction     | string   | Taker direction          |
 
 **How to Subscribe：**
 
@@ -1640,22 +1645,26 @@ null
 
 **Response Content:**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                      |
-| --------------- | -------- |--------------------------------------|
-| type            | string   | "sub-resp"                           |
-| topic           | string   | "trade_rtn"                          |
-| trade_id        | string   | Trade Id                             |
-| client_order_id | string   | Client Order Id                      |
-| sys_order_id    | string   | Server Order Id                      |
-| instrument_id   | string   | e.g. "ETH-BTC"                       |
-| direction       | string   | "buy" or "sell"                      |
-| price           | string   | Price                                |
-| volume          | string   | Volume                               |
-| fee             | string   | Fee                                  |
-| fee_ccy         | string   | Transaction fee currency, e.g. "ETH" |
-| timestamp      | int64    | Trade millisecond time-stamp         |
-| trade_type    | string   | "Common", "Invalid"                  |
-
+| **PARAMETER**       | **TYPE** | **DESCRIPTION**                      |
+| ------------------- | -------- |--------------------------------------|
+| type                | string   | "sub-resp"                           |
+| topic               | string   | "trade_rtn"                          |
+| account_id          | string   | Account ID                           |
+| trade_id            | string   | Trade Id                             |
+| client_order_id     | string   | Client Order Id                      |
+| sys_order_id        | string   | Server Order Id                      |
+| instrument_id       | string   | e.g. "ETH-BTC"                       |
+| direction           | string   | "buy" or "sell"                      |
+| price               | string   | Price                                |
+| volume              | string   | Volume                               |
+| fee                 | string   | Fee                                  |
+| fee_ccy             | string   | Transaction fee currency, e.g. "ETH" |
+| timestamp           | int64    | Trade millisecond time-stamp         |
+| trade_type          | string   | "Common", "Invalid"                  |
+| base_asset_id       | string   | "ETH"                                |
+| base_asset_balance  | string   | Base Asset Balance                   |
+| quote_asset_id      | string   | "USDT"                               |
+| quote_asset_balance | string   | Quote Asset Balance                  |
 
 **How to Subscribe：**
 
@@ -1702,6 +1711,64 @@ null
             "fee_ccy": "BTC",
             "timestamp":1478692862000,
             "trade_type": "Common"
+        }
+    ]
+}
+```
+
+### 3.3.3 Balance Data
+
+**Request Content:**
+
+| **PARAMETER** | **TYPE** | **REQUIRED** | **DESCRIPTION**            |
+| ------------- | -------- | ------------ | -------------------------- |
+| type          | string   | true         | "sub"                      |
+| topic         | string   | true         | "balance"                  |
+| account_type  | string   | true         | 01-Fiat Account <br> 02-Custody Account <br> 03-Trading Account |
+
+**Response Content:**
+
+| **PARAMETER**       | **TYPE** | **DESCRIPTION**                             |
+| ------------------- | -------- | ------------------------------------------- |
+| type                | string   | "sub-resp"                                  |
+| topic               | string   | "trade_rtn"                                 |
+| client_id           | string   | Client ID                                   |
+| account_id          | string   | Account ID                                  |
+| event_type          | string   | "snapshot","deposit","withdraw","transfer"  |
+| asset_id            | string   | "ETH"                                       |
+| asset_balance       | string   | Balance after change                        |
+| event_timestamp     | int      | Balance change event millisecond time-stamp |
+| timestamp           | int      | Message push millisecond time-stamp         |
+
+
+**How to Subscribe：**
+
+```json
+{
+    "type":"sub",
+    "parameters":[{
+        "topic":"balance",
+        "account_type":"03"
+    }],
+    "id": 1
+}
+```
+
+**Response Example：**
+
+```json
+{
+    "type":"sub-resp",
+    "topic":"balance",
+    "data":[
+        {
+            "client_id":"C0000010001",     
+            "account_id":"A0000010001",       
+            "event_type":"snapshot",                
+            "asset_id":"ETH",     
+            "asset_balance":"100",             
+            "event_timestamp":1478692862000,                   
+            "timestamp":1478692862000,               
         }
     ]
 }
