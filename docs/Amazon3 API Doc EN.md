@@ -846,7 +846,64 @@ null
 }
 ```
 
-### 2.4.7 Query Assets Transfer History(READ permission is required)
+### 2.4.7 Query Fiat Account Deposit/Withdraw History(READ permission is required)
+
+**Http Request:** GET /fiat/account/history
+
+**Query Parameters** **:**
+
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
+|-------------------| -------- |--------------|------------------------------------------------------------|
+| transaction_type  | string   | true         | 0-deposit,1-withdraw                                       |
+| status            | string   | false        | Status: <br> 0001-under review <br> 0002-successful <br> 0003-failed <br> 1001-withdrawing <br> 1002-successful |
+| start_timestamp   | string   | true         | millisecond time-stamp                                     |
+| end_timestamp     | string   | true         | millisecond time-stamp                                     |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
+| page              | string   | true         | Used for pagination. Page number.                          |
+
+**Response Content：**
+
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**        |
+| ---------------- |----------|------------------------|
+| order_id         | string   | Order ID               |
+| fait_id          | string   | Asset ID               |
+| fait_type        | string   | "USD"                  |
+| indicated_amount | string   | Order Amount           |
+| amount           | string   | Real Amount            |
+| fee              | string   | Fee                    |
+| remark           | string   | Remark                 |
+| status           | string   | Status: <br> 0001-under review <br> 0002-successful <br> 0003-failed <br> 1001-withdrawing <br> 1002-successful |
+| create_timestamp | string   | Order create millisecond time-stamp |
+| update_timestamp | string   | Order update millisecond time-stamp |
+
+**Request example：**
+
+```context
+ GET "https://domain/fiat/account/history?transaction_type=0&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page=1"
+```
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000",
+    "error_message": "",
+    "data":[{
+      "order_id": "00000001",
+      "fait_id": "USD",
+      "fait_type": "USD",
+      "indicated_amount": "100",
+      "amount": "100",
+      "fee": "10",
+      "remark": "",
+      "status": "0002",
+      "create_timestamp": 1478692862000,
+      "update_timestamp": 1478692862000,
+    }]
+}
+```
+
+### 2.4.8 Query Assets Transfer History(READ permission is required)
 
 **Http Request:** GET /assets/transfer/history
 
