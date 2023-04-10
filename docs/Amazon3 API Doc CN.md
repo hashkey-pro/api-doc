@@ -1337,16 +1337,18 @@ null
 {
     "type":"sub-resp",                           // 交易类型
     "topic":"kline",                             // 主题
-    "data":{
-            "instrument_id":"ETH-BTC",           // 合约编号
-            "open":"10",                         // 开始价格
-            "close":"10",                        // 结束价格
-            "high":"10",                         // 最高价格
-            "low":"10",                          // 最低价格
-            "volume":"100",                      // 数量
-            "start_timestamp":1646213700000,     // 开始时间
-            "end_timestamp":1646213760000        // 结束时间
-    }
+    "data":[
+      {
+        "instrument_id":"ETH-BTC",           // 合约编号
+        "open":"10",                         // 开始价格
+        "close":"10",                        // 结束价格
+        "high":"10",                         // 最高价格
+        "low":"10",                          // 最低价格
+        "volume":"100",                      // 数量
+        "start_timestamp":1646213700000,     // 开始时间
+        "end_timestamp":1646213760000        // 结束时间
+      }
+    ]
 }
 ```
 
@@ -1440,15 +1442,21 @@ null
 | ------------- | -------- |-----------------------------|
 | type          | string   | "sub-resp"                  |
 | topic         | string   | "depth_market_data"         |
-| instrument_id | string   | e.g. "ETH-USDT", "ETH-BTC"  |
 
 **Data Content:**
+
+| **PARAMETER**   | **TYPE** | **DESCRIPTION** |
+|-----------------|----------|-----------------|
+| instrument_id   | string   | Instrument Id   |
+| sequence_no     | int64    | Sequence No     |
+| timestamp       | int64    | Timestamp       |
+
+**Ask and Bid Content:**
 
 | **PARAMETER** | **TYPE** | **DESCRIPTION** |
 |---------------|----------|-----------------|
 | volume        | string   | Volume          |
 | price         | string   | Price           |
-| timestamp     | int64    | Timestamp       |
 
 **How to Subscribe：**
 
@@ -1469,24 +1477,27 @@ null
 {
     "type":"sub-resp",                      // 交易类型: sub-resp: 订阅结果
     "topic":"depth_market_data",            // 主题
-    "instrument_id":"ETH-USDT",
-    "data":{
-        "asks":[                            // 卖50档, 按价格从小到大排序
-            {
-                "volume":"3",               // 数量
-                "price":"1.7"               // 价格
-            },
-            {
-                "volume":"3",
-                "price":"2"
-            }
+    "data":[
+      {
+        "instrument_id":"ETH-USDT",
+        "sequence_no": 100,
+        "timestamp": 1646213700000,
+        "ask":[                            // 卖50档, 按价格从小到大排序
+          {
+            "volume":"3",               // 数量
+            "price":"1.7"               // 价格
+          },
+          {
+            "volume":"3",
+            "price":"2"
+          }
         ],
-        "bids": [{                          // 买50档， 按价格从大到小排序
-                "volume":"3",
-                "price":"1.5"
+        "bid": [{                          // 买50档， 按价格从大到小排序
+          "volume":"3",
+          "price":"1.5"
         }]
-    },
-  "timestamp": 1646213700000
+      }
+    ]
 }
 ```
 

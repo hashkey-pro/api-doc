@@ -1329,16 +1329,18 @@ Push every 1000 milliseconds
 {
     "type":"sub-resp",                      // Message type
     "topic":"kline",                        // Subscribe topoic
-    "data":{
-            "instrument_id":"ETH-BTC",      // Instrument ID
-            "open":"10",                    // Open price
-            "close":"10",                   // Close price
-            "high":"10",                    // Highest price
-            "low":"10",                     // Lowest price
-            "volume":"100",                 // Volume in base asset
-            "start_timestamp":1646213700000,     // Start time
-            "end_timestamp":1646213760000        // End time
-    }
+    "data":[
+      {
+        "instrument_id":"ETH-BTC",           // Instrument ID
+        "open":"10",                         // Open price
+        "close":"10",                        // Close price
+        "high":"10",                         // Highest price
+        "low":"10",                          // Lowest price
+        "volume":"100",                      // Volume in base asset
+        "start_timestamp":1646213700000,     // Start time
+        "end_timestamp":1646213760000        // End time
+      }
+    ]
 }
 ```
 
@@ -1432,15 +1434,21 @@ Push every 500 milliseconds(If there is any change)
 | ------------- | -------- |------------------------------|
 | type          | string   | "sub-resp"                   |
 | topic         | string   | "depth_market_data"          |
-| instrument_id | string   | e.g. "ETH-USDT", "ETH-BTC"   |
 
 **Data Content:**
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**     |
-| ------------- | -------- | ------------------- |
-| volume        | string   | Volume              |
-| price         | string   | Price               |
-| timestamp     | int64    | Timestamp       |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION** |
+|-----------------|----------|-----------------|
+| instrument_id   | string   | Instrument Id   |
+| sequence_no     | int64    | Sequence No     |
+| timestamp       | int64    | Timestamp       |
+
+**Ask and Bid Content:**
+
+| **PARAMETER** | **TYPE** | **DESCRIPTION** |
+|---------------|----------|-----------------|
+| volume        | string   | Volume          |
+| price         | string   | Price           |
 
 **How to Subscribe：**
 
@@ -1461,26 +1469,29 @@ Push every 500 milliseconds(If there is any change)
 {
     "type":"sub-resp",                      // Message type
     "topic":"depth_market_data",            // Subscribe topoic
-    "instrument_id":"ETH-USDT",
-    "data":{
+    "data":[
+      {
+        "instrument_id":"ETH-USDT",
+        "sequence_no": 100,
+        "timestamp": 1646213700000,
         "asks":[                            // Sell 50 levels, sorted from small to large according to the price
-            {
-                "volume":"3",               // volume
-                "price":"1.7"                // price
-            },
-            {
-                "volume":"3",
-                "price":"2"
-            }
+          {
+            "volume":"3",               // volume
+            "price":"1.7"                // price
+          },
+          {
+            "volume":"3",
+            "price":"2"
+          }
         ],
         "bids":[
-            {                              // Buy 50 levels, sorted from large to small according to the price
-                "volume":"3",
-                "price":"1.5"
-            }
+          {                              // Buy 50 levels, sorted from large to small according to the price
+            "volume":"3",
+            "price":"1.5"
+          }
         ]
-    },
-  "timestamp": 1646213700000
+      }
+    ]
 }
 ```
 
