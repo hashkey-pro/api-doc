@@ -234,19 +234,21 @@ WebSocket: wss://api.pro-hashkey.com
 
 ```json
 {
-  "error_code":"0000",        // 错误码
-  "error_message":"",         // 错误描述
-  "data":[{
-    "instrument_id":"BTC-ETH",                 // 合约ID
-    "base_asset":"BTC",                        // 基础资产
-    "quote_asset":"ETH",                       // 计价资产
-    "product_type": "Token/Token",             // 产品类型
-    "price_tick": "0.00000001",                // 最小变动价位
-    "max_market_order_volume": "10000000.1",   // 市价单最大下单量
-    "min_market_order_volume": "0.00000001",   // 市价单最小下单量
-    "max_limit_order_volume": "10000000.1",    // 限价单最大下单量
-    "min_limit_order_volume": "0.00000001"     // 限价单最小下单量
-  }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "instrument_id": "BTC-ETH",
+            "base_asset": "BTC",
+            "quote_asset": "ETH",
+            "product_type": "Token/Token",
+            "price_tick": "0.00000001",
+            "max_market_order_volume": "10000000.1",
+            "min_market_order_volume": "0.00000001",
+            "max_limit_order_volume": "10000000.1",
+            "min_limit_order_volume": "0.00000001"
+        }
+    ]
 }
 ```
 
@@ -282,12 +284,12 @@ WebSocket: wss://api.pro-hashkey.com
 
 ```json
 {
-  "error_code":"0000",        // 错误码
-  "error_message":"",         // 错误描述
-  "data":[{
-    "instrument_id":"ETH-BTC",             // 合约ID
-    "status":"Continuous"                  // 状态
-  }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": {
+        "instrument_id": "ETH-BTC",
+        "status": "Continuous"
+    }
 }
 ```
 
@@ -310,18 +312,17 @@ WebSocket: wss://api.pro-hashkey.com
 | price           | string   | false        | Limit Price. Required when order type is limit or stopLimit                                                  |
 | volume          | string   | true         | Total Volume                                                                                                 |
 | post_only       | bool     | false        | Only maker  default false                                                                                    |
-| time_in_force (currently unused) | string | false        | default: limit and stopLimit: GTC, market and stopMarket: IOC                                                |
+| time_in_force (currently unused) | string | false        | default: limit and stopLimit: GTC, market and stopMarket: IOC                                 |
 
  **Response Content：**
 
 | **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
 | --------------- | -------- |--------------------------------------------------------------------------------------------------------------|
 | type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id    | string   | Server order id.                                                                                             |
 | client_order_id | string   | Client order id.                                                                                             |
+| sys_order_id    | string   | Server order id.                                                                                             |
 | instrument_id   | string   | e.g. "ETH-BTC"                                                                                               |
 | direction       | string   | "buy" or "sell"                                                                                              |
-| stop_price      | string   | Required when order type is stopLimit or stopMarket                                                          |
 | price           | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
 | volume          | string   | Total Volume                                                                                                 |
 | post_only       | bool     | Only maker                                                                                                   |
@@ -332,15 +333,15 @@ WebSocket: wss://api.pro-hashkey.com
 
 ```json
 {
-    "type": "limit",                    // 订单类型:
-                                        //    limit: 限价单;  market: 市价单;
-                                        //    stopLimit: 限价止盈止损单;  stopMarket: 市价止盈止损单;
-    "client_order_id":"000000001",      // 客户订单号
-    "instrument_id":"ETH-BTC",          // 合约ID
-    "direction":"buy",                  // 买卖方向, buy:买, sell:卖
-    "price":"1",                        // 限价
-    "volume":"1",                       // 数量
-    "post_only": true                   // 是否只做maker
+    "type": "limit", // 订单类型:
+                        //    limit: 限价单;  market: 市价单;
+                        //    stopLimit: 限价止盈止损单;  stopMarket: 市价止盈止损单;
+    "client_order_id": "000000001", // 客户订单号
+    "instrument_id": "ETH-BTC", // 合约ID
+    "direction": "buy", // 买卖方向, buy:买, sell:卖
+    "price": "1", // 限价
+    "volume": "1", // 数量
+    "post_only": true // 是否只做maker
 }
 ```
 
@@ -348,19 +349,18 @@ WebSocket: wss://api.pro-hashkey.com
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":{
-        "type":"limit",                // 订单类型
-        "sys_order_id":"1550849345000001",     // 系统订单号
-        "client_order_id":"000000001",  // 客户订单号
-        "instrument_id":"ETH-BTC",      // 合约编号
-        "direction":"buy",              // 买卖方向
-        "stop_price": "0",              // 触发价格
-        "price":"1",                    // 限价
-        "volume":"1",                   // 数量
-        "post_only": true,              // 是否只做maker
-        "timestamp": 1478692862000      // 交易时间
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": {
+        "type": "limit", // 订单类型
+        "client_order_id": "000000001", // 客户订单号
+        "sys_order_id": "1550849345000001", // 系统订单号
+        "instrument_id": "ETH-BTC", // 合约编号
+        "direction": "buy", // 买卖方向
+        "price": "1", // 限价
+        "volume": "1", // 数量
+        "post_only": true, // 是否只做maker
+        "timestamp": 1478692862000 // 交易时间
     }
 }
 ```
@@ -449,11 +449,11 @@ null
 
 | **PARAMETER**    | **TYPE** | **DESCRIPTION**                                                                                              |
 |------------------|----------|--------------------------------------------------------------------------------------------------------------|
-| type             | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
 | sys_order_id     | string   | Server Order ID                                                                                              |
 | client_order_id  | string   | Client order id.                                                                                             |
 | instrument_id    | string   | e.g. "ETH-BTC"                                                                                               |
 | direction        | string   | "buy" or "sell"                                                                                              |
+| type             | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
 | stop_price       | string   | Required when order type is stopLimit or stopMarket                                                          |
 | price            | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
 | volume           | string   | Original Total Volume                                                                                        |
@@ -487,25 +487,26 @@ null
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":[{
-        "type": "limit",                // 交易类型
-        "sys_order_id":"1550849345000001",     // 系统订单号
-        "client_order_id":"000000001",  // 客户订单号
-        "instrument_id":"ETH-BTC",      // 合约编号
-        "direction":"buy",              // 买卖方向
-        "stop_price":"0",               // 止损触发价格
-        "price":"1",                    // 限价
-        "volume":"1",                   // 原始数量
-        "status": "FILLED",             // 订单状态
-        "post_only": "false",           // 是否仅作为maker
-        "timestamp": 1478692862000,     // 交易时间
-        "filled_size": "1",             // 已成交數量
-        "avg_filled_price": "1",        // 成交均价
-        "unfilled_size": "0",           // 未成交数量
-        "sum_trade_amount": "1"         // 累加成交额
-    }]
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": [
+        {
+            "sys_order_id": "1550849345000001", // 系统订单号
+            "client_order_id": "000000001", // 客户订单号
+            "instrument_id": "ETH-BTC", // 合约编号
+            "direction": "buy", // 买卖方向
+            "type": "limit", // 交易类型
+            "price": "1", // 限价
+            "volume": "1", // 原始数量
+            "status": "FILLED", // 订单状态
+            "post_only": "false", // 是否仅作为maker
+            "timestamp": 1478692862000, // 交易时间
+            "filled_size": "1", // 已成交數量
+            "unfilled_size": "0", // 未成交数量
+            "avg_filled_price": "1", // 成交均价
+            "sum_trade_amount": "1" // 累加成交额
+        }
+    ]
 }
 ```
 
@@ -540,7 +541,7 @@ null
 | fee                 | string   | Fee                    |
 | fee_ccy             | string   | Fee Currency           |
 | timestamp           | int64    | millisecond time-stamp |
-| trade_type          | string   | "Common", "Invalid"    |
+| trade_type          | string   | "Taker", "Maker", "Invalid" |
 | base_asset_id       | string   | "ETH"                  |
 | base_asset_balance  | string   | Base Asset Balance     |
 | quote_asset_id      | string   | "USDT"                 |
@@ -563,20 +564,22 @@ null
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":[{
-        "sys_order_id":"1550849345000001",     // 系统订单号
-        "trade_id":"1",                 // 成交编号
-        "instrument_id":"ETH-BTC",      // 合约编号
-        "direction":"buy",              // 买卖方向
-        "price":"1",                    // 价格
-        "volume":"1",                   // 数量
-        "fee":"0.05",                   // 手续费
-        "fee_ccy": "BTC",               // 手续费币种
-        "timestamp": 1478692862000,     // 交易时间
-        "trade_type": "Common"          // 交易类型
-    }]
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": [
+        {
+            "sys_order_id": "1550849345000001", // 系统订单号
+            "trade_id": "1", // 成交编号
+            "instrument_id": "ETH-BTC", // 合约编号
+            "direction": "buy", // 买卖方向
+            "price": "1", // 价格
+            "volume": "1", // 数量
+            "fee": "0.05", // 手续费
+            "fee_ccy": "BTC", // 手续费币种
+            "timestamp": 1478692862000, // 交易时间
+            "trade_type": "Taker" // 交易类型
+        }
+    ]
 }
 ```
 
@@ -600,15 +603,20 @@ null
 
 ```json
 {
-    "error_code":"0000",
-    "error_message":"",
-    "data":[{
-        "asset":"ETH",
-        "free": "1",
-        "freeze": "0",
-    }, {
-        // other asset
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "asset": "ETH",
+            "free": "1",
+            "freeze": "0"
+        },
+        {
+            "asset": "USDC",
+            "free": "1",
+            "freeze": "0"
+        }
+    ]
 }
 ```
 
@@ -631,16 +639,22 @@ null
 
 ```json
 {
-    "error_code":"0000",
-    "error_message":"",
-    "data":[{
-        "asset":"ETH",
-        "available_balance": "1",
-        "total_balance": "1",
-        "timestamp": 1478692862000
-    }, {
-        // other asset
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "asset": "ETH",
+            "available_balance": "1",
+            "total_balance": "1",
+            "timestamp": 1478692862000
+        },
+        {
+            "asset": "USDC",
+            "available_balance": "1",
+            "total_balance": "1",
+            "timestamp": 1478692862000
+        }
+    ]
 }
 ```
 
@@ -723,7 +737,7 @@ null
 {
     "error_code": "0000",
     "error_message": "",
-    "data":{
+    "data": {
     	"transaction_id": "1578170686002699",
     	"asset": "ETH",
     	"amount": "1",
@@ -775,22 +789,24 @@ null
 
 ```json
 {
-    "error_code":"0000",
-    "error_message":"",
-    "data":[{
-      "withdraw_order_id": "00000001",
-      "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
-      "currency": "BTC",
-      "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
-      "memo": "",
-      "volume": "1",
-      "status": "successful",
-      "fee": "0.004",
-      "fee_ccy": "BTC",
-      "gas_fee": "0.0001",
-      "gas_fee_ccy": "BTC",
-      "timestamp": 1478692862000
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "withdraw_order_id": "00000001",
+            "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
+            "currency": "BTC",
+            "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
+            "memo": "",
+            "volume": "1",
+            "status": "successful",
+            "fee": "0.004",
+            "fee_ccy": "BTC",
+            "gas_fee": "0.0001",
+            "gas_fee_ccy": "BTC",
+            "timestamp": 1478692862000
+        }
+    ]
 }
 ```
 
@@ -836,20 +852,22 @@ null
 
 ```json
 {
-    "error_code":"0000",          
-    "error_message":"",
-    "data":[{
-      "deposit_order_id": "00000001",
-      "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
-      "currency": "BTC",
-      "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
-      "memo": "",
-      "volume": "1",
-      "status": "successful",
-      "fee": "0.004",
-      "fee_ccy": "BTC",
-      "timestamp": 1478692862000
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "deposit_order_id": "00000001",
+            "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
+            "currency": "BTC",
+            "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
+            "memo": "",
+            "volume": "1",
+            "status": "successful",
+            "fee": "0.004",
+            "fee_ccy": "BTC",
+            "timestamp": 1478692862000
+        }
+    ]
 }
 ```
 
@@ -895,18 +913,20 @@ null
 {
     "error_code": "0000",
     "error_message": "",
-    "data":[{
-      "order_id": "00000001",
-      "fait_id": "USD",
-      "fait_type": "USD",
-      "indicated_amount": "100",
-      "amount": "100",
-      "fee": "10",
-      "remark": "",
-      "status": "0002",
-      "create_timestamp": 1478692862000,
-      "update_timestamp": 1478692862000,
-    }]
+    "data": [
+        {
+            "order_id": "00000001",
+            "fait_id": "USD",
+            "fait_type": "USD",
+            "indicated_amount": "100",
+            "amount": "100",
+            "fee": "10",
+            "remark": "",
+            "status": "0002",
+            "create_timestamp": 1478692862000,
+            "update_timestamp": 1478692862000
+        }
+    ]
 }
 ```
 
@@ -946,16 +966,18 @@ null
 
 ```json
 {
-    "error_code":"0000",
-    "error_message":"",
-    "data":[{
-      "asset":"ETH",
-      "amount":"1",
-      "from_account_id": "B000000000001",
-      "to_account_id":"B000000000002",
-      "status": "successful",
-      "timestamp": 1478692862000
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "asset": "ETH",
+            "amount": "1",
+            "from_account_id": "B000000000001",
+            "to_account_id": "B000000000002",
+            "status": "successful",
+            "timestamp": 1478692862000
+        }
+    ]
 }
 ```
 
@@ -993,18 +1015,18 @@ null
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":[
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": [
         {
-            "instrument_id":"ETH-BTC",      // 合约编号
-            "open":"10",                    // 开始价格
-            "close":"10",                   // 结束价格
-            "high":"10",                    // 最高价格
-            "low":"10",                     // 最低价格
-            "volume":"100",                 // 数量
-            "start_timestamp":1646213700000,     // 开始时间
-            "end_timestamp":1646213760000        // 结束时间
+            "instrument_id": "ETH-BTC", // 合约编号
+            "open": "10", // 开始价格
+            "close": "10", // 结束价格
+            "high": "10", // 最高价格
+            "low": "10", // 最低价格
+            "volume": "100", // 数量
+            "start_timestamp": 1646213700000, // 开始时间
+            "end_timestamp": 1646213760000 // 结束时间
         }
     ]
 }
@@ -1040,16 +1062,16 @@ null
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":[
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": [
         {
-            "instrument_id": "ETH-BTC",     // 合约编号
-            "trade_id": "123456789",        // 成交编号
-            "price": "10",                  // 价格
-            "volume": "100",                // 数量
-            "timestamp": 1478692862000,     // 时间
-            "direction": "buy"              // Taker方向
+            "trade_id": "123456789", // 成交编号
+            "instrument_id": "ETH-BTC", // 合约编号
+            "price": "10", // 价格
+            "volume": "100", // 数量
+            "timestamp": 1478692862000, // 时间
+            "direction": "buy" // Taker方向
         }
     ]
 }
@@ -1075,12 +1097,12 @@ null
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":{
-        "client_id": "C0000010001",      // client ID
-        "sub_account_quantity": "5",     // 当前账户下，下挂的子账户数量
-        "max_sub_account_quantity": "9"  // 最大下挂的子账户数量
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": {
+        "client_id": "C0000010001", // client ID
+        "sub_account_quantity": "5", // 当前账户下，下挂的子账户数量
+        "max_sub_account_quantity": "9" // 最大下挂的子账户数量
     }
 }
 ```
@@ -1105,15 +1127,15 @@ null
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":[
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": [
         {
-            "client_id": "C0000010001",       // client ID
-            "sub_account": "test",            // 子账户名称
-            "sub_account_id": "B0000010003",  // 子账户ID
-            "label": "test",				  // 子账户标签
-            "timestamp": 1478692862000        // millisecond time-stamp
+            "client_id": "C0000010001", // client ID
+            "sub_account": "test", // 子账户名称
+            "sub_account_id": "B0000010003", // 子账户ID
+            "label": "test", // 子账户标签
+            "timestamp": 1478692862000 // millisecond time-stamp
         }
     ]
 }
@@ -1172,12 +1194,12 @@ null
 
  ```json
 {
-    "type":"auth",
-    "auth":{
-        "x-access-key":"xxxxxxxxx",
-        "x-access-sign":"xxxxxxxxx",
+    "type": "auth",
+    "auth": {
+        "x-access-key": "xxxxxxxxx",
+        "x-access-sign": "xxxxxxxxx",
         "x-access-timestamp": "1478692862000",
-        "x-access-version":"v1.0"
+        "x-access-version": "v1.0"
     },
     "id": 1
 }
@@ -1187,7 +1209,7 @@ null
 
 ```json
 {
-    "type":"auth-resp",
+    "type": "auth-resp",
     "error_code": "0000",
     "error_message": "success"
 }
@@ -1216,12 +1238,14 @@ null
 
 ```json
 {
-    "type": "sub",            // 消息类型, sub:订阅
-    "parameters":[{
-        "topic":"order_rtn",            // 订阅主题
-        "instrument_id":"ETH-USDT"      // 合约ID
-    }],
-    "id": 1                             // 消息ID
+    "type": "sub", // 消息类型, sub:订阅
+    "parameters": [
+        {
+            "topic": "order_rtn", // 订阅主题
+            "instrument_id": "ETH-USDT" // 合约ID
+        }
+    ],
+    "id": 1 // 消息ID
 }
 ```
 
@@ -1260,11 +1284,12 @@ null
 
  ```json
 {
-    "type":"unsub",
-    "parameters":  [{
-        "topic":"xxxxxxxxx",
-        ......
-    }],
+    "type": "unsub",
+    "parameters": [
+        {
+            "topic": "xxxxxxxxx"
+        }
+    ],
     "id": 2
 }
  ```
@@ -1309,8 +1334,8 @@ null
 | **PARAMETER**   | **TYPE** | **DESCRIPTION**                               |
 |-----------------| -------- | --------------------------------------------- |
 | instrument_id   | string   | e.g. "ETH-USDT", "ETH-BTC"                    |
-| high            | string   | High  price                                   |
 | open            | string   | Open price                                    |
+| high            | string   | High  price                                   |
 | low             | string   | Low  price                                    |
 | close           | string   | Close  price                                  |
 | volume          | string   | Volume in base asset, e.g, ETH in ETH-BTC     |
@@ -1321,13 +1346,15 @@ null
 
 ```json
 {
-    "type":"sub",                       // 交易类型
-    "parameters":[{
-        "topic":"kline",                // 主题是K线
-        "period":"1m",                  // 时间周期
-        "instrument_id":"ETH-USDT"      // 合约编号
-    }],
-    "id": 1                             // 消息ID
+    "type": "sub", // 交易类型
+    "parameters": [
+        {
+            "topic": "kline", // 主题是K线
+            "period": "1m", // 时间周期
+            "instrument_id": "ETH-USDT" // 合约编号
+        }
+    ],
+    "id": 1 // 消息ID
 }
 ```
 
@@ -1341,9 +1368,9 @@ null
       {
         "instrument_id":"ETH-BTC",           // 合约编号
         "open":"10",                         // 开始价格
-        "close":"10",                        // 结束价格
         "high":"10",                         // 最高价格
         "low":"10",                          // 最低价格
+        "close":"10",                        // 结束价格
         "volume":"100",                      // 数量
         "start_timestamp":1646213700000,     // 开始时间
         "end_timestamp":1646213760000        // 结束时间
@@ -1391,12 +1418,14 @@ null
 
 ```json
 {
-    "type":"sub",                           // 交易类型
-    "parameters":[{
-        "topic":"market_data",              // 主题是MarketData
-        "instrument_id":"ETH-USDT"          // 合约编号
-    }],
-    "id": 1                                 // 消息ID
+    "type": "sub", // 交易类型
+    "parameters": [
+        {
+            "topic": "market_data", // 主题是MarketData
+            "instrument_id": "ETH-USDT" // 合约编号
+        }
+    ],
+    "id": 1 // 消息ID
 }
 ```
 
@@ -1404,20 +1433,20 @@ null
 
 ```json
 {
-    "type":"sub-resp",                  // 交易类型: sub-resp: 订阅结果
-    "topic":"market_data",              // 主题
-    "data":[
+    "type": "sub-resp", // 交易类型: sub-resp: 订阅结果
+    "topic": "market_data", // 主题
+    "data": [
         {
-            "open":"0",                // 开始价格
-            "high":"0",                 // 最高价格
-            "low":"0",                  // 最低价格
-            "base":"ETH",               // 基础资产
-            "quote":"USDT",             // 计价资产
-            "instrument_id":"ETH-USDT", // 合约编号
-            "price_change_rate":"0",    // 24小时变化比例
-            "price_change":"0",         // 24小时变化数量
-            "last_price":"0",           // 最后一笔价格
-            "volume":"0"                // 24小时交易数量
+            "open": "0", // 开始价格
+            "high": "0", // 最高价格
+            "low": "0", // 最低价格
+            "base": "ETH", // 基础资产
+            "quote": "USDT", // 计价资产
+            "instrument_id": "ETH-USDT", // 合约编号
+            "price_change_rate": "0", // 24小时变化比例
+            "price_change": "0", // 24小时变化数量
+            "last_price": "0", // 最后一笔价格
+            "volume": "0" // 24小时交易数量
         }
     ]
 }
@@ -1462,12 +1491,14 @@ null
 
 ```json
 {
-    "type":"sub",                           // 交易类型
-    "parameters":[{
-        "topic":"depth_market_data",        // 主题是depth_market_data
-        "instrument_id":"ETH-USDT"          // 合约编号
-    }],
-    "id": 1                                 // 消息ID
+    "type": "sub", // 交易类型
+    "parameters": [
+        {
+            "topic": "depth_market_data", // 主题是depth_market_data
+            "instrument_id": "ETH-USDT" // 合约编号
+        }
+    ],
+    "id": 1 // 消息ID
 }
 ```
 
@@ -1483,19 +1514,21 @@ null
         "sequence_no": 100,
         "timestamp": 1646213700000,
         "ask":[                            // 卖50档, 按价格从小到大排序
-          {
-            "volume":"3",               // 数量
-            "price":"1.7"               // 价格
-          },
-          {
-            "volume":"3",
-            "price":"2"
-          }
+            {
+                "volume":"3",               // 数量
+                "price":"1.7"               // 价格
+            },
+            {
+                "volume":"3",
+                "price":"2"
+            }
         ],
-        "bid": [{                          // 买50档， 按价格从大到小排序
-          "volume":"3",
-          "price":"1.5"
-        }]
+        "bids": [
+            { // 买50档， 按价格从大到小排序
+                "volume": "3",
+                "price": "1.5"
+            }
+        ]
       }
     ]
 }
@@ -1546,26 +1579,26 @@ null
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"trade_rtn_all",                    // 主题
-    "data":[
-            {
-                "instrument_id":"ETH-BTC",      // 合约编号
-                "trade_id":"1000001",           // 成交编号
-                "volume":"2",                   // 数量
-                "price":"2",                    // 价格
-                "timestamp":1478692862000,      // 交易时间
-                "direction": "buy"              // Taker方向
-            },
-            {
-                "instrument_id":"ETH-BTC",
-                "trade_id":"1000002",
-                "volume":"2",
-                "price":"2",
-                "timestamp":1478692862000,
-                "direction": "buy"        
-            }
-        ]
+    "type": "sub-resp",
+    "topic": "trade_rtn_all", // 主题
+    "data": [
+        {
+            "instrument_id": "ETH-BTC", // 合约编号
+            "trade_id": "1578862103000011", // 成交编号
+            "volume": "2", // 数量
+            "price": "2", // 价格
+            "timestamp": 1478692862000, // 交易时间
+            "direction": "buy" // Taker方向
+        },
+        {
+            "instrument_id": "ETH-BTC",
+            "trade_id": "1578862103000012",
+            "volume": "2",
+            "price": "2",
+            "timestamp": 1478692862000,
+            "direction": "buy"
+        }
+    ]
 }
 ```
 
@@ -1599,10 +1632,12 @@ null
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"instruments_status_change",
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "instruments_status_change",
+        }
+    ],
     "id": 1
 }
 ```
@@ -1611,14 +1646,14 @@ null
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"instruments_status_change",        // 主题
-    "data":[
-            {
-                "instrument_id":"ETH-BTC",      // 合约编号
-                "status":""                     // 合约状态
-            }
-        ]
+    "type": "sub-resp",
+    "topic": "instruments_status_change", // 主题
+    "data": [
+        {
+            "instrument_id": "ETH-BTC", // 合约编号
+            "status": "" // 合约状态
+        }
+    ]
 }
 ```
 
@@ -1643,20 +1678,20 @@ null
 
 **Data Content:**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
-| --------------- |----------|--------------------------------------------------------------------------------------------------------------|
-| type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id    | string   | Server Order ID                                                                                              |
-| client_order_id | string   | Client order id.                                                                                             |
-| instrument_id   | string   | e.g. "ETH-BTC"                                                                                               |
-| direction       | string   | "buy" or "sell"                                                                                              |
-| stop_price      | string   | Required when order type is stopLimit or stopMarket                                                          |
-| price           | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
-| volume          | string   | Original Total Volume                                                                                        |
-| status          | string   | Order status                                                                                                 |
-| post_only       | bool     | Only maker                                                                                                   |
-| timestamp       | int64    | millisecond time-stamp                                                                                       |
-| filled_size     | string   | The size that has been filled                                                                                |
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**                                                                                              |
+| ---------------- |----------|--------------------------------------------------------------------------------------------------------------|
+| sys_order_id     | string   | Server Order ID                                                                                              |
+| client_order_id  | string   | Client order id.                                                                                             |
+| instrument_id    | string   | e.g. "ETH-BTC"                                                                                               |
+| direction        | string   | "buy" or "sell"                                                                                              |
+| type             | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
+| stop_price       | string   | Required when order type is stopLimit or stopMarket                                                          |
+| price            | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
+| volume           | string   | Original Total Volume                                                                                        |
+| status           | string   | Order status                                                                                                 |
+| post_only        | bool     | Only maker                                                                                                   |
+| timestamp        | int64    | millisecond time-stamp                                                                                       |
+| filled_size      | string   | The size that has been filled                                                                                |
 | unfilled_size    | string   | The size that has not been filled                                                                            |
 | avg_filled_price | string   | Average filled price                                                                                         |
 | sum_trade_amount | string   | cumulative trading amount(turnover)                                                                          |
@@ -1666,11 +1701,13 @@ null
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"order_rtn",
-        "instrument_id":"ETH-USDT"
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "order_rtn",
+            "instrument_id": "ETH-USDT"
+        }
+    ],
     "id": 1
 }
 ```
@@ -1679,25 +1716,26 @@ null
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"order_rtn",
-    "data":[{
-        "type": "limit",                // 交易类型
-        "sys_order_id":"1550849345000001",     // 系统订单号
-        "client_order_id":"000000001",  // 客户订单号
-        "instrument_id":"ETH-BTC",      // 合约编号
-        "direction":"buy",              // 买卖方向
-        "stop_price":"0",               // 止损触发价格
-        "price":"1",                    // 限价
-        "volume":"1",                   // 原始数量
-        "status": "FILLED",             // 订单状态
-        "post_only": "false",           // 是否仅作为maker
-        "timestamp": 1478692862000,     // 交易时间
-        "filled_size": "1",             // 已成交數量
-        "avg_filled_price": "1",        // 成交均价
-        "unfilled_size": "0",           // 未成交数量
-        "sum_trade_amount": "1"         // 累计成交额
-    }]
+    "type": "sub-resp",
+    "topic": "order_rtn",
+    "data": [
+        {
+            "sys_order_id": "1550849345000001", // 系统订单号
+            "client_order_id": "000000001", // 客户订单号
+            "instrument_id": "ETH-BTC", // 合约编号
+            "direction": "buy", // 买卖方向
+            "type": "limit", // 交易类型
+            "price": "1", // 限价
+            "volume": "1", // 原始数量
+            "status": "FILLED", // 订单状态
+            "post_only": "false", // 是否仅作为maker
+            "timestamp": 1478692862000, // 交易时间
+            "filled_size": "1", // 已成交數量
+            "unfilled_size": "0", // 未成交数量
+            "avg_filled_price": "1", // 成交均价
+            "sum_trade_amount": "1" // 累计成交额
+        }
+    ]
 }
 ```
 
@@ -1728,7 +1766,7 @@ null
 | fee                 | string   | Fee                                  |
 | fee_ccy             | string   | Transaction fee currency, e.g. "ETH" |
 | timestamp           | int64    | Trade millisecond time-stamp         |
-| trade_type          | string   | "Common", "Invalid"                  |
+| trade_type          | string   | "Taker","Maker","Invalid"                  |
 | base_asset_id       | string   | "ETH"                                |
 | base_asset_balance  | string   | Base Asset Balance                   |
 | quote_asset_id      | string   | "USDT"                               |
@@ -1738,11 +1776,13 @@ null
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"trade_rtn",
-        "instrument_id":"ETH-USDT"
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "trade_rtn",
+            "instrument_id": "ETH-USDT"
+        }
+    ],
     "id": 1
 }
 ```
@@ -1751,34 +1791,34 @@ null
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"trade_rtn",
-    "data":[
+    "type": "sub-resp",
+    "topic": "trade_rtn",
+    "data": [
         {
-            "sys_order_id":"1550849345000001",     // 系统订单号
-            "client_order_id":"000000001",  // 客户订单号
-            "trade_id":"1",                 // 成交编号
-            "instrument_id":"ETH-BTC",      // 合约编号
-            "direction":"buy",              // 买卖方向
-            "price":"1",                    // 价格
-            "volume":"1",                   // 数量
-            "fee":"0.05",                   // 手续费
-            "fee_ccy": "BTC",               // 手续费币种
-            "timestamp": 1478692862000,     // 交易时间
-            "trade_type": "Common"          // 交易类型
+            "sys_order_id": "1550849345000001", // 系统订单号
+            "client_order_id": "000000001", // 客户订单号
+            "trade_id": "1", // 成交编号
+            "instrument_id": "ETH-BTC", // 合约编号
+            "direction": "buy", // 买卖方向
+            "price": "1", // 价格
+            "volume": "1", // 数量
+            "fee": "0.05", // 手续费
+            "fee_ccy": "BTC", // 手续费币种
+            "timestamp": 1478692862000, // 交易时间
+            "trade_type": "Taker" // 交易类型
         },
         {
-            "sys_order_id":"1550849345000002",
-            "client_order_id":"000000002",
-            "trade_id":"2",
-            "instrument_id":"ETH-BTC",
-            "direction":"sell",
-            "price":"1",
-            "volume":"2",
-            "fee":"0.05",
+            "sys_order_id": "1550849345000002",
+            "client_order_id": "000000002",
+            "trade_id": "2",
+            "instrument_id": "ETH-BTC",
+            "direction": "sell",
+            "price": "1",
+            "volume": "2",
+            "fee": "0.05",
             "fee_ccy": "BTC",
-            "timestamp":1478692862000,
-            "trade_type": "Common"
+            "timestamp": 1478692862000,
+            "trade_type": "Taker"
         }
     ]
 }
@@ -1813,11 +1853,13 @@ null
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"balance",
-        "account_type":"03"
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "balance",
+            "account_type": "03"
+        }
+    ],
     "id": 1
 }
 ```
@@ -1826,17 +1868,17 @@ null
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"balance",
-    "data":[
+    "type": "sub-resp",
+    "topic": "balance",
+    "data": [
         {
-            "client_id":"C0000010001",     
-            "account_id":"A0000010001",       
-            "event_type":"snapshot",                
-            "asset_id":"ETH",     
-            "asset_balance":"100",             
-            "event_timestamp":1478692862000,                   
-            "timestamp":1478692862000,               
+            "client_id": "C0000010001",
+            "account_id": "A0000010001",
+            "event_type": "snapshot",
+            "asset_id": "ETH",
+            "asset_balance": "100",
+            "event_timestamp": 1478692862000,
+            "timestamp": 1478692862000
         }
     ]
 }
