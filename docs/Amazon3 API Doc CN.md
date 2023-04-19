@@ -136,7 +136,7 @@ WebSocket: wss://api-pro-sim.hashkey.com
 
 Restful URL: <https://api-pro.hashkey.com>
 
-WebSocket: wss://api-pro.hashkey.com
+WebSocket: wss://api.pro-hashkey.com
 
 # 2. REST API
 
@@ -218,35 +218,37 @@ WebSocket: wss://api-pro.hashkey.com
 
 **Response Content：**
 
-| **PARAMETER**           | **TYPE** | **DESCRIPTION**                                                                                                                                                                      |
-|-------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| instrument_id           | string   | Instrument ID.                                                                                                                                                                       |
-| base_asset              | string   | Base  Asset.                                                                                                                                                                         |
-| quote_asset             | string   | Quote Asset.                                                                                                                                                                         |
+| **PARAMETER**           | **TYPE** | **DESCRIPTION**                   |
+|-------------------------|----------|-----------------------------------|
+| instrument_id           | string   | Instrument ID.                    |
+| base_asset              | string   | Base  Asset.                      |
+| quote_asset             | string   | Quote Asset.                      |
 | product_type            | string   | Product Type(Token/Token:digital assets exchange, Token/Fiat:exchange digital assets to fiat currency, ST/Token:exchange ST to digital assets, ST/Fiat:exchange ST to fiat currency) |
-| price_tick              | string    | Price tick.                                                                                                                                                                          |
-| max_market_order_volume | string    | Max market order volume.                                                                                                                                                             |
-| min_market_order_volume | string    | Min market order volume.                                                                                                                                                             |
-| max_limit_order_volume  | string    | Max limit order volume.                                                                                                                                                              |
-| min_limit_order_volume  | string    | Min limit order volume.                                                                                                                                                              |
+| price_tick              | string   | Price tick.                       |
+| max_market_order_volume | string   | Max market order volume.          |
+| min_market_order_volume | string    | Min market order volume.         |
+| max_limit_order_volume  | string    | Max limit order volume.          |
+| min_limit_order_volume  | string    | Min limit order volume.          |
 
 **Response Example：**
 
 ```json
 {
-  "error_code":"0000",        // 错误码
-  "error_message":"",         // 错误描述
-  "data":[{
-    "instrument_id":"BTC-ETH",                 // 合约ID
-    "base_asset":"BTC",                        // 基础资产
-    "quote_asset":"ETH",                       // 计价资产
-    "product_type": "Token/Token",             // 产品类型
-    "price_tick": "0.00000001",                // 最小变动价位
-    "max_market_order_volume": "10000000.1",   // 市价单最大下单量
-    "min_market_order_volume": "0.00000001",   // 市价单最小下单量
-    "max_limit_order_volume": "10000000.1",    // 限价单最大下单量
-    "min_limit_order_volume": "0.00000001"     // 限价单最小下单量
-  }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "instrument_id": "BTC-ETH",
+            "base_asset": "BTC",
+            "quote_asset": "ETH",
+            "product_type": "Token/Token",
+            "price_tick": "0.00000001",
+            "max_market_order_volume": "10000000.1",
+            "min_market_order_volume": "0.00000001",
+            "max_limit_order_volume": "10000000.1",
+            "min_limit_order_volume": "0.00000001"
+        }
+    ]
 }
 ```
 
@@ -270,24 +272,24 @@ WebSocket: wss://api-pro.hashkey.com
 
 | instrument status       | description        |
 |-------------------------|--------------------|
-| BeforeTrading           | 开盘前          |
+| BeforeTrading           | 开盘前             |
 | NoTrading               | 非交易             |
-| Continuous              | 连续交易 |
-| AuctionOrdering         | 集合竞价报单      |
-| AuctionBalance          | 集合竞价价格平衡      |
-| AuctionMatch            | 集合竞价撮合  |
-| Closed                  | 收盘             |
+| Continuous              | 连续交易           |
+| AuctionOrdering         | 集合竞价报单        |
+| AuctionBalance          | 集合竞价价格平衡    |
+| AuctionMatch            | 集合竞价撮合       |
+| Closed                  | 收盘              |
 
 **Response Example：**
 
 ```json
 {
-  "error_code":"0000",        // 错误码
-  "error_message":"",         // 错误描述
-  "data":[{
-    "instrument_id":"ETH-BTC",             // 合约ID
-    "status":"Continuous"                  // 状态
-  }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": {
+        "instrument_id": "ETH-BTC",
+        "status": "Continuous"
+    }
 }
 ```
 
@@ -310,37 +312,36 @@ WebSocket: wss://api-pro.hashkey.com
 | price           | string   | false        | Limit Price. Required when order type is limit or stopLimit                                                  |
 | volume          | string   | true         | Total Volume                                                                                                 |
 | post_only       | bool     | false        | Only maker  default false                                                                                    |
-| time_in_force (currently unused) | string | false        | default: limit and stopLimit: GTC, market and stopMarket: IOC                                                |
+| time_in_force (currently unused) | string | false        | default: limit and stopLimit: GTC, market and stopMarket: IOC                                 |
 
  **Response Content：**
 
 | **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
 | --------------- | -------- |--------------------------------------------------------------------------------------------------------------|
 | type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id    | string   | Server order id.                                                                                             |
 | client_order_id | string   | Client order id.                                                                                             |
+| sys_order_id    | string   | Server order id.                                                                                             |
 | instrument_id   | string   | e.g. "ETH-BTC"                                                                                               |
 | direction       | string   | "buy" or "sell"                                                                                              |
-| stop_price      | string   | Required when order type is stopLimit or stopMarket                                                          |
 | price           | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
 | volume          | string   | Total Volume                                                                                                 |
 | post_only       | bool     | Only maker                                                                                                   |
 | timestamp       | int64    | millisecond time-stamp                                                                                       |
-| time_in_force (currently unused) | string   | default: limit and stopLimit: GTC, market and stopMarket: IOC                                                |
+| time_in_force (currently unused) | string   | default: limit and stopLimit: GTC, market and stopMarket: IOC                               |
 
 **Request Example：**
 
 ```json
 {
-    "type": "limit",                    // 订单类型:
-                                        //    limit: 限价单;  market: 市价单;
-                                        //    stopLimit: 限价止盈止损单;  stopMarket: 市价止盈止损单;
-    "client_order_id":"000000001",      // 客户订单号
-    "instrument_id":"ETH-BTC",          // 合约ID
-    "direction":"buy",                  // 买卖方向, buy:买, sell:卖
-    "price":"1",                        // 限价
-    "volume":"1",                       // 数量
-    "post_only": true                   // 是否只做maker
+    "type": "limit", // 订单类型:
+                        //    limit: 限价单;  market: 市价单;
+                        //    stopLimit: 限价止盈止损单;  stopMarket: 市价止盈止损单;
+    "client_order_id": "000000001", // 客户订单号
+    "instrument_id": "ETH-BTC", // 合约ID
+    "direction": "buy", // 买卖方向, buy:买, sell:卖
+    "price": "1", // 限价
+    "volume": "1", // 数量
+    "post_only": true // 是否只做maker
 }
 ```
 
@@ -348,19 +349,18 @@ WebSocket: wss://api-pro.hashkey.com
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":{
-        "type":"limit",                // 订单类型
-        "sys_order_id":"1550849345000001",     // 系统订单号
-        "client_order_id":"000000001",  // 客户订单号
-        "instrument_id":"ETH-BTC",      // 合约编号
-        "direction":"buy",              // 买卖方向
-        "stop_price": "0",              // 触发价格
-        "price":"1",                    // 限价
-        "volume":"1",                   // 数量
-        "post_only": true,              // 是否只做maker
-        "timestamp": 1478692862000      // 交易时间
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": {
+        "type": "limit", // 订单类型
+        "client_order_id": "000000001", // 客户订单号
+        "sys_order_id": "1550849345000001", // 系统订单号
+        "instrument_id": "ETH-BTC", // 合约编号
+        "direction": "buy", // 买卖方向
+        "price": "1", // 限价
+        "volume": "1", // 数量
+        "post_only": true, // 是否只做maker
+        "timestamp": 1478692862000 // 交易时间
     }
 }
 ```
@@ -376,6 +376,7 @@ WebSocket: wss://api-pro.hashkey.com
 | sys_order_id    | string     | false        | This filed is required when client_order_id is null     |
 | client_order_id | string     | false        | This filed is required when sys_order_id is null        |
 | volume          | string     | false        | If it is not input, the whole order will be cancelled   |
+
 注意：如果sys_order_id和client_order_id都存在，则忽略client_order_id
 
 **Response Content：**
@@ -403,8 +404,8 @@ null
 **Query Parameters：**
 
 | **PARAMETER** | **TYPE**   | **REQUIRED** | **DESCRIPTION**                         |
-|------------|------------|--------------|-----------------------------------------|
-| instrument_id       | string     | false        | Cancel orders on a specific instrument_id only |
+|---------------|------------|--------------|-----------------------------------------|
+| instrument_id | string     | false        | Cancel orders on a specific instrument_id only |
 
 
 **Response Content：**
@@ -435,24 +436,24 @@ null
 |-----------------|--------------|--------------| --------------------------------------- |
 | sys_order_id    | string       | false        | Server Order ID                         |
 | instrument_id   | string       | false        | e.g. "ETH-BTC"                          |
-| sorting         | string       | false        | "desc" or "asc" default "asc"                      |
+| sorting         | string       | false        | "desc" or "asc" default "asc"           |
 | direction       | string       | false        | "buy" or "sell"                         |
 | type            | string       | false        | Order type                              |
 | status          | array string | false        | Array with order statuses to filter by. |
 | start_timestamp | string       | true         | millisecond time-stamp                  |
 | end_timestamp   | string       | true         | millisecond time-stamp                  |
-| limit           | string       | true        | Limit on number of results to return.  min 1 max 200 |
+| limit           | string       | true         | Limit on number of results to return.  min 1 max 200 |
 | page            | string       | true         | Used for pagination. Page number.       |
 
 **Response Content：**
 
 | **PARAMETER**    | **TYPE** | **DESCRIPTION**                                                                                              |
 |------------------|----------|--------------------------------------------------------------------------------------------------------------|
-| type             | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
 | sys_order_id     | string   | Server Order ID                                                                                              |
 | client_order_id  | string   | Client order id.                                                                                             |
 | instrument_id    | string   | e.g. "ETH-BTC"                                                                                               |
 | direction        | string   | "buy" or "sell"                                                                                              |
+| type             | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
 | stop_price       | string   | Required when order type is stopLimit or stopMarket                                                          |
 | price            | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
 | volume           | string   | Original Total Volume                                                                                        |
@@ -463,6 +464,7 @@ null
 | unfilled_size    | string   | The size that has not been filled                                                                            |
 | avg_filled_price | string   | Average filled price                                                                                         |
 | sum_trade_amount | string   | cumulative trading amount(turnover)                                                                          |
+
 **Order status**
 
 | order status       | description        |
@@ -485,25 +487,26 @@ null
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":[{
-        "type": "limit",                // 交易类型
-        "sys_order_id":"1550849345000001",     // 系统订单号
-        "client_order_id":"000000001",  // 客户订单号
-        "instrument_id":"ETH-BTC",      // 合约编号
-        "direction":"buy",              // 买卖方向
-        "stop_price":"0",               // 止损触发价格
-        "price":"1",                    // 限价
-        "volume":"1",                   // 原始数量
-        "status": "FILLED",             // 订单状态
-        "post_only": "false",           // 是否仅作为maker
-        "timestamp": 1478692862000,     // 交易时间
-        "filled_size": "1",             // 已成交數量
-        "avg_filled_price": "1",        // 成交均价
-        "unfilled_size": "0",           // 未成交数量
-        "sum_trade_amount": "1"         // 累加成交额
-    }]
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": [
+        {
+            "sys_order_id": "1550849345000001", // 系统订单号
+            "client_order_id": "000000001", // 客户订单号
+            "instrument_id": "ETH-BTC", // 合约编号
+            "direction": "buy", // 买卖方向
+            "type": "limit", // 交易类型
+            "price": "1", // 限价
+            "volume": "1", // 原始数量
+            "status": "FILLED", // 订单状态
+            "post_only": "false", // 是否仅作为maker
+            "timestamp": 1478692862000, // 交易时间
+            "filled_size": "1", // 已成交數量
+            "unfilled_size": "0", // 未成交数量
+            "avg_filled_price": "1", // 成交均价
+            "sum_trade_amount": "1" // 累加成交额
+        }
+    ]
 }
 ```
 
@@ -518,33 +521,38 @@ null
 | instrument_id   | string   | false        | e.g. "ETH-BTC"                        |
 | sys_order_id    | string   | false        | Server Order ID                       |
 | direction       | string   | false        | "buy" or "sell"                       |
-| sorting         | string   | false        | "desc" or "asc" default "asc"                       |
-| limit           | string    | true        | Limit on number of results to return.min 1 max 200.|
-| page            | string    | true         | Used for pagination. Page number.     |
-| start_timestamp | string    | true         | millisecond time-stamp                |
-| end_timestamp   | string    | true         | millisecond time-stamp                |
+| sorting         | string   | false        | "desc" or "asc" default "asc"         |
+| limit           | string   | true         | Limit on number of results to return.min 1 max 200.|
+| page            | string   | true         | Used for pagination. Page number.     |
+| start_timestamp | string   | true         | millisecond time-stamp                |
+| end_timestamp   | string   | true         | millisecond time-stamp                |
 
  **Response Content: **
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**        |
-| ------------- | -------- |------------------------|
-| trade_id      | string   | Trade ID               |
-| sys_order_id  | string   | Order ID               |
-| instrument_id | string   | e.g.  "ETH-BTC"        |
-| direction     | string   | "buy" or "sell"        |
-| price         | string   | Price                  |
-| volume        | string   | Volume                 |
-| fee           | string   | Fee                    |
-| fee_ccy       | string   | Fee Currency           |
-| timestamp     | int64    | millisecond time-stamp |
-| trade_type    | string   | "Common", "Invalid"    |
+| **PARAMETER**       | **TYPE** | **DESCRIPTION**        |
+| ------------------- | -------- |------------------------|
+| account_id          | string   | Account ID             |
+| trade_id            | string   | Trade ID               |
+| sys_order_id        | string   | Order ID               |
+| instrument_id       | string   | e.g.  "ETH-BTC"        |
+| direction           | string   | "buy" or "sell"        |
+| price               | string   | Price                  |
+| volume              | string   | Volume                 |
+| fee                 | string   | Fee                    |
+| fee_ccy             | string   | Fee Currency           |
+| timestamp           | int64    | millisecond time-stamp |
+| trade_type          | string   | "Taker", "Maker", "Invalid" |
+| base_asset_id       | string   | "ETH"                  |
+| base_asset_balance  | string   | Base Asset Balance     |
+| quote_asset_id      | string   | "USDT"                 |
+| quote_asset_balance | string   | Quote Asset Balance    |
 
 **Trade Type**
 
 | Trade type         | description |
 |--------------------|-------------|
-| Common             | 普通成交        |
-| Invalid            | 无效成交        |
+| Common             | 普通成交     |
+| Invalid            | 无效成交     |
 
 **Request Example:**
 
@@ -556,26 +564,28 @@ null
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":[{
-        "sys_order_id":"1550849345000001",     // 系统订单号
-        "trade_id":"1",                 // 成交编号
-        "instrument_id":"ETH-BTC",      // 合约编号
-        "direction":"buy",              // 买卖方向
-        "price":"1",                    // 价格
-        "volume":"1",                   // 数量
-        "fee":"0.05",                   // 手续费
-        "fee_ccy": "BTC",               // 手续费币种
-        "timestamp": 1478692862000,     // 交易时间
-        "trade_type": "Common"          // 交易类型
-    }]
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": [
+        {
+            "sys_order_id": "1550849345000001", // 系统订单号
+            "trade_id": "1", // 成交编号
+            "instrument_id": "ETH-BTC", // 合约编号
+            "direction": "buy", // 买卖方向
+            "price": "1", // 价格
+            "volume": "1", // 数量
+            "fee": "0.05", // 手续费
+            "fee_ccy": "BTC", // 手续费币种
+            "timestamp": 1478692862000, // 交易时间
+            "trade_type": "Taker" // 交易类型
+        }
+    ]
 }
 ```
 
 ## 2.4 资产相关功能
 
-### 2.4.1 查询资产信息（需要“READ” 权限）
+### 2.4.1 查询交易账户资产信息（需要“READ” 权限）
 
 **Http Request:** GET /assets
 
@@ -593,19 +603,62 @@ null
 
 ```json
 {
-    "error_code":"0000",
-    "error_message":"",
-    "data":[{
-        "asset":"ETH",
-        "free": "1",
-        "freeze": "0",
-    }, {
-        // other asset
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "asset": "ETH",
+            "free": "1",
+            "freeze": "0"
+        },
+        {
+            "asset": "USDC",
+            "free": "1",
+            "freeze": "0"
+        }
+    ]
 }
 ```
 
-### 2.4.2 主/子交易账户之间的划转（需要“TRANSFER” 权限）
+### 2.4.2 查询存管账户资产信息（需要“READ” 权限）
+
+**Http Request:** GET /assets/custodyaccount
+
+**Request Content：** null
+
+**Response Content：**
+
+|   **PARAMETER**   | **TYPE** | **DESCRIPTION**        |
+| ----------------- | -------- | ---------------------- |
+| asset             | string   | Asset type, e.g. "BTC" |
+| available_balance | string   | Avalible balance       |
+| total_balance     | string   | Total balance          |
+| timestamp         |  int64   | millisecond time-stamp |
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "asset": "ETH",
+            "available_balance": "1",
+            "total_balance": "1",
+            "timestamp": 1478692862000
+        },
+        {
+            "asset": "USDC",
+            "available_balance": "1",
+            "total_balance": "1",
+            "timestamp": 1478692862000
+        }
+    ]
+}
+```
+
+### 2.4.3 主/子交易账户之间的划转（需要“TRANSFER” 权限）
 
 **Http Request:** POST /assets/transfer
 
@@ -645,10 +698,55 @@ null
     "error_message":"",
     "data":{}
 }
-
 ```
 
-### 2.4.3 查询提现记录（需要“READ” 权限）
+### 2.4.4 存管账户与交易主账户之间的划转（需要“TRANSFER” 权限）
+
+**Http Request:** POST /assets/transfer/custodyaccount
+
+**Request Content：**
+
+| **PARAMETER** | **TYPE** | **REQUIRED** | **DESCRIPTION** |
+|---------------| -------- | ------------ |-----------------|
+| asset         | string   | true         | Asset ID        |
+| amount        | string   | true         | Amount          |
+| type          | string   | true         | Operation type: <br> 01-Custody account to trading main account <br> 02-Trading main account to custody account <br> 03-Fiat custody account to trading main account <br> 04-Trading main account to fiat custody account|
+
+**Response Content：**
+
+|  **PARAMETER**  | **TYPE** | **DESCRIPTION** |
+| --------------- | -------- | --------------- |
+| transaction_id  | string   | Transfer ID     |
+| asset_id        | string   | Asset ID        |
+| amount          | string   | Amount          |
+| timestamp       |  int64   | millisecond time-stamp |
+
+**Request Example：**
+
+```json
+{
+    "asset": "ETH",
+    "amount": "1",
+    "type": "01"
+}
+```
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000",
+    "error_message": "",
+    "data": {
+    	"transaction_id": "1578170686002699",
+    	"asset": "ETH",
+    	"amount": "1",
+    	"timestamp": 1478692862000
+    }
+}
+```
+
+### 2.4.5 查询提现记录（需要“READ” 权限）
 
 **Http Request:** GET /withdraw/history
 
@@ -656,12 +754,12 @@ null
 
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
-| currency          | string   | false        | Currency                                            |
-| status            | string   | false        | Status   "failed"、"withdrawing"、"successful"、"cancelling"、"cancelled"              |
-| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
-| page              | string    | true         | Used for pagination. Page number.                          |
-| start_timestamp   | string    | true         | millisecond time-stamp                                     |
-| end_timestamp     | string    | true         | millisecond time-stamp                                     |
+| currency          | string   | false        | Currency                                                   |
+| status            | string   | false        | Status <br>  "failed";"withdrawing";"successful"; <br> "cancelling";"cancelled" |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
+| page              | string   | true         | Used for pagination. Page number.                          |
+| start_timestamp   | string   | true         | millisecond time-stamp                                     |
+| end_timestamp     | string   | true         | millisecond time-stamp                                     |
 
 **Response Content：**
 
@@ -691,39 +789,41 @@ null
 
 ```json
 {
-    "error_code":"0000",
-    "error_message":"",
-    "data":[{
-      "withdraw_order_id": "00000001",
-      "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
-      "currency": "BTC",
-      "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
-      "memo": "",
-      "volume": "1",
-      "status": "successful",
-      "fee": "0.004",
-      "fee_ccy": "BTC",
-      "gas_fee": "0.0001",
-      "gas_fee_ccy": "BTC",
-      "timestamp": 1478692862000
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "withdraw_order_id": "00000001",
+            "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
+            "currency": "BTC",
+            "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
+            "memo": "",
+            "volume": "1",
+            "status": "successful",
+            "fee": "0.004",
+            "fee_ccy": "BTC",
+            "gas_fee": "0.0001",
+            "gas_fee_ccy": "BTC",
+            "timestamp": 1478692862000
+        }
+    ]
 }
 ```
 
-### 2.4.4 查询充值记录（需要“READ” 权限）
+### 2.4.6 查询充值记录（需要“READ” 权限）
 
 **Http Request:** GET /deposit/history
 
 **Query Parameters** **:**
 
-| **PARAMETER**    | **TYPE**  | **REQUIRED** | **DESCRIPTION**                                            |
-|------------------|-----------|--------------|------------------------------------------------------------|
-| currency        | string   | false        | Currency                                                                                          |
-| status           | string    | false        | Status  "addressToBeVerified"、"underReview"、"successful"、"failed"、"refundInProgress"、"refundComplete"、"refundFailed" |
-| page             | string    | true         | Used for pagination. Page number.                          |
-| limit            | string     | true        | Limit on number of results to return. min 1 max 200                                               |
-| start_timestamp  | string    | true         | millisecond time-stamp                                     |
-| end_timestamp    | string    | true         | millisecond time-stamp                                     |
+| **PARAMETER**    | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
+|------------------|----------|--------------|------------------------------------------------------------|
+| currency         | string   | false        | Currency                                                   |
+| status           | string   | false        | Status: <br>"addressToBeVerified";"underReview";"successful";<br>"failed";  "refundInProgress";"refundComplete";<br>"refundFailed";"receivingAccountCredit" |
+| page             | string   | true         | Used for pagination. Page number.                          |
+| limit            | string   | true         | Limit on number of results to return. min 1 max 200        |
+| start_timestamp  | string   | true         | millisecond time-stamp                                     |
+| end_timestamp    | string   | true         | millisecond time-stamp                                     |
 
 
 **Response Content：**
@@ -732,9 +832,9 @@ null
 |------------------|----------|------------------------------|
 | deposit_order_id | string   | Deposit order ID             |
 | txn_id           | string   | Txn ID                       |
-| network           | string   | Network (currently unused)   |
+| network          | string   | Network (currently unused)   |
 | currency         | string   | Currency                     |
-| address          | string   | Deposit source address  |
+| address          | string   | Deposit source address       |
 | memo             | string   | Memo                         |
 | volume           | string   | Volume                       |
 | status           | string   | Status                       |
@@ -752,24 +852,85 @@ null
 
 ```json
 {
-    "error_code":"0000",          
-    "error_message":"",
-    "data":[{
-      "deposit_order_id": "00000001",
-      "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
-      "currency": "BTC",
-      "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
-      "memo": "",
-      "volume": "1",
-      "status": "successful",
-      "fee": "0.004",
-      "fee_ccy": "BTC",
-      "timestamp": 1478692862000
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "deposit_order_id": "00000001",
+            "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
+            "currency": "BTC",
+            "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
+            "memo": "",
+            "volume": "1",
+            "status": "successful",
+            "fee": "0.004",
+            "fee_ccy": "BTC",
+            "timestamp": 1478692862000
+        }
+    ]
 }
 ```
 
-### 2.4.5 划转记录查询（需要“READ” 权限）
+### 2.4.7 法币充值/提现记录查询（需要“READ” 权限）
+
+**Http Request:** GET /fiat/account/history
+
+**Query Parameters** **:**
+
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
+|-------------------| -------- |--------------|------------------------------------------------------------|
+| transaction_type  | string   | true         | 0-deposit,1-withdraw                                       |
+| status            | string   | false        | Status: <br> 0001-under review <br> 0002-successful <br> 0003-failed <br> 1001-withdrawing <br> 1002-successful |
+| start_timestamp   | string   | true         | millisecond time-stamp                                     |
+| end_timestamp     | string   | true         | millisecond time-stamp                                     |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
+| page              | string   | true         | Used for pagination. Page number.                          |
+
+**Response Content：**
+
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**        |
+| ---------------- |----------|------------------------|
+| order_id         | string   | Order ID               |
+| fait_id          | string   | Asset ID               |
+| fait_type        | string   | "USD"                  |
+| indicated_amount | string   | Order Amount           |
+| amount           | string   | Real Amount            |
+| fee              | string   | Fee                    |
+| remark           | string   | Remark                 |
+| status           | string   | Status: <br> 0001-under review <br> 0002-successful <br> 0003-failed <br> 1001-withdrawing <br> 1002-successful |
+| create_timestamp | string   | Order create millisecond time-stamp |
+| update_timestamp | string   | Order update millisecond time-stamp |
+
+**Request example：**
+
+```context
+ GET "https://domain/fiat/account/history?transaction_type=0&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page=1"
+```
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "order_id": "00000001",
+            "fait_id": "USD",
+            "fait_type": "USD",
+            "indicated_amount": "100",
+            "amount": "100",
+            "fee": "10",
+            "remark": "",
+            "status": "0002",
+            "create_timestamp": 1478692862000,
+            "update_timestamp": 1478692862000
+        }
+    ]
+}
+```
+
+### 2.4.8 划转记录查询（需要“READ” 权限）
 
 **Http Request:** GET /assets/transfer/history
 
@@ -777,10 +938,11 @@ null
 
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
-| start_timestamp   | string    | true         | millisecond time-stamp                                     |
-| end_timestamp     | string    | true         | millisecond time-stamp                                     |
-| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
-| page              | string    | true         | Used for pagination. Page number.                          |
+| start_timestamp   | string   | true         | millisecond time-stamp                                     |
+| end_timestamp     | string   | true         | millisecond time-stamp                                     |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
+| page              | string   | true         | Used for pagination. Page number.                          |
+| type              | string   | false        | Operation type: <br> 01-custody account to trading main account <br> 02-Trading main account custody account <br> 03-Fiat custody account to trading main account <br> 04-Trading main account fiat custody account <br> 05-Between Trading account <br> Default: 05|
 
 **Response Content：**
 
@@ -804,16 +966,18 @@ null
 
 ```json
 {
-    "error_code":"0000",
-    "error_message":"",
-    "data":[{
-      "asset":"ETH",
-      "amount":"1",
-      "from_account_id": "B000000000001",
-      "to_account_id":"B000000000002",
-      "status": "successful",
-      "timestamp": 1478692862000
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "asset": "ETH",
+            "amount": "1",
+            "from_account_id": "B000000000001",
+            "to_account_id": "B000000000002",
+            "status": "successful",
+            "timestamp": 1478692862000
+        }
+    ]
 }
 ```
 
@@ -825,19 +989,19 @@ null
 
 **Query Parameters：**
 
-| **PARAMETER**   | **TYPE**  | **REQUIRED** | **DESCRIPTION**                                                                                                                                                     |
-| --------------- |-----------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| instrument_id   | string    | true         | e.g. "ETH-BTC"                                                                                                                                                      |
-| period          | string    | true         | m -> minutes; h -> hours; d -> days; w -> weeks; M -> months;<br/> "1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h",<br/> "6h", "8h", "12h", "1d", "3d", "1w", "1M" |
-| start_timestamp | string    | true         | millisecond time-stamp  start from 000 milliseconds of this period                                                                                                  |
-| end_timestamp   | string    | true         | millisecond time-stamp  end at 000 milliseconds of the next period                                                                                                  |
-| page            | string     | true         | Used for pagination. Page number.                   |
-| limit           | string     | true         | min 1 max 200                                                                                                                                                       |
+| **PARAMETER**   | **TYPE** | **REQUIRED** | **DESCRIPTION**                                                    |
+| --------------- |----------|--------------|--------------------------------------------------------------------|
+| instrument_id   | string   | true         | e.g. "ETH-BTC"                                                     |
+| period          | string   | true         | m -> minutes; h -> hours; d -> days; w -> weeks; M -> months;<br/> "1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h",<br/> "6h", "8h", "12h", "1d", "3d", "1w", "1M" |
+| start_timestamp | string   | true         | millisecond time-stamp  start from 000 milliseconds of this period |
+| end_timestamp   | string   | true         | millisecond time-stamp  end at 000 milliseconds of the next period |
+| page            | string   | true         | Used for pagination. Page number.                                  |
+| limit           | string   | true         | min 1 max 200                                                      |
 
 **Response Content：**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**        |
-|-----------------| -------- | ---------------------- |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION**              |
+|-----------------| -------- | ---------------------------- |
 | instrument_id   | string   | e.g. "ETH-BTC"               |
 | open            | string   | Open Price                   |
 | close           | string   | Close Price                  |
@@ -851,18 +1015,18 @@ null
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":[
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": [
         {
-            "instrument_id":"ETH-BTC",      // 合约编号
-            "open":"10",                    // 开始价格
-            "close":"10",                   // 结束价格
-            "high":"10",                    // 最高价格
-            "low":"10",                     // 最低价格
-            "volume":"100",                 // 数量
-            "start_timestamp":1646213700000,     // 开始时间
-            "end_timestamp":1646213760000        // 结束时间
+            "instrument_id": "ETH-BTC", // 合约编号
+            "open": "10", // 开始价格
+            "close": "10", // 结束价格
+            "high": "10", // 最高价格
+            "low": "10", // 最低价格
+            "volume": "100", // 数量
+            "start_timestamp": 1646213700000, // 开始时间
+            "end_timestamp": 1646213760000 // 结束时间
         }
     ]
 }
@@ -877,10 +1041,10 @@ null
 | **PARAMETER**    | **TYPE** | **REQUIRED** | **DESCRIPTION**                   |
 |------------------| -------- |--------------|-----------------------------------|
 | instrument_id    | string   | false        | e.g. "ETH-BTC"                    |
-| start_timestamp  | string    | true         | millisecond time-stamp            |
-| end_timestamp    | string    | true         | millisecond time-stamp            |
-| limit            | string    | true        | min 1 max 200           |
-| page             | string    | true         | Used for pagination. Page number. |
+| start_timestamp  | string   | true         | millisecond time-stamp            |
+| end_timestamp    | string   | true         | millisecond time-stamp            |
+| limit            | string   | true         | min 1 max 200                     |
+| page             | string   | true         | Used for pagination. Page number. |
 
 
 **Response Content：**
@@ -898,16 +1062,80 @@ null
 
 ```json
 {
-    "error_code":"0000",    // 错误码
-    "error_message":"",     // 错误描述
-    "data":[
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": [
         {
-            "instrument_id": "ETH-BTC",     // 合约编号
-            "trade_id": "123456789",        // 成交编号
-            "price": "10",                  // 价格
-            "volume": "100",                // 数量
-            "timestamp": 1478692862000,     // 时间
-            "direction": "buy"              // Taker方向
+            "trade_id": "123456789", // 成交编号
+            "instrument_id": "ETH-BTC", // 合约编号
+            "price": "10", // 价格
+            "volume": "100", // 数量
+            "timestamp": 1478692862000, // 时间
+            "direction": "buy" // Taker方向
+        }
+    ]
+}
+```
+
+## 2.6 账户相关功能
+
+### 2.6.1 查询主账户信息（需要“READ” 权限）
+
+**Http Request:** GET /account/trading/main
+
+**Response Content：** 无
+
+**Response Content：**
+
+| **PARAMETER**            | **TYPE** | **DESCRIPTION**           |
+| ------------------------ | -------- | ------------------------- |
+| client_id                | string   | client ID                 |
+| sub_account_quantity     | string   | 当前账户下，下挂的子账户数量 |
+| max_sub_account_quantity | string   | 最大下挂的子账户数量        |
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": {
+        "client_id": "C0000010001", // client ID
+        "sub_account_quantity": "5", // 当前账户下，下挂的子账户数量
+        "max_sub_account_quantity": "9" // 最大下挂的子账户数量
+    }
+}
+```
+
+### 2.6.1 查询子账户列表（需要“READ” 权限）
+
+**Http Request:** GET /accounts/trading/sub
+
+**Response Content：** 无
+
+**Response Content：**
+
+| **PARAMETER**  | **TYPE** | **DESCRIPTION**         |
+| -------------- | -------- |-------------------------|
+| client_id      | string   | client ID               |
+| sub_account    | string   | 子账户名称               |
+| sub_account_id | string   | 子账户ID                |
+| label          | string   | 子账户标签               |
+| timestamp      | int64    | millisecond time-stamp  |
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000", // 错误码
+    "error_message": "", // 错误描述
+    "data": [
+        {
+            "client_id": "C0000010001", // client ID
+            "sub_account": "test", // 子账户名称
+            "sub_account_id": "B0000010003", // 子账户ID
+            "label": "test", // 子账户标签
+            "timestamp": 1478692862000 // millisecond time-stamp
         }
     ]
 }
@@ -959,19 +1187,19 @@ null
 | type               | string   | true         | Default: auth                                               |
 | x-access-key       | string   | true         | The API Access Key you applied for.                         |
 | x-access-sign      | string   | true         | A value calculated by the hash value from request to ensure it is valid and not tampered.|
-| x-access-timestamp | string    | true         | The timestamp represents the time of request (in milliseconds). |
+| x-access-timestamp | string   | true         | The timestamp represents the time of request (in milliseconds). |
 | x-access-version   | string   | true         | Signature protocol version. Default version is 1.           |
 
 **Request Example：**
 
  ```json
 {
-    "type":"auth",
-    "auth":{
-        "x-access-key":"xxxxxxxxx",
-        "x-access-sign":"xxxxxxxxx",
+    "type": "auth",
+    "auth": {
+        "x-access-key": "xxxxxxxxx",
+        "x-access-sign": "xxxxxxxxx",
         "x-access-timestamp": "1478692862000",
-        "x-access-version":"v1.0"
+        "x-access-version": "v1.0"
     },
     "id": 1
 }
@@ -981,7 +1209,7 @@ null
 
 ```json
 {
-    "type":"auth-resp",
+    "type": "auth-resp",
     "error_code": "0000",
     "error_message": "success"
 }
@@ -1010,12 +1238,14 @@ null
 
 ```json
 {
-    "type": "sub",            // 消息类型, sub:订阅
-    "parameters":[{
-        "topic":"order_rtn",            // 订阅主题
-        "instrument_id":"ETH-USDT"      // 合约ID
-    }],
-    "id": 1                             // 消息ID
+    "type": "sub", // 消息类型, sub:订阅
+    "parameters": [
+        {
+            "topic": "order_rtn", // 订阅主题
+            "instrument_id": "ETH-USDT" // 合约ID
+        }
+    ],
+    "id": 1 // 消息ID
 }
 ```
 
@@ -1054,11 +1284,12 @@ null
 
  ```json
 {
-    "type":"unsub",
-    "parameters":  [{
-        "topic":"xxxxxxxxx",
-        ......
-    }],
+    "type": "unsub",
+    "parameters": [
+        {
+            "topic": "xxxxxxxxx"
+        }
+    ],
     "id": 2
 }
  ```
@@ -1103,8 +1334,8 @@ null
 | **PARAMETER**   | **TYPE** | **DESCRIPTION**                               |
 |-----------------| -------- | --------------------------------------------- |
 | instrument_id   | string   | e.g. "ETH-USDT", "ETH-BTC"                    |
-| high            | string   | High  price                                   |
 | open            | string   | Open price                                    |
+| high            | string   | High  price                                   |
 | low             | string   | Low  price                                    |
 | close           | string   | Close  price                                  |
 | volume          | string   | Volume in base asset, e.g, ETH in ETH-BTC     |
@@ -1115,13 +1346,15 @@ null
 
 ```json
 {
-    "type":"sub",                       // 交易类型
-    "parameters":[{
-        "topic":"kline",                // 主题是K线
-        "period":"1m",                  // 时间周期
-        "instrument_id":"ETH-USDT"      // 合约编号
-    }],
-    "id": 1                             // 消息ID
+    "type": "sub", // 交易类型
+    "parameters": [
+        {
+            "topic": "kline", // 主题是K线
+            "period": "1m", // 时间周期
+            "instrument_id": "ETH-USDT" // 合约编号
+        }
+    ],
+    "id": 1 // 消息ID
 }
 ```
 
@@ -1131,16 +1364,18 @@ null
 {
     "type":"sub-resp",                           // 交易类型
     "topic":"kline",                             // 主题
-    "data":{
-            "instrument_id":"ETH-BTC",           // 合约编号
-            "open":"10",                         // 开始价格
-            "close":"10",                        // 结束价格
-            "high":"10",                         // 最高价格
-            "low":"10",                          // 最低价格
-            "volume":"100",                      // 数量
-            "start_timestamp":1646213700000,     // 开始时间
-            "end_timestamp":1646213760000        // 结束时间
-    }
+    "data":[
+      {
+        "instrument_id":"ETH-BTC",           // 合约编号
+        "open":"10",                         // 开始价格
+        "high":"10",                         // 最高价格
+        "low":"10",                          // 最低价格
+        "close":"10",                        // 结束价格
+        "volume":"100",                      // 数量
+        "start_timestamp":1646213700000,     // 开始时间
+        "end_timestamp":1646213760000        // 结束时间
+      }
+    ]
 }
 ```
 
@@ -1183,12 +1418,14 @@ null
 
 ```json
 {
-    "type":"sub",                           // 交易类型
-    "parameters":[{
-        "topic":"market_data",              // 主题是MarketData
-        "instrument_id":"ETH-USDT"          // 合约编号
-    }],
-    "id": 1                                 // 消息ID
+    "type": "sub", // 交易类型
+    "parameters": [
+        {
+            "topic": "market_data", // 主题是MarketData
+            "instrument_id": "ETH-USDT" // 合约编号
+        }
+    ],
+    "id": 1 // 消息ID
 }
 ```
 
@@ -1196,20 +1433,20 @@ null
 
 ```json
 {
-    "type":"sub-resp",                  // 交易类型: sub-resp: 订阅结果
-    "topic":"market_data",              // 主题
-    "data":[
+    "type": "sub-resp", // 交易类型: sub-resp: 订阅结果
+    "topic": "market_data", // 主题
+    "data": [
         {
-            "open":"0",                // 开始价格
-            "high":"0",                 // 最高价格
-            "low":"0",                  // 最低价格
-            "base":"ETH",               // 基础资产
-            "quote":"USDT",             // 计价资产
-            "instrument_id":"ETH-USDT", // 合约编号
-            "price_change_rate":"0",    // 24小时变化比例
-            "price_change":"0",         // 24小时变化数量
-            "last_price":"0",           // 最后一笔价格
-            "volume":"0"                // 24小时交易数量
+            "open": "0", // 开始价格
+            "high": "0", // 最高价格
+            "low": "0", // 最低价格
+            "base": "ETH", // 基础资产
+            "quote": "USDT", // 计价资产
+            "instrument_id": "ETH-USDT", // 合约编号
+            "price_change_rate": "0", // 24小时变化比例
+            "price_change": "0", // 24小时变化数量
+            "last_price": "0", // 最后一笔价格
+            "volume": "0" // 24小时交易数量
         }
     ]
 }
@@ -1234,26 +1471,34 @@ null
 | ------------- | -------- |-----------------------------|
 | type          | string   | "sub-resp"                  |
 | topic         | string   | "depth_market_data"         |
-| instrument_id | string   | e.g. "ETH-USDT", "ETH-BTC"  |
 
 **Data Content:**
+
+| **PARAMETER**   | **TYPE** | **DESCRIPTION** |
+|-----------------|----------|-----------------|
+| instrument_id   | string   | Instrument Id   |
+| sequence_no     | int64    | Sequence No     |
+| timestamp       | int64    | Timestamp       |
+
+**Ask and Bid Content:**
 
 | **PARAMETER** | **TYPE** | **DESCRIPTION** |
 |---------------|----------|-----------------|
 | volume        | string   | Volume          |
 | price         | string   | Price           |
-| timestamp     | int64    | Timestamp       |
 
 **How to Subscribe：**
 
 ```json
 {
-    "type":"sub",                           // 交易类型
-    "parameters":[{
-        "topic":"depth_market_data",        // 主题是depth_market_data
-        "instrument_id":"ETH-USDT"          // 合约编号
-    }],
-    "id": 1                                 // 消息ID
+    "type": "sub", // 交易类型
+    "parameters": [
+        {
+            "topic": "depth_market_data", // 主题是depth_market_data
+            "instrument_id": "ETH-USDT" // 合约编号
+        }
+    ],
+    "id": 1 // 消息ID
 }
 ```
 
@@ -1263,9 +1508,12 @@ null
 {
     "type":"sub-resp",                      // 交易类型: sub-resp: 订阅结果
     "topic":"depth_market_data",            // 主题
-    "instrument_id":"ETH-USDT",
-    "data":{
-        "asks":[                            // 卖50档, 按价格从小到大排序
+    "data":[
+      {
+        "instrument_id":"ETH-USDT",
+        "sequence_no": 100,
+        "timestamp": 1646213700000,
+        "ask":[                            // 卖50档, 按价格从小到大排序
             {
                 "volume":"3",               // 数量
                 "price":"1.7"               // 价格
@@ -1275,12 +1523,14 @@ null
                 "price":"2"
             }
         ],
-        "bids": [{                          // 买50档， 按价格从大到小排序
-                "volume":"3",
-                "price":"1.5"
-        }]
-    },
-  "timestamp": 1646213700000
+        "bids": [
+            { // 买50档， 按价格从大到小排序
+                "volume": "3",
+                "price": "1.5"
+            }
+        ]
+      }
+    ]
 }
 ```
 
@@ -1309,8 +1559,8 @@ null
 | trade_id      | string   | Trade Id                 |
 | volume        | string   | Volume                   |
 | price         | string   | Price                    |
-| timestamp    | int64x   | millisecond time-stamp   |
-| direction     | string   | Taker direction        |
+| timestamp     | int64x   | millisecond time-stamp   |
+| direction     | string   | Taker direction          |
 
 **How to Subscribe：**
 
@@ -1329,26 +1579,26 @@ null
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"trade_rtn_all",                    // 主题
-    "data":[
-            {
-                "instrument_id":"ETH-BTC",      // 合约编号
-                "trade_id":"1000001",           // 成交编号
-                "volume":"2",                   // 数量
-                "price":"2",                    // 价格
-                "timestamp":1478692862000,      // 交易时间
-                "direction": "buy"              // Taker方向
-            },
-            {
-                "instrument_id":"ETH-BTC",
-                "trade_id":"1000002",
-                "volume":"2",
-                "price":"2",
-                "timestamp":1478692862000,
-                "direction": "buy"        
-            }
-        ]
+    "type": "sub-resp",
+    "topic": "trade_rtn_all", // 主题
+    "data": [
+        {
+            "instrument_id": "ETH-BTC", // 合约编号
+            "trade_id": "1578862103000011", // 成交编号
+            "volume": "2", // 数量
+            "price": "2", // 价格
+            "timestamp": 1478692862000, // 交易时间
+            "direction": "buy" // Taker方向
+        },
+        {
+            "instrument_id": "ETH-BTC",
+            "trade_id": "1578862103000012",
+            "volume": "2",
+            "price": "2",
+            "timestamp": 1478692862000,
+            "direction": "buy"
+        }
+    ]
 }
 ```
 
@@ -1382,10 +1632,12 @@ null
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"instruments_status_change",
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "instruments_status_change",
+        }
+    ],
     "id": 1
 }
 ```
@@ -1394,14 +1646,14 @@ null
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"instruments_status_change",        // 主题
-    "data":[
-            {
-                "instrument_id":"ETH-BTC",      // 合约编号
-                "status":""                     // 合约状态
-            }
-        ]
+    "type": "sub-resp",
+    "topic": "instruments_status_change", // 主题
+    "data": [
+        {
+            "instrument_id": "ETH-BTC", // 合约编号
+            "status": "" // 合约状态
+        }
+    ]
 }
 ```
 
@@ -1426,20 +1678,20 @@ null
 
 **Data Content:**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
-| --------------- |----------|--------------------------------------------------------------------------------------------------------------|
-| type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id    | string   | Server Order ID                                                                                              |
-| client_order_id | string   | Client order id.                                                                                             |
-| instrument_id   | string   | e.g. "ETH-BTC"                                                                                               |
-| direction       | string   | "buy" or "sell"                                                                                              |
-| stop_price      | string   | Required when order type is stopLimit or stopMarket                                                          |
-| price           | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
-| volume          | string   | Original Total Volume                                                                                        |
-| status          | string   | Order status                                                                                                 |
-| post_only       | bool     | Only maker                                                                                                   |
-| timestamp       | int64    | millisecond time-stamp                                                                                       |
-| filled_size     | string   | The size that has been filled                                                                                |
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**                                                                                              |
+| ---------------- |----------|--------------------------------------------------------------------------------------------------------------|
+| sys_order_id     | string   | Server Order ID                                                                                              |
+| client_order_id  | string   | Client order id.                                                                                             |
+| instrument_id    | string   | e.g. "ETH-BTC"                                                                                               |
+| direction        | string   | "buy" or "sell"                                                                                              |
+| type             | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
+| stop_price       | string   | Required when order type is stopLimit or stopMarket                                                          |
+| price            | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
+| volume           | string   | Original Total Volume                                                                                        |
+| status           | string   | Order status                                                                                                 |
+| post_only        | bool     | Only maker                                                                                                   |
+| timestamp        | int64    | millisecond time-stamp                                                                                       |
+| filled_size      | string   | The size that has been filled                                                                                |
 | unfilled_size    | string   | The size that has not been filled                                                                            |
 | avg_filled_price | string   | Average filled price                                                                                         |
 | sum_trade_amount | string   | cumulative trading amount(turnover)                                                                          |
@@ -1449,11 +1701,13 @@ null
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"order_rtn",
-        "instrument_id":"ETH-USDT"
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "order_rtn",
+            "instrument_id": "ETH-USDT"
+        }
+    ],
     "id": 1
 }
 ```
@@ -1462,25 +1716,26 @@ null
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"order_rtn",
-    "data":[{
-        "type": "limit",                // 交易类型
-        "sys_order_id":"1550849345000001",     // 系统订单号
-        "client_order_id":"000000001",  // 客户订单号
-        "instrument_id":"ETH-BTC",      // 合约编号
-        "direction":"buy",              // 买卖方向
-        "stop_price":"0",               // 止损触发价格
-        "price":"1",                    // 限价
-        "volume":"1",                   // 原始数量
-        "status": "FILLED",             // 订单状态
-        "post_only": "false",           // 是否仅作为maker
-        "timestamp": 1478692862000,     // 交易时间
-        "filled_size": "1",             // 已成交數量
-        "avg_filled_price": "1",        // 成交均价
-        "unfilled_size": "0",           // 未成交数量
-        "sum_trade_amount": "1"         // 累计成交额
-    }]
+    "type": "sub-resp",
+    "topic": "order_rtn",
+    "data": [
+        {
+            "sys_order_id": "1550849345000001", // 系统订单号
+            "client_order_id": "000000001", // 客户订单号
+            "instrument_id": "ETH-BTC", // 合约编号
+            "direction": "buy", // 买卖方向
+            "type": "limit", // 交易类型
+            "price": "1", // 限价
+            "volume": "1", // 原始数量
+            "status": "FILLED", // 订单状态
+            "post_only": "false", // 是否仅作为maker
+            "timestamp": 1478692862000, // 交易时间
+            "filled_size": "1", // 已成交數量
+            "unfilled_size": "0", // 未成交数量
+            "avg_filled_price": "1", // 成交均价
+            "sum_trade_amount": "1" // 累计成交额
+        }
+    ]
 }
 ```
 
@@ -1496,32 +1751,38 @@ null
 
 **Response Content:**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                      |
-| --------------- | -------- |--------------------------------------|
-| type            | string   | "sub-resp"                           |
-| topic           | string   | "trade_rtn"                          |
-| trade_id        | string   | Trade Id                             |
-| client_order_id | string   | Client Order Id                      |
-| sys_order_id    | string   | Server Order Id                      |
-| instrument_id   | string   | e.g. "ETH-BTC"                       |
-| direction       | string   | "buy" or "sell"                      |
-| price           | string   | Price                                |
-| volume          | string   | Volume                               |
-| fee             | string   | Fee                                  |
-| fee_ccy         | string   | Transaction fee currency, e.g. "ETH" |
-| timestamp      | int64    | Trade millisecond time-stamp         |
-| trade_type    | string   | "Common", "Invalid"                  |
-
+| **PARAMETER**       | **TYPE** | **DESCRIPTION**                      |
+| ------------------- | -------- |--------------------------------------|
+| type                | string   | "sub-resp"                           |
+| topic               | string   | "trade_rtn"                          |
+| account_id          | string   | Account ID                           |
+| trade_id            | string   | Trade Id                             |
+| client_order_id     | string   | Client Order Id                      |
+| sys_order_id        | string   | Server Order Id                      |
+| instrument_id       | string   | e.g. "ETH-BTC"                       |
+| direction           | string   | "buy" or "sell"                      |
+| price               | string   | Price                                |
+| volume              | string   | Volume                               |
+| fee                 | string   | Fee                                  |
+| fee_ccy             | string   | Transaction fee currency, e.g. "ETH" |
+| timestamp           | int64    | Trade millisecond time-stamp         |
+| trade_type          | string   | "Taker","Maker","Invalid"                  |
+| base_asset_id       | string   | "ETH"                                |
+| base_asset_balance  | string   | Base Asset Balance                   |
+| quote_asset_id      | string   | "USDT"                               |
+| quote_asset_balance | string   | Quote Asset Balance                  |
 
 **How to Subscribe：**
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"trade_rtn",
-        "instrument_id":"ETH-USDT"
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "trade_rtn",
+            "instrument_id": "ETH-USDT"
+        }
+    ],
     "id": 1
 }
 ```
@@ -1530,34 +1791,94 @@ null
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"trade_rtn",
-    "data":[
+    "type": "sub-resp",
+    "topic": "trade_rtn",
+    "data": [
         {
-            "sys_order_id":"1550849345000001",     // 系统订单号
-            "client_order_id":"000000001",  // 客户订单号
-            "trade_id":"1",                 // 成交编号
-            "instrument_id":"ETH-BTC",      // 合约编号
-            "direction":"buy",              // 买卖方向
-            "price":"1",                    // 价格
-            "volume":"1",                   // 数量
-            "fee":"0.05",                   // 手续费
-            "fee_ccy": "BTC",               // 手续费币种
-            "timestamp": 1478692862000,     // 交易时间
-            "trade_type": "Common"          // 交易类型
+            "sys_order_id": "1550849345000001", // 系统订单号
+            "client_order_id": "000000001", // 客户订单号
+            "trade_id": "1", // 成交编号
+            "instrument_id": "ETH-BTC", // 合约编号
+            "direction": "buy", // 买卖方向
+            "price": "1", // 价格
+            "volume": "1", // 数量
+            "fee": "0.05", // 手续费
+            "fee_ccy": "BTC", // 手续费币种
+            "timestamp": 1478692862000, // 交易时间
+            "trade_type": "Taker" // 交易类型
         },
         {
-            "sys_order_id":"1550849345000002",
-            "client_order_id":"000000002",
-            "trade_id":"2",
-            "instrument_id":"ETH-BTC",
-            "direction":"sell",
-            "price":"1",
-            "volume":"2",
-            "fee":"0.05",
+            "sys_order_id": "1550849345000002",
+            "client_order_id": "000000002",
+            "trade_id": "2",
+            "instrument_id": "ETH-BTC",
+            "direction": "sell",
+            "price": "1",
+            "volume": "2",
+            "fee": "0.05",
             "fee_ccy": "BTC",
-            "timestamp":1478692862000,
-            "trade_type": "Common"
+            "timestamp": 1478692862000,
+            "trade_type": "Taker"
+        }
+    ]
+}
+```
+
+### 3.3.3 Balance Data
+
+**Request Content:**
+
+| **PARAMETER** | **TYPE** | **REQUIRED** | **DESCRIPTION**            |
+| ------------- | -------- | ------------ | -------------------------- |
+| type          | string   | true         | "sub"                      |
+| topic         | string   | true         | "balance"                  |
+| account_type  | string   | true         | 01-Fiat Account <br> 02-Custody Account <br> 03-Trading Account |
+
+**Response Content:**
+
+| **PARAMETER**       | **TYPE** | **DESCRIPTION**                             |
+| ------------------- | -------- | ------------------------------------------- |
+| type                | string   | "sub-resp"                                  |
+| topic               | string   | "trade_rtn"                                 |
+| client_id           | string   | Client ID                                   |
+| account_id          | string   | Account ID                                  |
+| event_type          | string   | "snapshot","deposit","withdraw","transfer"  |
+| asset_id            | string   | "ETH"                                       |
+| asset_balance       | string   | Balance after change                        |
+| event_timestamp     | int      | Balance change event millisecond time-stamp |
+| timestamp           | int      | Message push millisecond time-stamp         |
+
+
+**How to Subscribe：**
+
+```json
+{
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "balance",
+            "account_type": "03"
+        }
+    ],
+    "id": 1
+}
+```
+
+**Response Example：**
+
+```json
+{
+    "type": "sub-resp",
+    "topic": "balance",
+    "data": [
+        {
+            "client_id": "C0000010001",
+            "account_id": "A0000010001",
+            "event_type": "snapshot",
+            "asset_id": "ETH",
+            "asset_balance": "100",
+            "event_timestamp": 1478692862000,
+            "timestamp": 1478692862000
         }
     ]
 }

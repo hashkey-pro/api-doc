@@ -172,9 +172,9 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 ```json
 {
-    "error_code":"0000",            // Error code
-    "error_message":"",             // Error message
-    "data":{
+    "error_code": "0000", // Error code
+    "error_message": "", // Error message
+    "data": {
         "timestamp": 1478692862000 // Server timestamp
     }
 }
@@ -196,10 +196,10 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 ```json
 {
-    "error_code":"0000",        // Error code
-    "error_message":"",         // Error message
-    "data":{
-        "version":"v1.0"        // Server version
+    "error_code": "0000", // Error code
+    "error_message": "", // Error message
+    "data": {
+        "version": "v1.0" // Server version
     }
 }
 ```
@@ -212,35 +212,37 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 **Response Content：**
 
-| **PARAMETER**           | **TYPE** | **DESCRIPTION**                                                                                                                                                    |
-|-------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| instrument_id           | string   | Instrument ID.                                                                                                                                                     |
-| base_asset              | string   | Base  Asset.                                                                                                                                                       |
-| quote_asset             | string   | Quote Asset.                                                                                                                                                       |
-| product_type            | string   | Product Type(Token/Token:digital assets exchange, Token/Fiat:exchange digital assets to fiat currency, ST/Token:exchange ST to digital assets, ST/Fiat:exchange ST to fiat currency) |
-| price_tick              | string    | Price tick.                                                                                                                                                        |
-| max_market_order_volume | string    | Max market order volume.                                                                                                                                           |
-| min_market_order_volume | string    | Min market order volume.                                                                                                                                           |
-| max_limit_order_volume  | string    | Max limit order volume.                                                                                                                                            |
-| min_limit_order_volume  | string    | Min limit order volume.                                                                                                                                            |
+| **PARAMETER**           | **TYPE** | **DESCRIPTION**          |
+|-------------------------|----------|--------------------------|
+| instrument_id           | string   | Instrument ID.           |
+| base_asset              | string   | Base  Asset.             |
+| quote_asset             | string   | Quote Asset.             |
+| product_type            | string   | Product Type(Token/Token:digital assets exchange, Token/Fiat:exchange digital assets to fiat currency, ST/Token:exchange ST to digital assets, ST/Fiat:exchange ST to fiat currency)           |
+| price_tick              | string   | Price tick.              |
+| max_market_order_volume | string   | Max market order volume. |
+| min_market_order_volume | string   | Min market order volume. |
+| max_limit_order_volume  | string   | Max limit order volume.  |
+| min_limit_order_volume  | string   | Min limit order volume.  |
 
 **Response Example：**
 
 ```json
 {
-  "error_code":"0000",        
-  "error_message":"",         
-  "data":[{
-    "instrument_id":"BTC-ETH",                 
-    "base_asset":"BTC",                        
-    "quote_asset":"ETH",                      
-    "product_type": "Token/Token",
-    "price_tick": "0.00000001",                
-    "max_market_order_volume": "10000000.1",   
-    "min_market_order_volume": "0.00000001",   
-    "max_limit_order_volume": "10000000.1",    
-    "min_limit_order_volume": "0.00000001"
-  }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "instrument_id": "BTC-ETH",
+            "base_asset": "BTC",
+            "quote_asset": "ETH",
+            "product_type": "Token/Token",
+            "price_tick": "0.00000001",
+            "max_market_order_volume": "10000000.1",
+            "min_market_order_volume": "0.00000001",
+            "max_limit_order_volume": "10000000.1",
+            "min_limit_order_volume": "0.00000001"
+        }
+    ]
 }
 ```
 
@@ -257,10 +259,10 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 **Response Content：**
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**                                                                                                 |
-|---------------|----------|-----------------------------------------------------------------------------------------------------------------|
-| instrument_id | string   | Instrument ID.                                                                                                  |
-| status        | string   | Status  "BeforeTrading"、"NoTrading"、"Continuous"、"AuctionOrdering"、 "AuctionBalance"、 "AuctionMatch"、"Closed"   |
+| **PARAMETER** | **TYPE** | **DESCRIPTION** |
+|---------------|----------|-----------------|
+| instrument_id | string   | Instrument ID.  |
+| status        | string   | Status  "BeforeTrading","NoTrading","Continuous","AuctionOrdering","AuctionBalance","AuctionMatch","Closed" |
 
 | instrument status       | description        |
 |-------------------------|--------------------|
@@ -276,12 +278,12 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 ```json
 {
-  "error_code":"0000",       
-  "error_message":"",       
-  "data":[{
-    "instrument_id":"ETH-BTC",          
-    "status":"Continuous"                          
-  }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": {
+        "instrument_id": "ETH-BTC",
+        "status": "Continuous"
+    }
 }
 ```
 
@@ -293,45 +295,44 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 **Request Content：**
 
-| **PARAMETER**   | **TYPE** | **REQUIRED**                                                  | **DESCRIPTION**                                                                                              |
-| --------------- | -------- |---------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| type            | string   | true                                                          | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| client_order_id | string   | true                                                          | Max length: 20. Must be unique                                                                               |
-| instrument_id   | string   | true                                                          | e.g. "ETH-BTC"                                                                                               |
-| direction       | string   | true                                                          | "buy" or "sell"                                                                                              |
-| stop_price      | string   | false                                                         | Required when order type is stopLimit or stopMarket                                                          |
-| price           | string   | false                                                         | Limit price. Required when order type is limit or stopLimit                                                  |
-| volume          | string   | true                                                          | Total Volume                                                                                                 |
-| post_only       | bool     | false                                                         | Only maker  default false                                                                                           |
+| **PARAMETER**   | **TYPE** | **REQUIRED**| **DESCRIPTION**                                             |
+| --------------- | -------- |-------------|-------------------------------------------------------------|
+| type            | string   | true        | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
+| client_order_id | string   | true        | Max length: 20. Must be unique                              |
+| instrument_id   | string   | true        | e.g. "ETH-BTC"                                              |
+| direction       | string   | true        | "buy" or "sell"                                             |
+| stop_price      | string   | false       | Required when order type is stopLimit or stopMarket         |
+| price           | string   | false       | Limit price. Required when order type is limit or stopLimit |
+| volume          | string   | true        | Total Volume                                                |
+| post_only       | bool     | false       | Only maker  default false                                   |
 | time_in_force (currently unused) | string   | default: limit and stopLimit: GTC, market and stopMarket: IOC |
 
  **Response Content：**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
-| --------------- | -------- |--------------------------------------------------------------------------------------------------------------|
+| **PARAMETER**   | **TYPE** | **DESCRIPTION** |
+| --------------- | -------- |-----------------|
 | type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id    | string   | Server order id.                                                                                             |
 | client_order_id | string   | Client order id.                                                                                             |
+| sys_order_id    | string   | Server order id.                                                                                             |
 | instrument_id   | string   | e.g. "ETH-BTC"                                                                                               |
 | direction       | string   | "buy" or "sell"                                                                                              |
-| stop_price      | string   | Required when order type is stopLimit or stopMarket                                                          |
 | price           | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
 | volume          | string   | Total Volume                                                                                                 |
 | post_only       | bool     | Only maker                                                                                                   |
 | timestamp       | int64    | millisecond time-stamp                                                                                       |
-| time_in_force (currently unused) | string   | default: limit and stopLimit: GTC, market and stopMarket: IOC                                                |
+| time_in_force (currently unused) | string   | default: limit and stopLimit: GTC, market and stopMarket: IOC                               |
 
 **Request Example：**
 
 ```json
 {
-    "type": "limit",                    // Order type:
-    "client_order_id":"000000001",      // Client order ID
-    "instrument_id":"ETH-BTC",          // Instrument ID
-    "direction":"buy",                  // Trade direction: buy、sell
-    "price":"1",                        // Limit price
-    "volume":"1",                       // Total Volume
-    "post_only": true                   // Whether to only be a maker
+    "type": "limit", // Order type:
+    "client_order_id": "000000001", // Client order ID
+    "instrument_id": "ETH-BTC", // Instrument ID
+    "direction": "buy", // Trade direction: buy、sell
+    "price": "1", // Limit price
+    "volume": "1", // Total Volume
+    "post_only": true // Whether to only be a maker
 }
 ```
 
@@ -339,19 +340,18 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 
 ```json
 {
-    "error_code":"0000",    // Errorcode
-    "error_message":"",     // Errormessage
-    "data":{
-        "type":"limit",                // Order type
-        "sys_order_id":"1550849345000001",     // System order ID
-        "client_order_id":"000000001",  // Client order ID
-        "instrument_id":"ETH-BTC",      // Instrument ID
-        "direction":"buy",              // Trade direction
-        "stop_price": "0",              // Stop price
-        "price":"1",                    // Limit price
-        "volume":"1",                   // Total Volume
-        "post_only": true,              // Whether to only be a maker
-        "timestamp": 1478692862000      // Order timestamp
+    "error_code": "0000", // Errorcode
+    "error_message": "", // Errormessage
+    "data": {
+        "type": "limit", // Order type
+        "client_order_id": "000000001", // Client order ID
+        "sys_order_id": "1550849345000001", // System order ID
+        "instrument_id": "ETH-BTC", // Instrument ID
+        "direction": "buy", // Trade direction
+        "price": "1", // Limit price
+        "volume": "1", // Total Volume
+        "post_only": true, // Whether to only be a maker
+        "timestamp": 1478692862000 // Order timestamp
     }
 }
 ```
@@ -367,6 +367,7 @@ All endpoints are in JSON standard format.  There are three fields, namely  **er
 | sys_order_id    | string     | false         | This filed is required when client_order_id is null     |
 | client_order_id | string     | false         | This filed is required when sys_order_id is null        |
 | volume          | string     | false         | If it is not input, the whole order will be cancelled   |
+
 Note: If neither sys_order_id nor client_order_id is empty, then client_order_id is ignored.
 
 **Response Content：**
@@ -381,20 +382,20 @@ null
 
 ```json
 {
-  "error_code":"0000",    // 错误码
-  "error_message":""      // 错误描述
+    "error_code": "0000", // Error code
+    "error_message": "" // Error message
 }
 ```
 
-### 2.3.3 Cancel all orders（TRADE permission is required）
+### 2.3.3 Cancel all orders(TRADE permission is required)
 
 **Http Request:** DELETE /orders
 
 **Query Parameters：**
 
 | **PARAMETER** | **TYPE**   | **REQUIRED** | **DESCRIPTION**                         |
-|------------|------------|--------------|-----------------------------------------|
-| instrument_id       | string     | false        | Cancel orders on a specific instrument_id only |
+|---------------|------------|--------------|-----------------------------------------|
+| instrument_id | string     | false        | Cancel orders on a specific instrument_id only |
 
 
 **Response Content：**
@@ -410,8 +411,8 @@ null
 
 ```json
 {
-    "error_code":"0000",    // Error code
-    "error_message":""     // Error message
+    "error_code": "0000", // Error code
+    "error_message": "" // Error message
 }
 ```
 
@@ -425,24 +426,24 @@ null
 |-----------------| ------------ |--------------|--------------------------------------------------------------|
 | sys_order_id    | string       | false        | Server Order ID                                              |
 | instrument_id   | string       | false        | e.g. "ETH-BTC"                                               |
-| sorting         | string       | false        | "desc" or "asc"  default "asc"                                 |
+| sorting         | string       | false        | "desc" or "asc"  default "asc"                               |
 | direction       | string       | false        | "buy" or "sell"                                              |
 | type            | string       | false        | Order type                                                   |
 | status          | array string | false        | Array with order statuses to filter by.                      |
-| start_timestamp | string        | true         | millisecond time-stamp                                       |
-| end_timestamp   | string        | true         | millisecond time-stamp                                       |
-| limit           | string        | true        | Limit on number of results to return. min 1 max 200. |
-| page            | string        | true         | Used for pagination. Page number.                            |
+| start_timestamp | string       | true         | millisecond time-stamp                                       |
+| end_timestamp   | string       | true         | millisecond time-stamp                                       |
+| limit           | string       | true         | Limit on number of results to return. min 1 max 200.         |
+| page            | string       | true         | Used for pagination. Page number.                            |
 
 **Response Content：**
 
 | **PARAMETER**     | **TYPE** | **DESCRIPTION**                                                                                              |
 |-------------------| -------- |--------------------------------------------------------------------------------------------------------------|
-| type              | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
 | sys_order_id      | string   | Server Order ID                                                                                              |
-| client_order_id   | string | Client order id.                                                                                             |
+| client_order_id   | string   | Client order id.                                                                                             |
 | instrument_id     | string   | e.g. "ETH-BTC"                                                                                               |
 | direction         | string   | "buy" or "sell"                                                                                              |
+| type              | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
 | stop_price        | string   | Required when order type is stopLimit or stopMarket                                                          |
 | price             | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
 | volume            | string   | Original Total Volume                                                                                        |
@@ -452,13 +453,12 @@ null
 | filled_size       | string   | The size that has been filled                                                                                |
 | unfilled_size     | string   | The size that has not been filled                                                                            |
 | avg_filled_price  | string   | Average filled price                                                                                         |
-| sum_trade_amount | string   | cumulative trading amount(turnover)                                                                          |
+| sum_trade_amount  | string   | cumulative trading amount(turnover)                                                                          |
 
 **Order status**
 
 | order status               | description                                                                            |
 |----------------------------|----------------------------------------------------------------------------------------|
-| -------------------------- | ------------------------------------------------------------                           |
 | NEW                        | The order has been accepted by the engine                                              |
 | FILLED                     | The order has been completed                                                           |
 | PARTIALLY_FILLED           | A part of the order has been filled, and the rest remains in the order book            |
@@ -479,23 +479,24 @@ null
 {
     "error_code":"0000",    // Error code
     "error_message":"",     // Error message
-    "data":[{
-        "type": "limit",                // Order type
-        "sys_order_id":"1550849345000001",     // System order ID
-        "client_order_id":"000000001",  // Client order ID
-        "instrument_id":"ETH-BTC",      // InstrumentID
-        "direction":"buy",              // Trade direction
-        "stop_price":"0",               // Stop price
-        "price":"1",                    // Limit Price
-        "volume":"1",                   // Original Total Volume
-        "status": "FILLED",             // Order status
-        "post_only": false,             // Only as "maker"
-        "timestamp": 1478692862000,     // Order timestamp
-        "filled_size": "1",             // The size that has been filled
-        "avg_filled_price": "1",        // Average filled price
-        "unfilled_size": "0",           // The size that has not been filled
-        "sum_trade_amount": "1"         // turnover
-    }]
+    "data": [
+        {
+            "sys_order_id":"1550849345000001",     // System order ID
+            "client_order_id":"000000001",  // Client order ID
+            "instrument_id":"ETH-BTC",      // InstrumentID
+            "direction":"buy",              // Trade direction
+            "type": "limit",                // Order type
+            "price":"1",                    // Limit Price
+            "volume":"1",                   // Original Total Volume
+            "status": "FILLED",             // Order status
+            "post_only": false,             // Only as "maker"
+            "timestamp": 1478692862000,     // Order timestamp
+            "filled_size": "1",             // The size that has been filled
+            "unfilled_size": "0",           // The size that has not been filled
+            "avg_filled_price": "1",        // Average filled price
+            "sum_trade_amount": "1"         // turnover
+        }
+    ]
 }
 ```
 
@@ -510,33 +511,38 @@ null
 | instrument_id   | string   | false        | e.g. "ETH-BTC"                                               |
 | sys_order_id    | string   | false        | Server Order ID                                              |
 | direction       | string   | false        | "buy" or "sell"                                              |
-| sorting         | string   | false        | "desc" or "asc"    default "asc"                               |
-| limit           | string    | true        | Limit on number of results to return. min 1 max 200. |
-| page            | string    | true         | Used for pagination. Page number.                            |
-| start_timestamp | string    | true         | millisecond time-stamp                                       |
-| end_timestamp   | string    | true         | millisecond time-stamp                                       |
+| sorting         | string   | false        | "desc" or "asc"    default "asc"                             |
+| limit           | string   | true         | Limit on number of results to return. min 1 max 200.         |
+| page            | string   | true         | Used for pagination. Page number.                            |
+| start_timestamp | string   | true         | millisecond time-stamp                                       |
+| end_timestamp   | string   | true         | millisecond time-stamp                                       |
 
  **Response Content:**
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**        |
-| ------------- | -------- |------------------------|
-| trade_id      | string   | Trade ID               |
-| sys_order_id  | string   | Order ID               |
-| instrument_id | string   | e.g. "ETH-BTC"         |
-| direction     | string   | "buy" or "sell"        |
-| price         | string   | Price                  |
-| volume        | string   | Volume                 |
-| fee           | string   | Fee                    |
-| fee_ccy       | string   | Fee Currency           |
-| timestamp     | int64    | millisecond time-stamp |
-| trade_type    | string   | "Common", "Invalid"    |
+| **PARAMETER**       | **TYPE** | **DESCRIPTION**        |
+| ------------------- | -------- |------------------------|
+| account_id          | string   | Account ID             |
+| trade_id            | string   | Trade ID               |
+| sys_order_id        | string   | Order ID               |
+| instrument_id       | string   | e.g.  "ETH-BTC"        |
+| direction           | string   | "buy" or "sell"        |
+| price               | string   | Price                  |
+| volume              | string   | Volume                 |
+| fee                 | string   | Fee                    |
+| fee_ccy             | string   | Fee Currency           |
+| timestamp           | int64    | millisecond time-stamp |
+| trade_type          | string   | "Taker", "Maker", "Invalid" |
+| base_asset_id       | string   | "ETH"                  |
+| base_asset_balance  | string   | Base Asset Balance     |
+| quote_asset_id      | string   | "USDT"                 |
+| quote_asset_balance | string   | Quote Asset Balance    |
 
 **Trade Type**
 
 | Trade type         | description |
 |--------------------|-------------|
 | Common             | Common Trade        |
-| Invalid            |  Invalid Trade        |
+| Invalid            | Invalid Trade       |
 
 
 **Request Example:**
@@ -551,24 +557,26 @@ null
 {
     "error_code":"0000",    // Error code
     "error_message":"",     // Error message
-    "data":[{
-        "sys_order_id":"1550849345000001",     // System order ID
-        "trade_id":"1",                 // Trade ID
-        "instrument_id":"ETH-BTC",      // Instrument ID
-        "direction":"buy",              // Trade direction
-        "price":"1",                    // Price
-        "volume":"1",                   // Volume
-        "fee":"0.05",                   // Transaction Fee
-        "fee_ccy": "BTC",              // Transaction Fee currency
-        "timestamp": 1478692862000,      // Trade timestamp
-        "trade_type": "Common"          // Trade type
-    }]
+    "data": [
+        {
+            "sys_order_id":"1550849345000001",     // System order ID
+            "trade_id":"1",                 // Trade ID
+            "instrument_id":"ETH-BTC",      // Instrument ID
+            "direction":"buy",              // Trade direction
+            "price":"1",                    // Price
+            "volume":"1",                   // Volume
+            "fee":"0.05",                   // Transaction Fee
+            "fee_ccy": "BTC",               // Transaction Fee currency
+            "timestamp": 1478692862000,     // Trade timestamp
+            "trade_type": "Taker"           // Trade type
+        }
+    ]
 }
 ```
 
 ## 2.4 Asset
 
-### 2.4.1 Query assets(READ permission is required)
+### 2.4.1 Query Trading Account Assets(READ permission is required)
 
 **Http Request:** GET /assets
 
@@ -586,19 +594,62 @@ null
 
 ```json
 {
-    "error_code":"0000",
-    "error_message":"",
-    "data":[{
-        "asset":"ETH",
-        "free": "1",
-        "freeze": "0",
-    }, {
-        // other asset
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "asset": "ETH",
+            "free": "1",
+            "freeze": "0"
+        },
+        {
+            "asset": "USDC",
+            "free": "1",
+            "freeze": "0"
+        }
+    ]
 }
 ```
 
-### 2.4.2 Transfer between trading accounts(TRANSFER permission is required)
+### 2.4.2 Query Custody Account Assets(READ permission is required)
+
+**Http Request:** GET /assets/custodyaccount
+
+**Request Content：** null
+
+**Response Content：**
+
+|   **PARAMETER**   | **TYPE** | **DESCRIPTION**        |
+| ----------------- | -------- | ---------------------- |
+| asset             | string   | Asset type, e.g. "BTC" |
+| available_balance | string   | Avalible balance       |
+| total_balance     | string   | Total balance          |
+| timestamp         |  int64   | millisecond time-stamp |
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "asset": "ETH",
+            "available_balance": "1",
+            "total_balance": "1",
+            "timestamp": 1478692862000
+        },
+        {
+            "asset": "USDC",
+            "available_balance": "1",
+            "total_balance": "1",
+            "timestamp": 1478692862000
+        }
+    ]
+}
+```
+
+### 2.4.3 Transfer Between Trading Accounts(TRANSFER permission is required)
 
 **Http Request:** POST /assets/transfer
 
@@ -623,10 +674,10 @@ null
 
 ```json
 {
-    "asset":"ETH",
-    "amount":"1",
+    "asset": "ETH",
+    "amount": "1",
     "from_account_id": "B000000000001",
-    "to_account_id":"B000000000002"
+    "to_account_id": "B000000000002"
 }
 ```
 
@@ -634,14 +685,59 @@ null
 
 ```json
 {
-    "error_code":"0000",
-    "error_message":"",
-    "data":{}
+    "error_code": "0000",
+    "error_message": "",
+    "data": {}
 }
-
 ```
 
-### 2.4.3 Query withdrawal history（READ permission is required）
+### 2.4.4 Transfer With Custody Accounts(TRANSFER permission is required)
+
+**Http Request:** POST /assets/transfer/custodyaccount
+
+**Request Content：**
+
+| **PARAMETER** | **TYPE** | **REQUIRED** | **DESCRIPTION** |
+|---------------| -------- | ------------ |-----------------|
+| asset         | string   | true         | Asset ID        |
+| amount        | string   | true         | Amount          |
+| type          | string   | true         | Operation type: <br> 01-Custody to trading main account <br> 02-Trading main account to custody account <br> 03-Fiat custody account to trading main account <br> 04-Trading main account to fiat custody|
+
+**Response Content：**
+
+|  **PARAMETER**  | **TYPE** | **DESCRIPTION** |
+| --------------- | -------- | --------------- |
+| transaction_id  | string   | Transfer ID     |
+| asset_id        | string   | Asset ID        |
+| amount          | string   | Amount          |
+| timestamp       |  int64   | millisecond time-stamp |
+
+**Request Example：**
+
+```json
+{
+    "asset": "ETH",
+    "amount": "1",
+    "type": "01"
+}
+```
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000",
+    "error_message": "",
+    "data": {
+        "transaction_id": "1578170686002699",
+        "asset": "ETH",
+        "amount": "1",
+        "timestamp": 1478692862000
+    }
+}
+```
+
+### 2.4.5 Query Withdrawal History(READ permission is required)
 
 **Http Request:** GET /withdraw/history
 
@@ -649,12 +745,12 @@ null
 
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
-| currency          | string   | false        | Currency                                            |
-| status            | string   | false        | Status   "failed"、"withdrawing"、"successful"、"cancelling"、"cancelled"              |
-| limit             | string    | true         | Limit on number of results to return. min 1 max 200 |
-| page              | string    | true         | Used for pagination. Page number.                          |
-| start_timestamp   | string    | true         | millisecond time-stamp                                     |
-| end_timestamp     | string    | true         | millisecond time-stamp                                     |
+| currency          | string   | false        | Currency                                                   |
+| status            | string   | false        | Status <br>  "failed";"withdrawing";"successful"; <br> "cancelling";"cancelled" |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
+| page              | string   | true         | Used for pagination. Page number.                          |
+| start_timestamp   | string   | true         | millisecond time-stamp                                     |
+| end_timestamp     | string   | true         | millisecond time-stamp                                     |
 
 
 **Response Content：**
@@ -686,39 +782,41 @@ null
 
 ```json
 {
-  "error_code":"0000",
-  "error_message":"",
-  "data":[{
-    "withdraw_order_id": "00000001",
-    "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
-    "currency": "BTC",
-    "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
-    "memo": "",
-    "volume": "1",
-    "status": "successful",
-    "fee": "0.004",
-    "fee_ccy": "BTC",
-    "gas_fee": "0.0001",
-    "gas_fee_ccy": "BTC",
-    "timestamp": 1478692862000
-  }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "withdraw_order_id": "00000001",
+            "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
+            "currency": "BTC",
+            "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
+            "memo": "",
+            "volume": "1",
+            "status": "successful",
+            "fee": "0.004",
+            "fee_ccy": "BTC",
+            "gas_fee": "0.0001",
+            "gas_fee_ccy": "BTC",
+            "timestamp": 1478692862000
+        }
+    ]
 }
 ```
 
-### 2.4.4 Query deposit history（READ permission is required）
+### 2.4.6 Query Deposit History(READ permission is required)
 
 **Http Request:** GET /deposit/history
 
 **Query Parameters** **:**
 
-| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
-|-------------------| -------- |--------------|------------------------------------------------------------|
-| currency          | string   | false        | Currency                                                                                          |
-| status           | string    | false        | Status  "addressToBeVerified"、"underReview"、"successful"、"failed"、"refundInProgress"、"refundComplete"、"refundFailed" |
-| page              | string    | true         | Used for pagination. Page number.                   |
-| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
-| start_timestamp   | string    | true         | millisecond time-stamp                                     |
-| end_timestamp     | string    | true         | millisecond time-stamp                                     |
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                     |
+|-------------------| -------- |--------------|-----------------------------------------------------|
+| currency          | string   | false        | Currency  |
+| status            | string   | false        | Status: <br>"addressToBeVerified";"underReview";"successful";<br>"failed"; "refundInProgress";"refundComplete";<br>"refundFailed";"receivingAccountCredit" |
+| page              | string   | true         | Used for pagination. Page number.                   |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200 |
+| start_timestamp   | string   | true         | millisecond time-stamp                              |
+| end_timestamp     | string   | true         | millisecond time-stamp                              |
 
 
 **Response Content：**
@@ -727,7 +825,7 @@ null
 |------------------|----------|----------------------------|
 | deposit_order_id | string   | Deposit order ID           |
 | txn_id           | string   | Txn ID                     |
-| network           | string   | Network (currently unused) |
+| network          | string   | Network (currently unused) |
 | currency         | string   | Currency                   |
 | address          | string   | Deposit source address     |
 | memo             | string   | Memo                       |
@@ -747,46 +845,108 @@ null
 
 ```json
 {
-  "error_code":"0000",
-  "error_message":"",
-  "data":[{
-    "deposit_order_id": "00000001",
-    "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
-    "currency": "BTC",
-    "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
-    "memo": "",
-    "volume": "1",
-    "status": "successful",
-    "fee": "0.004",
-    "fee_ccy": "BTC",
-    "timestamp": 1478692862000
-  }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "deposit_order_id": "00000001",
+            "txn_id": "60fd9007ebfddc753455f95fafa808c4302c836e4d1eebc5a132c36c1d8ac354",
+            "currency": "BTC",
+            "address": "1FZdVHtiBqMrWdjPyRPULCUceZPJ2WLCsB",
+            "memo": "",
+            "volume": "1",
+            "status": "successful",
+            "fee": "0.004",
+            "fee_ccy": "BTC",
+            "timestamp": 1478692862000
+        }
+    ]
 }
 ```
 
-### 2.4.5 Query assets transfer history（READ permission is required）
+### 2.4.7 Query Fiat Account Deposit/Withdraw History(READ permission is required)
 
-**Http Request:** GET /assets/transfer/history
+**Http Request:** GET /fiat/account/history
 
 **Query Parameters** **:**
 
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
-| start_timestamp   | string    | true         | millisecond time-stamp                                     |
-| end_timestamp     | string    | true         | millisecond time-stamp                                     |
-| limit             | string    | true        | Limit on number of results to return. min 1 max 200 |
-| page              | string    | true         | Used for pagination. Page number.                          |
+| transaction_type  | string   | true         | 0-deposit,1-withdraw                                       |
+| status            | string   | false        | Status: <br> 0001-under review <br> 0002-successful <br> 0003-failed <br> 1001-withdrawing <br> 1002-successful |
+| start_timestamp   | string   | true         | millisecond time-stamp                                     |
+| end_timestamp     | string   | true         | millisecond time-stamp                                     |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
+| page              | string   | true         | Used for pagination. Page number.                          |
 
 **Response Content：**
 
-| **PARAMETER**    | **TYPE** | **DESCRIPTION**    |
-|------------------|----------|--------------------|
-| asset           | string   | Asset ID           |
-| amount          | string   | Amount             |
-| from_account_id | string   | From Account ID    |
-| to_account_id   | string   | To Account ID      |
-| status          | string   | "successful", "failed" |
-| timestamp       | int64    | Timestamp          |
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**        |
+| ---------------- |----------|------------------------|
+| order_id         | string   | Order ID               |
+| fait_id          | string   | Asset ID               |
+| fait_type        | string   | "USD"                  |
+| indicated_amount | string   | Order Amount           |
+| amount           | string   | Real Amount            |
+| fee              | string   | Fee                    |
+| remark           | string   | Remark                 |
+| status           | string   | Status: <br> 0001-under review <br> 0002-successful <br> 0003-failed <br> 1001-withdrawing <br> 1002-successful |
+| create_timestamp | string   | Order create millisecond time-stamp |
+| update_timestamp | string   | Order update millisecond time-stamp |
+
+**Request example：**
+
+```context
+ GET "https://domain/fiat/account/history?transaction_type=0&start_timestamp=1656928657000&end_timestamp=1656928717000&limit=50&page=1"
+```
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "order_id": "00000001",
+            "fait_id": "USD",
+            "fait_type": "USD",
+            "indicated_amount": "100",
+            "amount": "100",
+            "fee": "10",
+            "remark": "",
+            "status": "0002",
+            "create_timestamp": 1478692862000,
+            "update_timestamp": 1478692862000
+        }
+    ]
+}
+```
+
+### 2.4.8 Query Assets Transfer History(READ permission is required)
+
+**Http Request:** GET /assets/transfer/history
+
+**Query Parameters** **:**
+
+| **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                     |
+|-------------------| -------- |--------------|-----------------------------------------------------|
+| start_timestamp   | string   | true         | millisecond time-stamp                              |
+| end_timestamp     | string   | true         | millisecond time-stamp                              |
+| limit             | string   | true         | Limit on number of results to return. min 1 max 200 |
+| page              | string   | true         | Used for pagination. Page number.                   |
+| type              | string   | false        | Operation type: <br> 01-Custody account to trading main account <br> 02-Trading main account to custody account <br> 03-Fiat custody account to trading main account <br> 04-Trading main account to fiat custody account <br> 05-Between Trading account <br> Default: 05|
+
+**Response Content：**
+
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**        |
+|------------------|----------|------------------------|
+| asset            | string   | Asset ID               |
+| amount           | string   | Amount                 |
+| from_account_id  | string   | From Account ID        |
+| to_account_id    | string   | To Account ID          |
+| status           | string   | "successful", "failed" |
+| timestamp        | int64    | Timestamp              |
 
 
 **Request example：**
@@ -799,18 +959,22 @@ null
 
 ```json
 {
-    "error_code":"0000",
-    "error_message":"",
-    "data":[{
-      "asset":"ETH",
-      "amount":"1",
-      "from_account_id": "B000000000001",
-      "to_account_id":"B000000000002",
-      "status": "successful",
-      "timestamp": 1478692862000
-    }]
+    "error_code": "0000",
+    "error_message": "",
+    "data": [
+        {
+            "asset": "ETH",
+            "amount": "1",
+            "from_account_id": "B000000000001",
+            "to_account_id": "B000000000002",
+            "status": "successful",
+            "timestamp": 1478692862000
+        }
+    ]
 }
 ```
+
+
 
 ## 2.5 Market
 
@@ -820,14 +984,14 @@ null
 
 **Query Parameters：**
 
-| **PARAMETER**    | **TYPE** | **REQUIRED** | **DESCRIPTION**                                                                                                                                                     |
-|------------------|----------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| instrument_id    | string   | true         | e.g. "ETH-BTC"                                                                                                                                                      |
+| **PARAMETER**    | **TYPE** | **REQUIRED** | **DESCRIPTION**                                         |
+|------------------|----------|--------------|---------------------------------------------------------|
+| instrument_id    | string   | true         | e.g. "ETH-BTC"                                          |
 | period           | string   | true         | m -> minutes; h -> hours; d -> days; w -> weeks; M -> months;<br/> "1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h",<br/> "6h", "8h", "12h", "1d", "3d", "1w", "1M" |
-| start_timestamp  | string   | true         | millisecond time-stamp  start from 000 milliseconds of this period                                                                                                  |
-| end_timestamp    | string   | true         | millisecond time-stamp  end at 000 milliseconds of the next period                                                                                                  |
-| page             | string   | true         | Used for pagination. Page number.                   |
-| limit            | string   | true         | min 1 max 200                                                                                                                                                       |
+| start_timestamp  | string   | true         | millisecond time-stamp  start from 000 milliseconds of this period |
+| end_timestamp    | string   | true         | millisecond time-stamp  end at 000 milliseconds of the next period |
+| page             | string   | true         | Used for pagination. Page number.                       |
+| limit            | string   | true         | min 1 max 200                                           |
 
 **Response Content：**
 
@@ -846,18 +1010,18 @@ null
 
 ```json
 {
-    "error_code":"0000",    // Error code
-    "error_message":"",     // Error message
-    "data":[
+    "error_code": "0000", // Error code
+    "error_message": "", // Error message
+    "data": [
         {
-            "instrument_id":"ETH-BTC",      // Instrument ID
-            "open":"10",                    // Open price
-            "close":"10",                   // Close price
-            "high":"10",                    // High price
-            "low":"10",                     // Low price
-            "volume":"100",                 // Volume
-            "start_timestamp":1646213700000,     // Start time
-            "end_timestamp":1646213760000        // End time
+            "instrument_id": "ETH-BTC", // Instrument ID
+            "open": "10", // Open price
+            "close": "10", // Close price
+            "high": "10", // High price
+            "low": "10", // Low price
+            "volume": "100", // Volume
+            "start_timestamp": 1646213700000, // Start time
+            "end_timestamp": 1646213760000 // End time
         }
     ]
 }
@@ -872,10 +1036,10 @@ null
 | **PARAMETER**   | **TYPE** | **REQUIRED** | **DESCRIPTION**                   |
 |-----------------|----------|--------------|-----------------------------------|
 | instrument_id   | string   | false        | e.g. "ETH-BTC"                    |
-| start_timestamp | string    | true         | millisecond time-stamp            |
-| end_timestamp   | string    | true         | millisecond time-stamp            |
-| limit           | string    | true        | min 1 max 200.          |
-| page            | string    | true         | Used for pagination. Page number. |
+| start_timestamp | string   | true         | millisecond time-stamp            |
+| end_timestamp   | string   | true         | millisecond time-stamp            |
+| limit           | string   | true         | min 1 max 200.                    |
+| page            | string   | true         | Used for pagination. Page number. |
 
 **Response Content：**
 
@@ -892,16 +1056,80 @@ null
 
 ```json
 {
-    "error_code":"0000",    // Error code
-    "error_message":"",     // Error message
-    "data":[
+    "error_code": "0000", // Error code
+    "error_message": "", // Error message
+    "data": [
         {
-            "instrument_id": "ETH-BTC",     // Instrument ID
-            "trade_id": "123456789",        // Trade ID
-            "price": "10",                  // Price
-            "volume": "100",                // Volume
-            "timestamp": 1478692862000      // Trade timestamp
-            "direction": "buy"              // Taker direction
+            "trade_id": "123456789", // Trade ID
+            "instrument_id": "ETH-BTC", // Instrument ID
+            "price": "10", // Price
+            "volume": "100", // Volume
+            "timestamp": 1478692862000, // Trade timestamp
+            "direction": "buy" // Taker direction
+        }
+    ]
+}
+```
+
+## 2.6 Account
+
+### 2.6.1 Query Main Account Info(READ permission is required)
+
+**Http Request:** GET /account/trading/main
+
+**Response Content：** 无
+
+**Response Content：**
+
+| **PARAMETER**            | **TYPE** | **DESCRIPTION**         |
+| ------------------------ | -------- | ----------------------- |
+| client_id                | string   | client ID               |
+| sub_account_quantity     | string   | Under the current account, the number of linked sub-accounts |
+| max_sub_account_quantity | string   | The maximum number of linked sub-accounts |
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000", // Error code
+    "error_message": "", // Error message
+    "data": {
+        "client_id": "C0000010001", // client ID
+        "sub_account_quantity": "5", // the number of linked sub-accounts
+        "max_sub_account_quantity": "9" // the maximum number of linked sub-accounts
+    }
+}
+```
+
+### 2.6.1 Query Sub Account List(READ permission is required)
+
+**Http Request:** GET /accounts/trading/sub
+
+**Response Content：** null
+
+**Response Content：**
+
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**         |
+| ---------------- | -------- | ----------------------- |
+| client_id        | string   | client ID               |
+| sub_account      | string   | sub account name        |
+| sub_account_id   | string   | sub account ID          |
+| label            | string   | sub account label       |
+| timestamp        | int64    | millisecond time-stamp  |
+
+**Response Example：**
+
+```json
+{
+    "error_code": "0000", // Error code
+    "error_message": "", // Error message
+    "data": [
+        {
+            "client_id": "C0000010001", // client ID
+            "sub_account": "test", // sub account name
+            "sub_account_id": "B0000010003", // sub account ID
+            "label": "test", // sub account label
+            "timestamp": 1478692862000 // millisecond time-stamp
         }
     ]
 }
@@ -956,24 +1184,24 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 
 **Request Example：**
 
- ```json
+```json
 {
-    "type":"auth",
-    "auth":{
-        "x-access-key":"xxxxxxxxx",
-        "x-access-sign":"xxxxxxxxx",
+    "type": "auth",
+    "auth": {
+        "x-access-key": "xxxxxxxxx",
+        "x-access-sign": "xxxxxxxxx",
         "x-access-timestamp": "1478692862000",
-        "x-access-version":"v1.0"
+        "x-access-version": "v1.0"
     },
     "id": 1
 }
- ```
+```
 
 **Response Example：**
 
 ```json
 {
-    "type":"auth-resp",
+    "type": "auth-resp",
     "error_code": "0000",
     "error_message": "success"
 }
@@ -1002,12 +1230,14 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 
 ```json
 {
-    "type": "sub",            // Message type, sub: subscribe
-    "parameters":[{
-        "topic":"order_rtn",            // Subscribe topoic
-        "instrument_id":"ETH-USDT"      // Instrument ID
-    }],
-    "id": 1                             // Message ID
+    "type": "sub", // Message type, sub: subscribe
+    "parameters": [
+        {
+            "topic": "order_rtn", // Subscribe topoic
+            "instrument_id": "ETH-USDT" // Instrument ID
+        }
+    ],
+    "id": 1 // Message ID
 }
 ```
 
@@ -1044,16 +1274,17 @@ All response bodies are expected to be in valid JSON format.  For details, pleas
 
 **Request Example:**
 
- ```json
+```json
 {
-    "type":"unsub",
-    "parameters":  [{
-        "topic":"xxxxxxxxx",
-        ......
-    }],
+    "type": "unsub",
+    "parameters": [
+        {
+            "topic": "xxxxxxxxx"
+        }
+    ],
     "id": 2
 }
- ```
+```
 
 **Response Example:**
 
@@ -1095,8 +1326,8 @@ Push every 1000 milliseconds
 | **PARAMETER**   | **TYPE** | **DESCRIPTION**                               |
 |-----------------| -------- | --------------------------------------------- |
 | instrument_id   | string   | e.g. "ETH-USDT", "ETH-BTC"                    |
-| high            | string   | High  price                                   |
 | open            | string   | Open price                                    |
+| high            | string   | High  price                                   |
 | low             | string   | Low  price                                    |
 | close           | string   | Close  price                                  |
 | volume          | string   | Volume in base asset, e.g, ETH in ETH-BTC     |
@@ -1107,13 +1338,15 @@ Push every 1000 milliseconds
 
 ```json
 {
-    "type":"sub",                       // Message type
-    "parameters":[{
-        "topic":"kline",                // Subscribe topoic(kline)
-        "period":"1m",                  // Time period
-        "instrument_id":"ETH-USDT"      // Instrument ID
-    }],
-    "id": 1                             // Message ID
+    "type": "sub", // Message type
+    "parameters": [
+        {
+            "topic": "kline", // Subscribe topoic(kline)
+            "period": "1m", // Time period
+            "instrument_id": "ETH-USDT" // Instrument ID
+        }
+    ],
+    "id": 1 // Message ID
 }
 ```
 
@@ -1123,16 +1356,18 @@ Push every 1000 milliseconds
 {
     "type":"sub-resp",                      // Message type
     "topic":"kline",                        // Subscribe topoic
-    "data":{
-            "instrument_id":"ETH-BTC",      // Instrument ID
-            "open":"10",                    // Open price
-            "close":"10",                   // Close price
-            "high":"10",                    // Highest price
-            "low":"10",                     // Lowest price
-            "volume":"100",                 // Volume in base asset
-            "start_timestamp":1646213700000,     // Start time
-            "end_timestamp":1646213760000        // End time
-    }
+    "data":[
+      {
+        "instrument_id":"ETH-BTC",           // Instrument ID
+        "open":"10",                         // Open price
+        "high":"10",                         // Highest price
+        "low":"10",                          // Lowest price
+        "close":"10",                        // Close price
+        "volume":"100",                      // Volume in base asset
+        "start_timestamp":1646213700000,     // Start time
+        "end_timestamp":1646213760000        // End time
+      }
+    ]
 }
 ```
 
@@ -1175,12 +1410,14 @@ Push every 1000 milliseconds
 
 ```json
 {
-    "type":"sub",                           // Message type
-    "parameters":[{
-        "topic":"market_data",              // Subscribe topoic
-        "instrument_id":"ETH-USDT"          // Instrument ID
-    }],
-    "id": 1                                 // Message ID
+    "type": "sub", // Message type
+    "parameters": [
+        {
+            "topic": "market_data", // Subscribe topoic
+            "instrument_id": "ETH-USDT" // Instrument ID
+        }
+    ],
+    "id": 1 // Message ID
 }
 ```
 
@@ -1188,22 +1425,22 @@ Push every 1000 milliseconds
 
 ```json
 {
-    "type":"sub-resp",                  // Message type: sub-resp: Subscription results
-    "topic":"market_data",              // Subscribe topic
-    "data":[
+    "type": "sub-resp", // Message type: sub-resp: Subscription results
+    "topic": "market_data", // Subscribe topic
+    "data": [
         {
-            "open":"0",                 // Open price
-            "high":"0",                 // Highest price
-            "low":"0",                  // Lowest price
-            "base":"ETH",               // Base asset
-            "quote":"USDT",             // Quote asset
-            "instrument_id":"ETH-USDT", // Instrument ID
-            "price_change_rate":"0",    // Price change rate of 24 hours
-            "price_change":"0",         // Price change rate of 24 hours
-            "last_price":"0",           // Price of the latest trade
-            "volume":"0"                // Volume of 24 hours
+            "open": "0", // Open price
+            "high": "0", // Highest price
+            "low": "0", // Lowest price
+            "base": "ETH", // Base asset
+            "quote": "USDT", // Quote asset
+            "instrument_id": "ETH-USDT", // Instrument ID
+            "price_change_rate": "0", // Price change rate of 24 hours
+            "price_change": "0", // Price change rate of 24 hours
+            "last_price": "0", // Price of the latest trade
+            "volume": "0" // Volume of 24 hours
         }
-    ]
+]
 }
 ```
 
@@ -1226,26 +1463,34 @@ Push every 500 milliseconds(If there is any change)
 | ------------- | -------- |------------------------------|
 | type          | string   | "sub-resp"                   |
 | topic         | string   | "depth_market_data"          |
-| instrument_id | string   | e.g. "ETH-USDT", "ETH-BTC"   |
 
 **Data Content:**
 
-| **PARAMETER** | **TYPE** | **DESCRIPTION**     |
-| ------------- | -------- | ------------------- |
-| volume        | string   | Volume              |
-| price         | string   | Price               |
-| timestamp     | int64    | Timestamp       |
+| **PARAMETER**   | **TYPE** | **DESCRIPTION** |
+|-----------------|----------|-----------------|
+| instrument_id   | string   | Instrument Id   |
+| sequence_no     | int64    | Sequence No     |
+| timestamp       | int64    | Timestamp       |
+
+**Ask and Bid Content:**
+
+| **PARAMETER** | **TYPE** | **DESCRIPTION** |
+|---------------|----------|-----------------|
+| volume        | string   | Volume          |
+| price         | string   | Price           |
 
 **How to Subscribe：**
 
 ```json
 {
-    "type":"sub",                           // Message type
-    "parameters":[{
-        "topic":"depth_market_data",        // Subscribe topoic
-        "instrument_id":"ETH-USDT"          // Instrument ID
-    }],
-    "id": 1                                 // Message ID
+    "type": "sub", // Message type
+    "parameters": [
+        {
+            "topic": "depth_market_data", // Subscribe topoic
+            "instrument_id": "ETH-USDT" // Instrument ID
+        }
+    ],
+    "id": 1 // Message ID
 }
 ```
 
@@ -1255,8 +1500,11 @@ Push every 500 milliseconds(If there is any change)
 {
     "type":"sub-resp",                      // Message type
     "topic":"depth_market_data",            // Subscribe topoic
-    "instrument_id":"ETH-USDT",
-    "data":{
+    "data":[
+      {
+        "instrument_id":"ETH-USDT",
+        "sequence_no": 100,
+        "timestamp": 1646213700000,
         "asks":[                            // Sell 50 levels, sorted from small to large according to the price
             {
                 "volume":"3",               // volume
@@ -1273,8 +1521,8 @@ Push every 500 milliseconds(If there is any change)
                 "price":"1.5"
             }
         ]
-    },
-  "timestamp": 1646213700000
+      }
+    ]
 }
 ```
 
@@ -1311,11 +1559,13 @@ Push every 500 milliseconds(If there is any change)
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"trade_rtn_all",
-        "instrument_id":"ETH-USDT"
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "trade_rtn_all",
+            "instrument_id": "ETH-USDT"
+        }
+    ],
     "id": 1
 }
 ```
@@ -1324,26 +1574,26 @@ Push every 500 milliseconds(If there is any change)
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"trade_rtn_all",                    // Subscribe topoic
-    "data":[
-            {
-                "instrument_id":"ETH-USDT",     // Instrument ID
-                "trade_id":"1000001",           // Trade ID
-                "volume":"2",                   // Volume
-                "price":"2",                    // Price
-                "timestamp":1478692862000,      // Trade time
-                "direction": "buy"              // Taker direction
-            },
-            {
-                "instrument_id":"ETH-USDT",
-                "trade_id":"1000002",
-                "volume":"2",
-                "price":"2",
-                "timestamp":1478692862000,
-                "direction": "buy"              
-            }
-        ]
+    "type": "sub-resp",
+    "topic": "trade_rtn_all", // Subscribe topoic
+    "data": [
+        {
+            "instrument_id": "ETH-USDT", // Instrument ID
+            "trade_id": "1578862103000011", // Trade ID
+            "volume": "2", // Volume
+            "price": "2", // Price
+            "timestamp": 1478692862000, // Trade time
+            "direction": "buy" // Taker direction
+        },
+        {
+            "instrument_id": "ETH-USDT",
+            "trade_id": "1578862103000012",
+            "volume": "2",
+            "price": "2",
+            "timestamp": 1478692862000,
+            "direction": "buy"
+        }
+    ]
 }
 ```
 
@@ -1376,10 +1626,12 @@ Push every 500 milliseconds(If there is any change)
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"instruments_status_change",
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "instruments_status_change",
+        }
+    ],
     "id": 1
 }
 ```
@@ -1388,14 +1640,14 @@ Push every 500 milliseconds(If there is any change)
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"instruments_status_change",                    
-    "data":[
-            {
-                "instrument_id":"ETH-BTC",      
-                "status":""                     
-            }
-        ]
+    "type": "sub-resp",
+    "topic": "instruments_status_change",
+    "data": [
+        {
+            "instrument_id": "ETH-BTC",
+            "status": ""
+        }
+    ]
 }
 ```
 
@@ -1421,20 +1673,20 @@ Push every 500 milliseconds(If there is any change)
 
 **Data Content:**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                                                                                              |
-| --------------- | -------- |--------------------------------------------------------------------------------------------------------------|
-| type            | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
-| sys_order_id    | string   | Server Order ID                                                                                              |
-| client_order_id | string   | Client order id.                                                                                             |
-| instrument_id   | string   | e.g. "ETH-BTC"                                                                                               |
-| direction       | string   | "buy" or "sell"                                                                                              |
-| stop_price      | string   | Required when order type is stopLimit or stopMarket                                                          |
-| price           | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
-| volume          | string   | Original Total Volume                                                                                        |
-| status          | string   | Order status                                                                                                 |
-| post_only       | bool     | Only maker                                                                                                   |
-| timestamp       | int64    | millisecond time-stamp                                                                                       |
-| filled_size     | string   | The size that has been filled                                                                                |
+| **PARAMETER**    | **TYPE** | **DESCRIPTION**                                                                                              |
+| ---------------- | -------- |--------------------------------------------------------------------------------------------------------------|
+| sys_order_id     | string   | Server Order ID                                                                                              |
+| client_order_id  | string   | Client order id.                                                                                             |
+| instrument_id    | string   | e.g. "ETH-BTC"                                                                                               |
+| direction        | string   | "buy" or "sell"                                                                                              |
+| type             | string   | "limit": limit order; "market": market order; "stopLimit": stop limit order; "stopMarket": stop market order |
+| stop_price       | string   | Required when order type is stopLimit or stopMarket                                                          |
+| price            | string   | Limit Price. Required when order type is limit or stopLimit                                                  |
+| volume           | string   | Original Total Volume                                                                                        |
+| status           | string   | Order status                                                                                                 |
+| post_only        | bool     | Only maker                                                                                                   |
+| timestamp        | int64    | millisecond time-stamp                                                                                       |
+| filled_size      | string   | The size that has been filled                                                                                |
 | unfilled_size    | string   | The size that has not been filled                                                                            |
 | avg_filled_price | string   | Average filled price                                                                                         |
 | sum_trade_amount | string   | cumulative trading amount(turnover)                                                                          |
@@ -1443,11 +1695,13 @@ Push every 500 milliseconds(If there is any change)
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"order_rtn",
-        "instrument_id":"ETH-USDT"
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "order_rtn",
+            "instrument_id": "ETH-USDT"
+        }
+    ],
     "id": 1
 }
 ```
@@ -1456,25 +1710,26 @@ Push every 500 milliseconds(If there is any change)
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"order_rtn",
-    "data":[{
-        "type": "limit",                // Order type
-        "sys_order_id":"1550849345000001",     // System order ID
-        "client_order_id":"000000001",  // Client order ID
-        "instrument_id":"ETH-BTC",      // InstrumentID
-        "direction":"buy",              // Trade direction
-        "stop_price":"0",               // Stop price
-        "price":"1",                    // Limit Price
-        "volume":"1",                   // Original Total Volume
-        "status": "FILLED",             // Order status
-        "post_only": false,             // Only as "maker"
-        "timestamp": 1478692862000,     // Order timestamp
-        "filled_size": "1",             // The size that has been filled
-        "avg_filled_price": "1",        // Average filled price
-        "unfilled_size": "0",           // The size that has not been filled
-        "sum_trade_amount": "1"         // turnover
-    }]
+    "type": "sub-resp",
+    "topic": "order_rtn",
+    "data": [
+        {
+            "sys_order_id": "1550849345000001", // System order ID
+            "client_order_id": "000000001", // Client order ID
+            "instrument_id": "ETH-BTC", // InstrumentID
+            "direction": "buy", // Trade direction
+            "type": "limit", // Order type
+            "price": "1", // Limit Price
+            "volume": "1", // Original Total Volume
+            "status": "FILLED", // Order status
+            "post_only": false, // Only as "maker"
+            "timestamp": 1478692862000, // Order timestamp
+            "filled_size": "1", // The size that has been filled
+            "unfilled_size": "0", // The size that has not been filled
+            "avg_filled_price": "1", // Average filled price
+            "sum_trade_amount": "1" // turnover
+        }
+    ]
 }
 ```
 
@@ -1490,32 +1745,39 @@ Push every 500 milliseconds(If there is any change)
 
 **Response Content:**
 
-| **PARAMETER**   | **TYPE** | **DESCRIPTION**                      |
-|-----------------| -------- |--------------------------------------|
-| type            | string   | "sub-resp"                           |
-| topic           | string   | "trade_rtn"                          |
-| trade_id        | string   | Trade Id                             |
-| client_order_id | string   | Client Order Id                      |
-| sys_order_id    | string   | Server Order Id                      |
-| instrument_id   | string   | e.g. "ETH-BTC"                       |
-| direction       | string   | "buy" or "sell"                      |
-| price           | string   | Price                                |
-| volume          | string   | Volume                               |
-| fee             | string   | Fee                                  |
-| fee_ccy         | string   | Transaction fee currency, e.g. "ETH" |
-| timestamp | int64    | Trade millisecond time-stamp         |
-| trade_type    | string   | "Common", "Invalid"                  |
+| **PARAMETER**       | **TYPE** | **DESCRIPTION**                      |
+| ------------------- | -------- |--------------------------------------|
+| type                | string   | "sub-resp"                           |
+| topic               | string   | "trade_rtn"                          |
+| account_id          | string   | Account ID                           |
+| trade_id            | string   | Trade Id                             |
+| client_order_id     | string   | Client Order Id                      |
+| sys_order_id        | string   | Server Order Id                      |
+| instrument_id       | string   | e.g. "ETH-BTC"                       |
+| direction           | string   | "buy" or "sell"                      |
+| price               | string   | Price                                |
+| volume              | string   | Volume                               |
+| fee                 | string   | Fee                                  |
+| fee_ccy             | string   | Transaction fee currency, e.g. "ETH" |
+| timestamp           | int64    | Trade millisecond time-stamp         |
+| trade_type          | string   | "Taker","Maker","Invalid"                  |
+| base_asset_id       | string   | "ETH"                                |
+| base_asset_balance  | string   | Base Asset Balance                   |
+| quote_asset_id      | string   | "USDT"                               |
+| quote_asset_balance | string   | Quote Asset Balance                  |
 
 
 **How to Subscribe：**
 
 ```json
 {
-    "type":"sub",
-    "parameters":[{
-        "topic":"trade_rtn",
-        "instrument_id":"ETH-USDT"
-    }],
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "trade_rtn",
+            "instrument_id": "ETH-USDT"
+        }
+    ],
     "id": 1
 }
 ```
@@ -1524,34 +1786,94 @@ Push every 500 milliseconds(If there is any change)
 
 ```json
 {
-    "type":"sub-resp",
-    "topic":"trade_rtn",
-    "data":[
+    "type": "sub-resp",
+    "topic": "trade_rtn",
+    "data": [
         {
-            "sys_order_id":"1550849345000001",     // System order ID
-            "client_order_id":"000000001",  // Client order ID
-            "trade_id":"1",                 // Trade ID
-            "instrument_id":"ETH-BTC",      // Instrument ID
-            "direction":"buy",              // Trade direction
-            "price":"1",                    // Price
-            "volume":"1",                   // Volume
-            "fee":"0.05",                   // Transaction fee
-            "fee_ccy": "BTC",               // Transaction fee currency
-            "timestamp": 1478692862000,     // Trade time
-            "trade_type": "Common"          // Trade type
+            "sys_order_id": "1550849345000001", // System order ID
+            "client_order_id": "000000001", // Client order ID
+            "trade_id": "1", // Trade ID
+            "instrument_id": "ETH-BTC", // Instrument ID
+            "direction": "buy", // Trade direction
+            "price": "1", // Price
+            "volume": "1", // Volume
+            "fee": "0.05", // Transaction fee
+            "fee_ccy": "BTC", // Transaction fee currency
+            "timestamp": 1478692862000, // Trade time
+            "trade_type": "Taker" // Trade type
         },
         {
-            "sys_order_id":"1550849345000002",
-            "client_order_id":"000000002",
-            "trade_id":"2",
-            "instrument_id":"ETH-BTC",
-            "direction":"sell",
-            "price":"1",
-            "volume":"2",
-            "fee":"0.05",
+            "sys_order_id": "1550849345000002",
+            "client_order_id": "000000002",
+            "trade_id": "2",
+            "instrument_id": "ETH-BTC",
+            "direction": "sell",
+            "price": "1",
+            "volume": "2",
+            "fee": "0.05",
             "fee_ccy": "BTC",
-            "timestamp":1478692862000,
-            "trade_type": "Common"
+            "timestamp": 1478692862000,
+            "trade_type": "Taker"
+        }
+    ]
+}
+```
+
+### 3.3.3 Balance Data
+
+**Request Content:**
+
+| **PARAMETER** | **TYPE** | **REQUIRED** | **DESCRIPTION**            |
+| ------------- | -------- | ------------ | -------------------------- |
+| type          | string   | true         | "sub"                      |
+| topic         | string   | true         | "balance"                  |
+| account_type  | string   | true         | 01-Fiat Account <br> 02-Custody Account <br> 03-Trading Account |
+
+**Response Content:**
+
+| **PARAMETER**       | **TYPE** | **DESCRIPTION**                             |
+| ------------------- | -------- | ------------------------------------------- |
+| type                | string   | "sub-resp"                                  |
+| topic               | string   | "trade_rtn"                                 |
+| client_id           | string   | Client ID                                   |
+| account_id          | string   | Account ID                                  |
+| event_type          | string   | "snapshot","deposit","withdraw","transfer"  |
+| asset_id            | string   | "ETH"                                       |
+| asset_balance       | string   | Balance after change                        |
+| event_timestamp     | int      | Balance change event millisecond time-stamp |
+| timestamp           | int      | Message push millisecond time-stamp         |
+
+
+**How to Subscribe：**
+
+```json
+{
+    "type": "sub",
+    "parameters": [
+        {
+            "topic": "balance",
+            "account_type": "03"
+        }
+    ],
+    "id": 1
+}
+```
+
+**Response Example：**
+
+```json
+{
+    "type": "sub-resp",
+    "topic": "balance",
+    "data": [
+        {
+            "client_id": "C0000010001",
+            "account_id": "A0000010001",
+            "event_type": "snapshot",
+            "asset_id": "ETH",
+            "asset_balance": "100",
+            "event_timestamp": 1478692862000,
+            "timestamp": 1478692862000
         }
     ]
 }
