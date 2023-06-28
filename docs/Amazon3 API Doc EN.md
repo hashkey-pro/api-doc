@@ -916,8 +916,8 @@ Note: If there is no order in the current order book, return error_code = "0211"
 
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
-| transaction_type  | string   | true         | 0-deposit,1-withdraw                                       |
-| status            | string   | false        | Status: <br> 0001-under review <br> 0002-successful <br> 0003-failed <br> 1001-withdrawing <br> 1002-successful |
+| transaction_type  | string   | true         | deposit,withdraw                                       |
+| status            | string   | false        | Status: <br> deposit: <br> under_review <br> successful <br> failed <br> withdraw: <br> withdrawing <br> successful |
 | start_timestamp   | string   | true         | millisecond time-stamp                                     |
 | end_timestamp     | string   | true         | millisecond time-stamp                                     |
 | limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
@@ -930,11 +930,12 @@ Note: If there is no order in the current order book, return error_code = "0211"
 | order_id         | string   | Order ID               |
 | fiat_id          | string   | Asset ID               |
 | fiat_type        | string   | "USD"                  |
-| indicated_amount | string   | Order Amount           |
-| amount           | string   | Real Amount            |
+| gross_amount     | string   | Order Amount           |
+| net_amount       | string   | Real Amount            |
 | fee              | string   | Fee                    |
+| transaction_type | string   |  deposit <br> withdraw |
 | remark           | string   | Remark                 |
-| status           | string   | Status: <br> 0001-under review <br> 0002-successful <br> 0003-failed <br> 1001-withdrawing <br> 1002-successful |
+| status           | string   | Status: <br> deposit: <br> under_review <br> successful <br> failed <br> withdraw: <br> withdrawing <br> successful |
 | create_timestamp | string   | Order create millisecond time-stamp |
 | update_timestamp | string   | Order update millisecond time-stamp |
 

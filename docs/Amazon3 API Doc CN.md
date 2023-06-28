@@ -857,8 +857,8 @@ null
 
 | **PARAMETER**     | **TYPE** | **REQUIRED** | **DESCRIPTION**                                            |
 |-------------------| -------- |--------------|------------------------------------------------------------|
-| transaction_type  | string   | true         | 0-deposit,1-withdraw                                       |
-| status            | string   | false        | Status: <br> 0001-under review <br> 0002-successful <br> 0003-failed <br> 1001-withdrawing <br> 1002-successful |
+| transaction_type  | string   | true         | deposit(充值) <br> withdraw(提现)                                       |
+| status            | string   | false        | Status: <br> 充值: <br> under_review充值审核中 <br> successful充值成功 <br> failed充值失败 <br> 提现: <br> withdrawing提现中 <br> successful提现成功 |
 | start_timestamp   | string   | true         | millisecond time-stamp                                     |
 | end_timestamp     | string   | true         | millisecond time-stamp                                     |
 | limit             | string   | true         | Limit on number of results to return. min 1 max 200        |
@@ -871,11 +871,12 @@ null
 | order_id         | string   | Order ID               |
 | fiat_id          | string   | Asset ID               |
 | fiat_type        | string   | "USD"                  |
-| indicated_amount | string   | Order Amount           |
-| amount           | string   | Real Amount            |
+| gross_amount     | string   | 系统中充值提现填写的金额 |
+| net_amount       | string   | 系统中成功上账的金额     |
 | fee              | string   | Fee                    |
-| remark           | string   | Remark                 |
-| status           | string   | Status: <br> 0001-under review <br> 0002-successful <br> 0003-failed <br> 1001-withdrawing <br> 1002-successful |
+| transaction_type | string   |  deposit(充值) <br> withdraw( 提现) |
+| remark           | string   |                        |
+| status           | string   | Status: <br> 充值: <br> under_review充值审核中 <br> successful充值成功 <br> failed充值失败 <br> 提现: <br> withdrawing提现中 <br> successful提现成功 |
 | create_timestamp | string   | Order create millisecond time-stamp |
 | update_timestamp | string   | Order update millisecond time-stamp |
 
